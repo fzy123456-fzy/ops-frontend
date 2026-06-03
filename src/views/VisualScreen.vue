@@ -11,6 +11,10 @@
         <h1 class="system-title">智慧建筑智能运行中心</h1>
       </div>
       <div class="header-right">
+        <el-button class="header-btn back-btn" size="small" @click="goBack">
+          <el-icon><ArrowLeft /></el-icon>
+          返回主界面
+        </el-button>
         <el-button class="header-btn" size="small">大屏概览</el-button>
         <el-icon class="header-icon"><Bell /></el-icon>
         <el-icon class="header-icon"><User /></el-icon>
@@ -679,7 +683,10 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { Bell, User } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
+import { Bell, User, ArrowLeft } from '@element-plus/icons-vue'
+
+const router = useRouter()
 
 const currentDate = ref('')
 const currentTime = ref('')
@@ -697,6 +704,10 @@ const updateTime = () => {
   const seconds = String(now.getSeconds()).padStart(2, '0')
   currentDate.value = `${year}-${month}-${day}`
   currentTime.value = `${hours}:${minutes}:${seconds}`
+}
+
+const goBack = () => {
+  router.push('/dashboard')
 }
 
 const getPageTitle = () => {
@@ -795,6 +806,20 @@ onUnmounted(() => {
   border: 1px solid rgba(0,150,255,0.5);
   color: #00d4ff;
   font-size: 14px;
+}
+
+.back-btn {
+  background: rgba(255,100,100,0.3);
+  border: 1px solid rgba(255,100,100,0.6);
+  color: #ff8888;
+  transition: all 0.3s;
+}
+
+.back-btn:hover {
+  background: rgba(255,100,100,0.5);
+  border-color: rgba(255,100,100,0.8);
+  color: #ffaaaa;
+  box-shadow: 0 0 15px rgba(255,100,100,0.3);
 }
 
 .header-icon {
