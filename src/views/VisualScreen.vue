@@ -594,76 +594,6 @@
             </div>
           </div>
         </div>
-
-        <!-- 底部导航栏 -->
-        <div class="bottom-nav">
-          <div class="nav-tabs">
-            <div class="nav-tab" :class="{ active: activeNav === 'home' }" @click="activeNav = 'home'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
-              </svg>
-              <span>首页</span>
-            </div>
-            <div class="nav-tab" :class="{ active: activeNav === 'energy' }" @click="activeNav = 'energy'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-              </svg>
-              <span>智能耗能</span>
-            </div>
-            <div class="nav-tab" :class="{ active: activeNav === 'device' }" @click="activeNav = 'device'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                <line x1="8" y1="21" x2="16" y2="21"/>
-                <line x1="12" y1="17" x2="12" y2="21"/>
-              </svg>
-              <span>设备管理</span>
-            </div>
-            <div class="nav-tab" :class="{ active: activeNav === 'power' }" @click="activeNav = 'power'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-              </svg>
-              <span>智能电力</span>
-            </div>
-            <div class="nav-tab" :class="{ active: activeNav === 'security' }" @click="activeNav = 'security'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                <line x1="12" y1="22.08" x2="12" y2="12"/>
-              </svg>
-              <span>智能安防</span>
-            </div>
-            <div class="nav-tab" :class="{ active: activeNav === 'quality' }" @click="activeNav = 'quality'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-              </svg>
-              <span>质量分析</span>
-            </div>
-            <div class="nav-tab" :class="{ active: activeNav === 'asset' }" @click="activeNav = 'asset'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-              </svg>
-              <span>数据资产</span>
-            </div>
-            <div class="nav-tab" :class="{ active: activeNav === 'ai' }" @click="activeNav = 'ai'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 8v8M8 12h8"/>
-              </svg>
-              <span>AI运营</span>
-            </div>
-            <div class="nav-tab" :class="{ active: activeNav === 'settings' }" @click="activeNav = 'settings'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-              </svg>
-              <span>系统设置</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- 智能能耗页面 -->
@@ -903,11 +833,1091 @@
         </div>
       </div>
 
+      <!-- 智慧环境页面 -->
+      <div v-if="activeNav === 'environment'" class="page-content environment-page">
+        <div class="page-bg"></div>
+        <div class="environment-content">
+          <!-- 顶部环境指标卡片 -->
+          <div class="env-top-metrics">
+            <div class="metric-card card-blue">
+              <div class="card-icon" style="background: rgba(0,212,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#00d4ff;">
+                  <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">平均温度</span>
+                <span class="card-value">24.8°C</span>
+              </div>
+            </div>
+            <div class="metric-card card-green">
+              <div class="card-icon" style="background: rgba(0,255,136,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#00ff88;">
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">平均湿度</span>
+                <span class="card-value">52%</span>
+              </div>
+            </div>
+            <div class="metric-card card-purple">
+              <div class="card-icon" style="background: rgba(170,68,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#aa44ff;">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="16"/>
+                  <line x1="8" y1="12" x2="16" y2="12"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">CO₂浓度</span>
+                <span class="card-value">430 ppm</span>
+              </div>
+            </div>
+            <div class="metric-card card-cyan">
+              <div class="card-icon" style="background: rgba(0,255,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#00ffff;">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">PM2.5</span>
+                <span class="card-value">18 μg/m³</span>
+              </div>
+            </div>
+            <div class="metric-card card-blue2">
+              <div class="card-icon" style="background: rgba(0,150,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#0096ff;">
+                  <path d="M12 1l9 4v14l-9 4-9-4V5l9-4z"/>
+                  <circle cx="12" cy="13" r="3"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">噪声</span>
+                <span class="card-value">42 dB</span>
+              </div>
+            </div>
+            <div class="metric-card card-blue3">
+              <div class="card-icon" style="background: rgba(80,160,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#50a0ff;">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">在线设备</span>
+                <span class="card-value">60 台</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 主体三栏布局 -->
+          <div class="environment-main">
+            <!-- 左侧区域 -->
+            <div class="env-left">
+              <!-- 设备统计 -->
+              <div class="env-panel">
+                <div class="panel-header">
+                  <span class="panel-title">设备统计</span>
+                </div>
+                <div class="panel-body env-device-stat-body">
+                  <div ref="deviceRingChart" class="env-ring-chart"></div>
+                  <div class="device-legend">
+                    <div class="legend-item">
+                      <span class="legend-dot" style="background:#00ff88;"></span>
+                      <span class="legend-label">在线设备</span>
+                      <span class="legend-num">60</span>
+                    </div>
+                    <div class="legend-item">
+                      <span class="legend-dot" style="background:#ffaa00;"></span>
+                      <span class="legend-label">离线设备</span>
+                      <span class="legend-num">0</span>
+                    </div>
+                    <div class="legend-item">
+                      <span class="legend-dot" style="background:#ff4444;"></span>
+                      <span class="legend-label">故障设备</span>
+                      <span class="legend-num">0</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 设备状态统计 -->
+              <div class="env-panel env-status-panel">
+                <div class="panel-header">
+                  <span class="panel-title">设备状态统计</span>
+                </div>
+                <div class="panel-body env-status-body">
+                  <div class="device-group" v-for="group in deviceGroups" :key="group.name">
+                    <div class="group-header">
+                      <span class="group-name">{{ group.name }}</span>
+                    </div>
+                    <div class="group-stats">
+                      <span class="stat-badge online">在线 {{ group.online }}</span>
+                      <span class="stat-badge offline">离线 {{ group.offline }}</span>
+                      <span class="stat-badge fault">故障 {{ group.fault }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 中间区域 -->
+            <div class="env-center">
+              <div class="panel-header center-header">
+                <span class="panel-title">楼宇环境总览</span>
+              </div>
+              <div class="building-wrapper">
+                <img src="/building-bg.jpg" alt="智慧建筑" class="building-image" />
+                <div class="env-markers">
+                  <div class="env-marker env-marker-1">
+                    <div class="env-marker-dot"></div>
+                    <div class="env-marker-tag">
+                      <span class="env-marker-label">1F 温度</span>
+                      <span class="env-marker-value">24.8°C</span>
+                    </div>
+                  </div>
+                  <div class="env-marker env-marker-2">
+                    <div class="env-marker-dot"></div>
+                    <div class="env-marker-tag">
+                      <span class="env-marker-label">2F 湿度</span>
+                      <span class="env-marker-value">52%</span>
+                    </div>
+                  </div>
+                  <div class="env-marker env-marker-3">
+                    <div class="env-marker-dot"></div>
+                    <div class="env-marker-tag">
+                      <span class="env-marker-label">3F CO₂</span>
+                      <span class="env-marker-value">430 ppm</span>
+                    </div>
+                  </div>
+                  <div class="env-marker env-marker-4">
+                    <div class="env-marker-dot"></div>
+                    <div class="env-marker-tag">
+                      <span class="env-marker-label">4F PM2.5</span>
+                      <span class="env-marker-value">18 μg/m³</span>
+                    </div>
+                  </div>
+                  <div class="env-marker env-marker-5">
+                    <div class="env-marker-dot"></div>
+                    <div class="env-marker-tag">
+                      <span class="env-marker-label">5F 噪声</span>
+                      <span class="env-marker-value">42 dB</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 右侧区域 -->
+            <div class="env-right">
+              <!-- 空调系统检测 -->
+              <div class="env-panel">
+                <div class="panel-header">
+                  <span class="panel-title">空调系统检测</span>
+                </div>
+                <div class="panel-body">
+                  <div ref="acCheckChart" class="env-chart"></div>
+                </div>
+              </div>
+
+              <!-- 季节统计 -->
+              <div class="env-panel">
+                <div class="panel-header">
+                  <span class="panel-title">季节统计</span>
+                </div>
+                <div class="panel-body">
+                  <div ref="seasonChart" class="env-chart"></div>
+                </div>
+              </div>
+
+              <!-- 设备运行统计 -->
+              <div class="env-panel env-run-panel">
+                <div class="panel-header">
+                  <span class="panel-title">设备运行统计</span>
+                </div>
+                <div class="panel-body env-run-body">
+                  <div class="run-card-grid">
+                    <div class="run-card">
+                      <span class="run-card-value">1</span>
+                      <span class="run-card-unit">台</span>
+                      <span class="run-card-label">一次泵</span>
+                    </div>
+                    <div class="run-card">
+                      <span class="run-card-value">1</span>
+                      <span class="run-card-unit">台</span>
+                      <span class="run-card-label">二次泵</span>
+                    </div>
+                    <div class="run-card">
+                      <span class="run-card-value">1</span>
+                      <span class="run-card-unit">台</span>
+                      <span class="run-card-label">冷却塔</span>
+                    </div>
+                    <div class="run-card">
+                      <span class="run-card-value">1</span>
+                      <span class="run-card-unit">台</span>
+                      <span class="run-card-label">风机盘管</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 智能安防页面 -->
+      <div v-if="activeNav === 'security'" class="page-content security-page">
+        <div class="page-bg"></div>
+        <div class="security-content">
+          <!-- 顶部安防指标卡片 -->
+          <div class="security-top-metrics">
+            <div class="metric-card card-red">
+              <div class="card-icon" style="background: rgba(255,68,68,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#ff4444;">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                  <line x1="12" y1="9" x2="12" y2="13"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">今日告警</span>
+                <span class="card-value" style="color:#ff4444;">12 次</span>
+              </div>
+            </div>
+            <div class="metric-card card-orange">
+              <div class="card-icon" style="background: rgba(255,170,0,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#ffaa00;">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">待处理事件</span>
+                <span class="card-value" style="color:#ffaa00;">3 条</span>
+              </div>
+            </div>
+            <div class="metric-card card-blue">
+              <div class="card-icon" style="background: rgba(0,212,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#00d4ff;">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">摄像头在线</span>
+                <span class="card-value">156 路</span>
+              </div>
+            </div>
+            <div class="metric-card card-green">
+              <div class="card-icon" style="background: rgba(0,255,136,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#00ff88;">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">门禁设备</span>
+                <span class="card-value">42 个</span>
+              </div>
+            </div>
+            <div class="metric-card card-purple">
+              <div class="card-icon" style="background: rgba(170,68,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#aa44ff;">
+                  <rect x="2" y="2" width="20" height="20" rx="2"/>
+                  <line x1="8" y1="2" x2="8" y2="22"/>
+                  <line x1="16" y1="2" x2="16" y2="22"/>
+                  <line x1="2" y1="8" x2="22" y2="8"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">电梯运行</span>
+                <span class="card-value">18 台</span>
+              </div>
+            </div>
+            <div class="metric-card card-cyan">
+              <div class="card-icon" style="background: rgba(0,255,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#00ffff;">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">巡检完成率</span>
+                <span class="card-value">96%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 主体三栏布局 -->
+          <div class="security-main">
+            <!-- 左侧区域 -->
+            <div class="security-left">
+              <!-- 电梯故障趋势 -->
+              <div class="security-panel">
+                <div class="panel-header">
+                  <span class="panel-title">电梯故障趋势</span>
+                </div>
+                <div class="panel-body">
+                  <div ref="elevatorFaultTrend" class="security-chart"></div>
+                </div>
+              </div>
+
+              <!-- 电梯故障排行 TOP5 -->
+              <div class="security-panel security-fault-rank-panel">
+                <div class="panel-header">
+                  <span class="panel-title">电梯故障排行TOP5</span>
+                </div>
+                <div class="panel-body security-rank-body">
+                  <div class="rank-item" v-for="(item, index) in elevatorFaultRank" :key="item.name">
+                    <span class="rank-index" :class="'rank-' + (index + 1)">{{ index + 1 }}</span>
+                    <span class="rank-name">{{ item.name }}</span>
+                    <div class="rank-bar-wrap">
+                      <div class="rank-bar" :style="{ width: (item.count / 8 * 100) + '%' }"></div>
+                    </div>
+                    <span class="rank-value">{{ item.count }}次</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 中间区域 -->
+            <div class="security-center">
+              <div class="security-center-top">
+                <div class="panel-header center-header">
+                  <span class="panel-title">故障类型分布</span>
+                </div>
+                <div class="fault-type-content">
+                  <div ref="faultTypePie" class="fault-type-pie"></div>
+                  <div class="fault-type-legend">
+                    <div class="fault-legend-item" v-for="item in faultTypeData" :key="item.name">
+                      <span class="fault-legend-dot" :style="{ background: item.color }"></span>
+                      <span class="fault-legend-label">{{ item.name }}</span>
+                      <span class="fault-legend-value">{{ item.value }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="security-center-bottom">
+                <div class="panel-header center-header">
+                  <span class="panel-title">安防总览</span>
+                </div>
+                <div class="building-wrapper">
+                  <img src="/building-bg.jpg" alt="智慧建筑" class="building-image" />
+                  <div class="security-markers">
+                    <div class="security-marker security-marker-1">
+                      <div class="security-marker-dot danger"></div>
+                      <div class="security-marker-tag">
+                        <span class="security-marker-label">1F 门禁异常</span>
+                      </div>
+                    </div>
+                    <div class="security-marker security-marker-2">
+                      <div class="security-marker-dot warning"></div>
+                      <div class="security-marker-tag">
+                        <span class="security-marker-label">2F 摄像头离线</span>
+                      </div>
+                    </div>
+                    <div class="security-marker security-marker-3">
+                      <div class="security-marker-dot danger"></div>
+                      <div class="security-marker-tag">
+                        <span class="security-marker-label">3F 电梯告警</span>
+                      </div>
+                    </div>
+                    <div class="security-marker security-marker-4">
+                      <div class="security-marker-dot normal"></div>
+                      <div class="security-marker-tag">
+                        <span class="security-marker-label">5F 消防巡检</span>
+                      </div>
+                    </div>
+                    <div class="security-marker security-marker-5">
+                      <div class="security-marker-dot warning"></div>
+                      <div class="security-marker-tag">
+                        <span class="security-marker-label">B1 周界告警</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 右侧区域 -->
+            <div class="security-right">
+              <!-- 电梯利用率排行 TOP5 -->
+              <div class="security-panel security-util-rank-panel">
+                <div class="panel-header">
+                  <span class="panel-title">电梯利用率排行TOP5</span>
+                </div>
+                <div class="panel-body security-rank-body">
+                  <div class="rank-item" v-for="(item, index) in elevatorUtilRank" :key="item.name">
+                    <span class="rank-index" :class="'rank-' + (index + 1)">{{ index + 1 }}</span>
+                    <span class="rank-name">{{ item.name }}</span>
+                    <div class="rank-bar-wrap">
+                      <div class="rank-bar util" :style="{ width: (item.count / 30 * 100) + '%' }"></div>
+                    </div>
+                    <span class="rank-value">{{ item.count }}次</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 安防事件统计 -->
+              <div class="security-panel security-event-panel">
+                <div class="panel-header">
+                  <span class="panel-title">安防事件统计</span>
+                </div>
+                <div class="panel-body security-event-body">
+                  <div class="event-card-grid">
+                    <div class="event-card">
+                      <span class="event-card-value" style="color:#ff4444;">12</span>
+                      <span class="event-card-unit">次</span>
+                      <span class="event-card-label">今日告警</span>
+                    </div>
+                    <div class="event-card">
+                      <span class="event-card-value" style="color:#00ff88;">9</span>
+                      <span class="event-card-unit">次</span>
+                      <span class="event-card-label">已处理</span>
+                    </div>
+                    <div class="event-card">
+                      <span class="event-card-value" style="color:#ffaa00;">3</span>
+                      <span class="event-card-unit">次</span>
+                      <span class="event-card-label">待处理</span>
+                    </div>
+                    <div class="event-card">
+                      <span class="event-card-value" style="color:#00ff88;">98%</span>
+                      <span class="event-card-unit"></span>
+                      <span class="event-card-label">设备在线率</span>
+                    </div>
+                    <div class="event-card">
+                      <span class="event-card-value" style="color:#00d4ff;">156</span>
+                      <span class="event-card-unit">路</span>
+                      <span class="event-card-label">摄像头在线</span>
+                    </div>
+                    <div class="event-card">
+                      <span class="event-card-value" style="color:#00ff88;">42</span>
+                      <span class="event-card-unit">个</span>
+                      <span class="event-card-label">门禁正常</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 智能消防页面 -->
+      <div v-if="activeNav === 'quality'" class="page-content fire-page">
+        <div class="page-bg"></div>
+        <div class="fire-content">
+          <!-- 顶部消防指标卡片 -->
+          <div class="fire-top-metrics">
+            <div class="metric-card card-red">
+              <div class="card-icon" style="background: rgba(255,68,68,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#ff4444;">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                  <line x1="12" y1="9" x2="12" y2="13"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">今日报警</span>
+                <span class="card-value" style="color:#ff4444;">74 次</span>
+              </div>
+            </div>
+            <div class="metric-card card-orange">
+              <div class="card-icon" style="background: rgba(255,170,0,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#ffaa00;">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">未处理报警</span>
+                <span class="card-value" style="color:#ffaa00;">74 条</span>
+              </div>
+            </div>
+            <div class="metric-card card-green">
+              <div class="card-icon" style="background: rgba(0,255,136,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#00ff88;">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">在线设备</span>
+                <span class="card-value">486 台</span>
+              </div>
+            </div>
+            <div class="metric-card card-red2">
+              <div class="card-icon" style="background: rgba(255,80,80,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#ff5050;">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 8v4M12 16h.01"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">故障设备</span>
+                <span class="card-value" style="color:#ff5050;">10 台</span>
+              </div>
+            </div>
+            <div class="metric-card card-blue">
+              <div class="card-icon" style="background: rgba(0,212,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#00d4ff;">
+                  <path d="M17.5 19H9a7 7 0 0 1-6.23-3.5M14.5 5a7 7 0 0 1 5.73 3.5"/>
+                  <path d="M8 19c0-3.5 2.5-7 4-7s4 3.5 4 7"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">联动次数</span>
+                <span class="card-value">28 次</span>
+              </div>
+            </div>
+            <div class="metric-card card-cyan">
+              <div class="card-icon" style="background: rgba(0,255,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#00ffff;">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">巡检完成率</span>
+                <span class="card-value">96%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 主体三栏布局 -->
+          <div class="fire-main">
+            <!-- 左侧区域 -->
+            <div class="fire-left">
+              <!-- 设备统计 -->
+              <div class="fire-panel">
+                <div class="panel-header">
+                  <span class="panel-title">设备统计</span>
+                </div>
+                <div class="panel-body fire-device-stat-body">
+                  <div ref="fireDeviceRingChart" class="fire-ring-chart"></div>
+                  <div class="device-legend">
+                    <div class="legend-item">
+                      <span class="legend-dot" style="background:#00ff88;"></span>
+                      <span class="legend-label">在线设备</span>
+                      <span class="legend-num">80</span>
+                    </div>
+                    <div class="legend-item">
+                      <span class="legend-dot" style="background:#ffaa00;"></span>
+                      <span class="legend-label">离线设备</span>
+                      <span class="legend-num">10</span>
+                    </div>
+                    <div class="legend-item">
+                      <span class="legend-dot" style="background:#ff4444;"></span>
+                      <span class="legend-label">故障设备</span>
+                      <span class="legend-num">10</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 消防设备统计 -->
+              <div class="fire-panel">
+                <div class="panel-header">
+                  <span class="panel-title">消防设备统计</span>
+                </div>
+                <div class="panel-body fire-device-grid-body">
+                  <div class="fire-device-grid">
+                    <div class="fire-device-card">
+                      <span class="fire-device-num">96</span>
+                      <span class="fire-device-total">/ 100</span>
+                      <span class="fire-device-label">消防水泵</span>
+                    </div>
+                    <div class="fire-device-card">
+                      <span class="fire-device-num">75</span>
+                      <span class="fire-device-total">/ 82</span>
+                      <span class="fire-device-label">排烟风机</span>
+                    </div>
+                    <div class="fire-device-card">
+                      <span class="fire-device-num">215</span>
+                      <span class="fire-device-total">/ 216</span>
+                      <span class="fire-device-label">喷淋末端</span>
+                    </div>
+                    <div class="fire-device-card">
+                      <span class="fire-device-num">105</span>
+                      <span class="fire-device-total">/ 115</span>
+                      <span class="fire-device-label">消防电源</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 报警统计 -->
+              <div class="fire-panel fire-alarm-panel">
+                <div class="panel-header">
+                  <span class="panel-title">报警统计</span>
+                </div>
+                <div class="panel-body fire-alarm-body">
+                  <div class="fire-alarm-summary">
+                    <div class="fire-alarm-total">
+                      <span class="fire-alarm-total-label">今日报警总数</span>
+                      <span class="fire-alarm-total-value" style="color:#ff4444;">74</span>
+                    </div>
+                    <div class="fire-alarm-total">
+                      <span class="fire-alarm-total-label">未处理</span>
+                      <span class="fire-alarm-total-value" style="color:#ff4444;">74</span>
+                    </div>
+                  </div>
+                  <div class="fire-alarm-list">
+                    <div class="fire-alarm-item" v-for="(alarm, idx) in fireAlarmList" :key="idx">
+                      <span class="fire-alarm-idx">{{ idx + 1 }}</span>
+                      <span class="fire-alarm-name">{{ alarm.name }}</span>
+                      <span class="fire-alarm-time">{{ alarm.time }}</span>
+                      <span class="fire-alarm-status" :class="alarm.status === '未处理' ? 'unhandled' : 'handled'">{{ alarm.status }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 中间区域 -->
+            <div class="fire-center">
+              <div class="panel-header center-header">
+                <span class="panel-title">建筑消防总览</span>
+              </div>
+              <div class="building-wrapper">
+                <img src="/building-bg.jpg" alt="智慧建筑" class="building-image" />
+                <div class="fire-markers">
+                  <div class="fire-marker fire-marker-1">
+                    <div class="fire-marker-dot normal"></div>
+                    <div class="fire-marker-tag">
+                      <span class="fire-marker-label">1F 烟感正常</span>
+                    </div>
+                  </div>
+                  <div class="fire-marker fire-marker-2">
+                    <div class="fire-marker-dot normal"></div>
+                    <div class="fire-marker-tag">
+                      <span class="fire-marker-label">2F 喷淋正常</span>
+                    </div>
+                  </div>
+                  <div class="fire-marker fire-marker-3">
+                    <div class="fire-marker-dot warning"></div>
+                    <div class="fire-marker-tag warn">
+                      <span class="fire-marker-label">3F 排烟风机</span>
+                    </div>
+                  </div>
+                  <div class="fire-marker fire-marker-4">
+                    <div class="fire-marker-dot normal"></div>
+                    <div class="fire-marker-tag">
+                      <span class="fire-marker-label">4F 消防水泵</span>
+                    </div>
+                  </div>
+                  <div class="fire-marker fire-marker-5">
+                    <div class="fire-marker-dot normal"></div>
+                    <div class="fire-marker-tag">
+                      <span class="fire-marker-label">B1 消防电源</span>
+                    </div>
+                  </div>
+                  <div class="fire-marker fire-marker-6">
+                    <div class="fire-marker-dot danger"></div>
+                    <div class="fire-marker-tag danger">
+                      <span class="fire-marker-label">5F 水压异常</span>
+                    </div>
+                  </div>
+                  <div class="fire-marker fire-marker-7">
+                    <div class="fire-marker-dot danger"></div>
+                    <div class="fire-marker-tag danger">
+                      <span class="fire-marker-label">B2 风机离线</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 右侧区域 -->
+            <div class="fire-right">
+              <!-- 消防联动趋势 -->
+              <div class="fire-panel">
+                <div class="panel-header">
+                  <span class="panel-title">消防联动趋势</span>
+                </div>
+                <div class="panel-body">
+                  <div ref="fireLinkageTrend" class="fire-chart"></div>
+                </div>
+              </div>
+
+              <!-- 消防设备排行 -->
+              <div class="fire-panel">
+                <div class="panel-header">
+                  <span class="panel-title">消防设备排行</span>
+                </div>
+                <div class="panel-body">
+                  <div ref="fireDeviceRank" class="fire-chart"></div>
+                </div>
+              </div>
+
+              <!-- 消防设备运行排行 -->
+              <div class="fire-panel fire-run-rank-panel">
+                <div class="panel-header">
+                  <span class="panel-title">消防设备运行排行</span>
+                </div>
+                <div class="panel-body fire-rank-body">
+                  <div class="rank-item" v-for="(item, index) in fireDeviceRunRank" :key="item.name">
+                    <span class="rank-index" :class="'rank-' + (index + 1)">{{ index + 1 }}</span>
+                    <span class="rank-name">{{ item.name }}</span>
+                    <div class="rank-bar-wrap">
+                      <div class="rank-bar fire-rank" :style="{ width: (item.count / 40 * 100) + '%' }"></div>
+                    </div>
+                    <span class="rank-value">{{ item.count }}次</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 智慧电力页面 -->
+      <div v-if="activeNav === 'power'" class="page-content power-page">
+        <div class="page-bg"></div>
+        <div class="power-content">
+          <!-- 顶部电力指标卡片 -->
+          <div class="power-top-metrics">
+            <div class="power-metric-card">
+              <div class="power-metric-icon" style="background:rgba(0,212,255,0.15);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" width="20" height="20"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="power-metric-info">
+                <span class="power-metric-label">今日用电</span>
+                <span class="power-metric-value">8,426 <small>kWh</small></span>
+                <span class="power-metric-trend up">+3.2%</span>
+              </div>
+            </div>
+            <div class="power-metric-card">
+              <div class="power-metric-icon" style="background:rgba(0,245,160,0.15);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00f5a0" stroke-width="2" width="20" height="20"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+              </div>
+              <div class="power-metric-info">
+                <span class="power-metric-label">当前负荷</span>
+                <span class="power-metric-value">1,286 <small>kW</small></span>
+                <span class="power-metric-trend up">+5.8%</span>
+              </div>
+            </div>
+            <div class="power-metric-card">
+              <div class="power-metric-icon" style="background:rgba(255,204,51,0.15);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#ffcc33" stroke-width="2" width="20" height="20"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+              </div>
+              <div class="power-metric-info">
+                <span class="power-metric-label">峰值负荷</span>
+                <span class="power-metric-value">1,580 <small>kW</small></span>
+                <span class="power-metric-trend">12:00</span>
+              </div>
+            </div>
+            <div class="power-metric-card">
+              <div class="power-metric-icon" style="background:rgba(0,245,160,0.15);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00f5a0" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <div class="power-metric-info">
+                <span class="power-metric-label">功率因数</span>
+                <span class="power-metric-value">0.96</span>
+                <span class="power-metric-trend normal">正常</span>
+              </div>
+            </div>
+            <div class="power-metric-card">
+              <div class="power-metric-icon" style="background:rgba(0,212,255,0.15);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" width="20" height="20"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </div>
+              <div class="power-metric-info">
+                <span class="power-metric-label">在线回路</span>
+                <span class="power-metric-value">86 / 90</span>
+                <span class="power-metric-trend normal">正常</span>
+              </div>
+            </div>
+            <div class="power-metric-card">
+              <div class="power-metric-icon" style="background:rgba(255,77,90,0.15);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#ff4d5a" stroke-width="2" width="20" height="20"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
+              <div class="power-metric-info">
+                <span class="power-metric-label">电力告警</span>
+                <span class="power-metric-value danger">5 <small>条</small></span>
+                <span class="power-metric-trend danger">需处理</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 主体三栏布局 -->
+          <div class="power-main">
+            <!-- 左侧 -->
+            <div class="power-left">
+              <!-- 电力总览 -->
+              <div class="power-panel">
+                <div class="panel-header">
+                  <span class="panel-title-bar"></span>
+                  <span class="panel-title-text">电力总览</span>
+                </div>
+                <div class="power-overview-body">
+                  <div class="power-overview-grid">
+                    <div class="power-ov-card">
+                      <span class="power-ov-label">当前负荷</span>
+                      <span class="power-ov-value">1,286</span>
+                      <span class="power-ov-unit">kW</span>
+                    </div>
+                    <div class="power-ov-card">
+                      <span class="power-ov-label">今日用电</span>
+                      <span class="power-ov-value">8,426</span>
+                      <span class="power-ov-unit">kWh</span>
+                    </div>
+                    <div class="power-ov-card">
+                      <span class="power-ov-label">本月用电</span>
+                      <span class="power-ov-value">186,420</span>
+                      <span class="power-ov-unit">kWh</span>
+                    </div>
+                    <div class="power-ov-card">
+                      <span class="power-ov-label">功率因数</span>
+                      <span class="power-ov-value">0.96</span>
+                      <span class="power-ov-unit">&#8203;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 配电设备状态 -->
+              <div class="power-panel">
+                <div class="panel-header">
+                  <span class="panel-title-bar"></span>
+                  <span class="panel-title-text">配电设备状态</span>
+                </div>
+                <div class="power-ring-body">
+                  <div ref="powerOverviewRing" class="power-ring-chart"></div>
+                  <div class="power-ring-legend">
+                    <span class="power-legend-item"><i style="background:#00ff88;"></i>正常 82</span>
+                    <span class="power-legend-item"><i style="background:#ffaa00;"></i>预警 6</span>
+                    <span class="power-legend-item"><i style="background:#ff4444;"></i>故障 2</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 电力告警列表 -->
+              <div class="power-panel power-alarm-panel">
+                <div class="panel-header">
+                  <span class="panel-title-bar"></span>
+                  <span class="panel-title-text">电力告警</span>
+                </div>
+                <div class="power-alarm-body">
+                  <div v-for="(item, idx) in powerAlarmList" :key="idx" class="power-alarm-item">
+                    <span class="power-alarm-idx">{{ idx + 1 }}</span>
+                    <span class="power-alarm-name">{{ item.name }}</span>
+                    <span class="power-alarm-time">{{ item.time }}</span>
+                    <span class="power-alarm-status" :class="item.statusClass">{{ item.status }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 中间 -->
+            <div class="power-center">
+              <div class="power-panel power-center-panel">
+                <div class="panel-header">
+                  <span class="panel-title-bar"></span>
+                  <span class="panel-title-text">建筑电力总览</span>
+                </div>
+                <div class="power-center-body">
+                  <img src="/building-bg.jpg" alt="智慧建筑" class="power-building-img" />
+                  <!-- 电力监测标签 -->
+                  <div class="power-markers">
+                    <div class="power-marker power-marker-1">
+                      <span class="power-marker-dot normal"></span>
+                      <div class="power-marker-tag">
+                        <span class="power-marker-label">1F 照明回路 128 kW</span>
+                      </div>
+                    </div>
+                    <div class="power-marker power-marker-2">
+                      <span class="power-marker-dot warning"></span>
+                      <div class="power-marker-tag warn">
+                        <span class="power-marker-label">2F 空调回路 326 kW</span>
+                      </div>
+                    </div>
+                    <div class="power-marker power-marker-3">
+                      <span class="power-marker-dot normal"></span>
+                      <div class="power-marker-tag">
+                        <span class="power-marker-label">3F 动力回路 245 kW</span>
+                      </div>
+                    </div>
+                    <div class="power-marker power-marker-4">
+                      <span class="power-marker-dot normal"></span>
+                      <div class="power-marker-tag">
+                        <span class="power-marker-label">4F 插座回路 86 kW</span>
+                      </div>
+                    </div>
+                    <div class="power-marker power-marker-5">
+                      <span class="power-marker-dot warning"></span>
+                      <div class="power-marker-tag warn">
+                        <span class="power-marker-label">B1 配电室 512 kW</span>
+                      </div>
+                    </div>
+                    <div class="power-marker power-marker-6">
+                      <span class="power-marker-dot normal"></span>
+                      <div class="power-marker-tag">
+                        <span class="power-marker-label">UPS 电源正常</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 右侧 -->
+            <div class="power-right">
+              <!-- 用电负荷趋势 -->
+              <div class="power-panel">
+                <div class="panel-header">
+                  <span class="panel-title-bar"></span>
+                  <span class="panel-title-text">用电负荷趋势</span>
+                </div>
+                <div ref="powerLoadTrend" class="power-chart power-chart-lg"></div>
+              </div>
+
+              <!-- 电力参数监测 -->
+              <div class="power-panel">
+                <div class="panel-header">
+                  <span class="panel-title-bar"></span>
+                  <span class="panel-title-text">电力参数监测</span>
+                </div>
+                <div class="power-params-body">
+                  <div class="power-params-grid">
+                    <div class="power-param-card">
+                      <span class="power-param-label">A相电压</span>
+                      <span class="power-param-value">220.6 <small>V</small></span>
+                    </div>
+                    <div class="power-param-card">
+                      <span class="power-param-label">B相电压</span>
+                      <span class="power-param-value">221.3 <small>V</small></span>
+                    </div>
+                    <div class="power-param-card">
+                      <span class="power-param-label">C相电压</span>
+                      <span class="power-param-value">219.8 <small>V</small></span>
+                    </div>
+                    <div class="power-param-card">
+                      <span class="power-param-label">频率</span>
+                      <span class="power-param-value">50.02 <small>Hz</small></span>
+                    </div>
+                    <div class="power-param-card">
+                      <span class="power-param-label">总电流</span>
+                      <span class="power-param-value">586 <small>A</small></span>
+                    </div>
+                    <div class="power-param-card">
+                      <span class="power-param-label">功率因数</span>
+                      <span class="power-param-value">0.96</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 回路负载排行 -->
+              <div class="power-panel power-rank-panel">
+                <div class="panel-header">
+                  <span class="panel-title-bar"></span>
+                  <span class="panel-title-text">回路负载排行</span>
+                </div>
+                <div class="power-rank-body">
+                  <div v-for="(item, idx) in powerLoadRank" :key="idx" class="rank-item">
+                    <span class="rank-num" :class="'rank-' + (idx + 1)">{{ idx + 1 }}</span>
+                    <span class="rank-name">{{ item.name }}</span>
+                    <div class="rank-bar-wrap">
+                      <div class="rank-bar power-rank-bar" :style="{ width: (item.value / 520) * 100 + '%' }"></div>
+                    </div>
+                    <span class="rank-value">{{ item.value }} kW</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 其他页面占位 -->
-      <div v-if="activeNav !== 'home' && activeNav !== 'energy'" class="page-content">
+      <div v-if="activeNav !== 'home' && activeNav !== 'energy' && activeNav !== 'environment' && activeNav !== 'security' && activeNav !== 'quality' && activeNav !== 'power'" class="page-content">
         <div class="placeholder-page">
           <h2>{{ getPageTitle() }}</h2>
           <p>页面开发中……</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="bottom-nav">
+      <div class="nav-tabs">
+        <div class="nav-tab" :class="{ active: activeNav === 'home' }" @click="activeNav = 'home'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>首页</span>
+        </div>
+        <div class="nav-tab" :class="{ active: activeNav === 'energy' }" @click="activeNav = 'energy'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+          <span>智能能耗</span>
+        </div>
+        <div class="nav-tab" :class="{ active: activeNav === 'environment' }" @click="activeNav = 'environment'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
+            <path d="M2 12h20"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span>智慧环境</span>
+        </div>
+        <div class="nav-tab" :class="{ active: activeNav === 'device' }" @click="activeNav = 'device'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+          <span>设备管理</span>
+        </div>
+        <div class="nav-tab" :class="{ active: activeNav === 'power' }" @click="activeNav = 'power'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+          <span>智能电力</span>
+        </div>
+        <div class="nav-tab" :class="{ active: activeNav === 'security' }" @click="activeNav = 'security'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>智能安防</span>
+        </div>
+        <div class="nav-tab" :class="{ active: activeNav === 'quality' }" @click="activeNav = 'quality'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17.5 19H9a7 7 0 0 1-6.23-3.5M14.5 5a7 7 0 0 1 5.73 3.5"/>
+            <path d="M8 19c0-3.5 2.5-7 4-7s4 3.5 4 7"/>
+            <path d="M12 12c-1.5 1.5-3 3-3 7"/>
+            <path d="M12 12c1.5 1.5 3 3 3 7"/>
+          </svg>
+          <span>智能消防</span>
+        </div>
+        <div class="nav-tab" :class="{ active: activeNav === 'asset' }" @click="activeNav = 'asset'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <line x1="3" y1="9" x2="21" y2="9"/>
+            <line x1="9" y1="21" x2="9" y2="9"/>
+          </svg>
+          <span>数据资产</span>
+        </div>
+        <div class="nav-tab" :class="{ active: activeNav === 'ai' }" @click="activeNav = 'ai'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span>AI运营</span>
+        </div>
+        <div class="nav-tab" :class="{ active: activeNav === 'settings' }" @click="activeNav = 'settings'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span>系统设置</span>
         </div>
       </div>
     </div>
@@ -928,13 +1938,103 @@ let charts = {
   todayEnergyPie: null,
   historyEnergyLine: null,
   energyDistributionPie: null,
-  energyRankingBar: null
+  energyRankingBar: null,
+  deviceRingChart: null,
+  acCheckChart: null,
+  seasonChart: null,
+  elevatorFaultTrend: null,
+  faultTypePie: null,
+  fireDeviceRingChart: null,
+  fireLinkageTrend: null,
+  fireDeviceRank: null,
+  powerOverviewRing: null,
+  powerLoadTrend: null
 }
 
 const todayEnergyPie = ref(null)
 const historyEnergyLine = ref(null)
 const energyDistributionPie = ref(null)
 const energyRankingBar = ref(null)
+const deviceRingChart = ref(null)
+const acCheckChart = ref(null)
+const seasonChart = ref(null)
+const elevatorFaultTrend = ref(null)
+const faultTypePie = ref(null)
+const fireDeviceRingChart = ref(null)
+const fireLinkageTrend = ref(null)
+const fireDeviceRank = ref(null)
+const powerOverviewRing = ref(null)
+const powerLoadTrend = ref(null)
+
+// 智慧环境 - 设备分组 mock 数据
+const deviceGroups = ref([
+  { name: '排烟阀 / 排烟防火阀', online: 1, offline: 0, fault: 0 },
+  { name: '防火阀', online: 0, offline: 0, fault: 0 },
+  { name: '加压机房', online: 0, offline: 0, fault: 0 },
+  { name: '送补风机房', online: 0, offline: 0, fault: 0 },
+  { name: '排风机房', online: 0, offline: 0, fault: 0 }
+])
+
+// 智能安防 - 电梯故障排行 mock 数据
+const elevatorFaultRank = ref([
+  { name: 'A3楼电梯05', count: 6 },
+  { name: 'A3楼电梯04', count: 5 },
+  { name: 'A3楼电梯03', count: 4 },
+  { name: 'A3楼电梯02', count: 3 },
+  { name: 'A3楼电梯01', count: 2 }
+])
+
+// 智能安防 - 电梯利用率排行 mock 数据
+const elevatorUtilRank = ref([
+  { name: 'A3楼电梯05', count: 25 },
+  { name: 'A3楼电梯04', count: 22 },
+  { name: 'A3楼电梯03', count: 18 },
+  { name: 'A3楼电梯02', count: 16 },
+  { name: 'A3楼电梯01', count: 15 }
+])
+
+// 智能安防 - 故障类型分布 mock 数据
+const faultTypeData = ref([
+  { name: '人力支援', value: 21, color: '#8b5cf6' },
+  { name: '电梯故障', value: 19, color: '#ff4d5a' },
+  { name: '消防告警', value: 12, color: '#ffcc33' },
+  { name: '门禁异常', value: 8, color: '#00d4ff' },
+  { name: '周界告警', value: 6, color: '#00f5a0' }
+])
+
+// 智能消防 - 报警列表 mock 数据
+const fireAlarmList = ref([
+  { name: '消防水压异常', time: '2025-07-31 11:06:39', status: '未处理' },
+  { name: '排烟风机离线', time: '2025-07-31 10:46:39', status: '未处理' },
+  { name: '喷淋压力过低', time: '2025-07-31 09:59:42', status: '未处理' },
+  { name: '烟感设备告警', time: '2025-07-31 09:32:41', status: '已处理' }
+])
+
+// 智能消防 - 消防设备运行排行 mock 数据
+const fireDeviceRunRank = ref([
+  { name: '消防水泵', count: 35 },
+  { name: '排烟风机', count: 30 },
+  { name: '喷淋末端', count: 28 },
+  { name: '烟感探测器', count: 22 },
+  { name: '消防电源', count: 17 }
+])
+
+// 智慧电力 - 电力告警列表 mock 数据
+const powerAlarmList = ref([
+  { name: 'A区配电柜温度过高', time: '10:26', status: '未处理', statusClass: 'danger' },
+  { name: 'B2回路负载过高', time: '10:12', status: '处理中', statusClass: 'warning' },
+  { name: '3F照明回路电流波动', time: '09:45', status: '已处理', statusClass: 'normal' },
+  { name: 'UPS电池电压偏低', time: '09:12', status: '未处理', statusClass: 'danger' }
+])
+
+// 智慧电力 - 回路负载排行 mock 数据
+const powerLoadRank = ref([
+  { name: 'B1配电室', value: 512 },
+  { name: '空调主回路', value: 326 },
+  { name: '动力设备回路', value: 245 },
+  { name: '照明回路', value: 128 },
+  { name: '插座回路', value: 86 }
+])
 
 const updateTime = () => {
   const now = new Date()
@@ -951,10 +2051,11 @@ const updateTime = () => {
 const getPageTitle = () => {
   const titles = {
     energy: '智能耗能',
+    environment: '智慧环境',
     device: '设备管理',
     power: '智能电力',
     security: '智能安防',
-    quality: '质量分析',
+    quality: '智能消防',
     asset: '数据资产',
     ai: 'AI运营',
     settings: '系统设置'
@@ -1135,6 +2236,540 @@ const initAllCharts = () => {
   })
 }
 
+const initDeviceRingChart = () => {
+  if (!deviceRingChart.value) return
+  const chart = echarts.init(deviceRingChart.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'item',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    series: [{
+      type: 'pie',
+      radius: ['55%', '75%'],
+      center: ['50%', '50%'],
+      silent: true,
+      itemStyle: { borderRadius: 4, borderColor: 'rgba(0,20,40,1)', borderWidth: 2 },
+      label: { show: false },
+      data: [
+        { value: 60, itemStyle: { color: '#00ff88' } },
+        { value: 0, itemStyle: { color: '#ffaa00' } },
+        { value: 0, itemStyle: { color: '#ff4444' } }
+      ]
+    }],
+    graphic: [{
+      type: 'text',
+      left: 'center',
+      top: 'center',
+      style: {
+        text: '60',
+        textAlign: 'center',
+        fill: '#fff',
+        fontSize: 32,
+        fontWeight: 'bold'
+      }
+    }]
+  })
+  charts.deviceRingChart = chart
+}
+
+const initAcCheckChart = () => {
+  if (!acCheckChart.value) return
+  const chart = echarts.init(acCheckChart.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    legend: {
+      data: ['平均水温', '冷冻水'],
+      bottom: 0,
+      textStyle: { color: '#b8eaff', fontSize: 11 },
+      itemWidth: 14,
+      itemHeight: 8
+    },
+    grid: {
+      left: '8%',
+      right: '5%',
+      bottom: '15%',
+      top: '10%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      data: ['0', '4', '8', '12', '16', '20', '24'],
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff', fontSize: 10 }
+    },
+    yAxis: {
+      type: 'value',
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff', fontSize: 10 },
+      splitLine: { lineStyle: { color: 'rgba(0,212,255,0.15)' } }
+    },
+    series: [
+      {
+        name: '平均水温',
+        type: 'line',
+        smooth: true,
+        lineStyle: { color: '#00d4ff', width: 2 },
+        itemStyle: { color: '#00d4ff' },
+        data: [18, 20, 23, 25, 24, 22, 20]
+      },
+      {
+        name: '冷冻水',
+        type: 'line',
+        smooth: true,
+        lineStyle: { color: '#ffcc33', width: 2 },
+        itemStyle: { color: '#ffcc33' },
+        data: [15, 17, 20, 22, 21, 19, 17]
+      }
+    ]
+  })
+  charts.acCheckChart = chart
+}
+
+const initSeasonChart = () => {
+  if (!seasonChart.value) return
+  const chart = echarts.init(seasonChart.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    legend: {
+      data: ['夏季', '冬季'],
+      bottom: 0,
+      textStyle: { color: '#b8eaff', fontSize: 11 },
+      itemWidth: 14,
+      itemHeight: 8
+    },
+    grid: {
+      left: '8%',
+      right: '5%',
+      bottom: '15%',
+      top: '10%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      data: ['3', '6', '9', '12', '15', '18', '21', '23'],
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff', fontSize: 10 }
+    },
+    yAxis: {
+      type: 'value',
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff', fontSize: 10 },
+      splitLine: { lineStyle: { color: 'rgba(0,212,255,0.15)' } }
+    },
+    series: [
+      {
+        name: '夏季',
+        type: 'line',
+        smooth: true,
+        lineStyle: { color: '#00ff88', width: 2 },
+        itemStyle: { color: '#00ff88' },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: 'rgba(0,255,136,0.3)' },
+            { offset: 1, color: 'rgba(0,255,136,0)' }
+          ])
+        },
+        data: [18, 28, 42, 36, 25, 18, 14, 12]
+      },
+      {
+        name: '冬季',
+        type: 'line',
+        smooth: true,
+        lineStyle: { color: '#00d4ff', width: 2 },
+        itemStyle: { color: '#00d4ff' },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: 'rgba(0,212,255,0.3)' },
+            { offset: 1, color: 'rgba(0,212,255,0)' }
+          ])
+        },
+        data: [10, 18, 26, 24, 18, 14, 11, 10]
+      }
+    ]
+  })
+  charts.seasonChart = chart
+}
+
+const initSecurityCharts = () => {
+  nextTick(() => {
+    initElevatorFaultTrend()
+    initFaultTypePie()
+  })
+}
+
+const initElevatorFaultTrend = () => {
+  if (!elevatorFaultTrend.value) return
+  const chart = echarts.init(elevatorFaultTrend.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    grid: {
+      left: '8%',
+      right: '5%',
+      bottom: '10%',
+      top: '10%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff', fontSize: 10 }
+    },
+    yAxis: {
+      type: 'value',
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff', fontSize: 10 },
+      splitLine: { lineStyle: { color: 'rgba(0,212,255,0.15)' } }
+    },
+    series: [{
+      type: 'line',
+      smooth: true,
+      lineStyle: { color: '#00d4ff', width: 2 },
+      itemStyle: { color: '#00d4ff' },
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: 'rgba(0,212,255,0.3)' },
+          { offset: 1, color: 'rgba(0,212,255,0)' }
+        ])
+      },
+      data: [3, 5, 4, 7, 6, 4, 2]
+    }]
+  })
+  charts.elevatorFaultTrend = chart
+}
+
+const initFaultTypePie = () => {
+  if (!faultTypePie.value) return
+  const chart = echarts.init(faultTypePie.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'item',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    series: [{
+      type: 'pie',
+      radius: ['50%', '72%'],
+      center: ['40%', '50%'],
+      avoidLabelOverlap: false,
+      itemStyle: { borderRadius: 4, borderColor: 'rgba(0,20,40,1)', borderWidth: 2 },
+      label: { show: false },
+      data: faultTypeData.value.map(item => ({
+        value: item.value,
+        name: item.name,
+        itemStyle: { color: item.color }
+      }))
+    }]
+  })
+  charts.faultTypePie = chart
+}
+
+const initPowerCharts = () => {
+  nextTick(() => {
+    initPowerOverviewRing()
+    initPowerLoadTrend()
+  })
+}
+
+const initPowerOverviewRing = () => {
+  if (!powerOverviewRing.value) return
+  const chart = echarts.init(powerOverviewRing.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'item',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    series: [{
+      type: 'pie',
+      radius: ['55%', '75%'],
+      center: ['50%', '50%'],
+      silent: true,
+      itemStyle: { borderRadius: 4, borderColor: 'rgba(0,20,40,1)', borderWidth: 2 },
+      label: { show: false },
+      data: [
+        { value: 82, itemStyle: { color: '#00ff88' } },
+        { value: 6, itemStyle: { color: '#ffaa00' } },
+        { value: 2, itemStyle: { color: '#ff4444' } }
+      ]
+    }],
+    graphic: [{
+      type: 'text',
+      left: 'center',
+      top: 'center',
+      style: {
+        text: '90',
+        textAlign: 'center',
+        fill: '#fff',
+        fontSize: 32,
+        fontWeight: 'bold'
+      }
+    }]
+  })
+  charts.powerOverviewRing = chart
+}
+
+const initPowerLoadTrend = () => {
+  if (!powerLoadTrend.value) return
+  const chart = echarts.init(powerLoadTrend.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    legend: {
+      data: ['总负荷', '空调负荷'],
+      bottom: 0,
+      textStyle: { color: '#b8eaff', fontSize: 11 },
+      itemWidth: 14,
+      itemHeight: 8
+    },
+    grid: {
+      left: '8%',
+      right: '5%',
+      bottom: '15%',
+      top: '10%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      data: ['0时', '4时', '8时', '12时', '16时', '20时', '24时'],
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff', fontSize: 10 }
+    },
+    yAxis: {
+      type: 'value',
+      name: 'kW',
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff', fontSize: 10 },
+      splitLine: { lineStyle: { color: 'rgba(0,212,255,0.15)' } }
+    },
+    series: [
+      {
+        name: '总负荷',
+        type: 'line',
+        smooth: true,
+        lineStyle: { color: '#00d4ff', width: 2 },
+        itemStyle: { color: '#00d4ff' },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: 'rgba(0,212,255,0.25)' },
+            { offset: 1, color: 'rgba(0,212,255,0)' }
+          ])
+        },
+        data: [680, 720, 980, 1280, 1580, 1320, 900]
+      },
+      {
+        name: '空调负荷',
+        type: 'line',
+        smooth: true,
+        lineStyle: { color: '#ffcc33', width: 2 },
+        itemStyle: { color: '#ffcc33' },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: 'rgba(255,204,51,0.2)' },
+            { offset: 1, color: 'rgba(255,204,51,0)' }
+          ])
+        },
+        data: [260, 280, 420, 560, 720, 610, 390]
+      }
+    ]
+  })
+  charts.powerLoadTrend = chart
+}
+
+const initFireCharts = () => {
+  nextTick(() => {
+    initFireDeviceRingChart()
+    initFireLinkageTrend()
+    initFireDeviceRank()
+  })
+}
+
+const initFireDeviceRingChart = () => {
+  if (!fireDeviceRingChart.value) return
+  const chart = echarts.init(fireDeviceRingChart.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'item',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    series: [{
+      type: 'pie',
+      radius: ['55%', '75%'],
+      center: ['50%', '50%'],
+      silent: true,
+      itemStyle: { borderRadius: 4, borderColor: 'rgba(0,20,40,1)', borderWidth: 2 },
+      label: { show: false },
+      data: [
+        { value: 80, itemStyle: { color: '#00ff88' } },
+        { value: 10, itemStyle: { color: '#ffaa00' } },
+        { value: 10, itemStyle: { color: '#ff4444' } }
+      ]
+    }],
+    graphic: [{
+      type: 'text',
+      left: 'center',
+      top: 'center',
+      style: {
+        text: '100',
+        textAlign: 'center',
+        fill: '#fff',
+        fontSize: 32,
+        fontWeight: 'bold'
+      }
+    }]
+  })
+  charts.fireDeviceRingChart = chart
+}
+
+const initFireLinkageTrend = () => {
+  if (!fireLinkageTrend.value) return
+  const chart = echarts.init(fireLinkageTrend.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    legend: {
+      data: ['报警次数', '联动次数'],
+      bottom: 0,
+      textStyle: { color: '#b8eaff', fontSize: 11 },
+      itemWidth: 14,
+      itemHeight: 8
+    },
+    grid: {
+      left: '8%',
+      right: '5%',
+      bottom: '15%',
+      top: '10%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff', fontSize: 10 }
+    },
+    yAxis: {
+      type: 'value',
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff', fontSize: 10 },
+      splitLine: { lineStyle: { color: 'rgba(0,212,255,0.15)' } }
+    },
+    series: [
+      {
+        name: '报警次数',
+        type: 'line',
+        smooth: true,
+        lineStyle: { color: '#ff4d5a', width: 2 },
+        itemStyle: { color: '#ff4d5a' },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: 'rgba(255,77,90,0.25)' },
+            { offset: 1, color: 'rgba(255,77,90,0)' }
+          ])
+        },
+        data: [12, 18, 15, 22, 20, 16, 14]
+      },
+      {
+        name: '联动次数',
+        type: 'line',
+        smooth: true,
+        lineStyle: { color: '#00d4ff', width: 2 },
+        itemStyle: { color: '#00d4ff' },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: 'rgba(0,212,255,0.25)' },
+            { offset: 1, color: 'rgba(0,212,255,0)' }
+          ])
+        },
+        data: [8, 12, 10, 16, 15, 11, 9]
+      }
+    ]
+  })
+  charts.fireLinkageTrend = chart
+}
+
+const initFireDeviceRank = () => {
+  if (!fireDeviceRank.value) return
+  const chart = echarts.init(fireDeviceRank.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    grid: {
+      left: '8%',
+      right: '8%',
+      bottom: '5%',
+      top: '8%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      data: ['烟感', '喷淋', '水泵', '风机', '电源'],
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff', fontSize: 10 }
+    },
+    yAxis: {
+      type: 'value',
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff', fontSize: 10 },
+      splitLine: { lineStyle: { color: 'rgba(0,212,255,0.15)' } }
+    },
+    series: [{
+      type: 'bar',
+      barWidth: 18,
+      itemStyle: {
+        borderRadius: [4, 4, 0, 0],
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: '#00ff88' },
+          { offset: 1, color: 'rgba(0,255,136,0.3)' }
+        ])
+      },
+      data: [96, 82, 75, 60, 45]
+    }]
+  })
+  charts.fireDeviceRank = chart
+}
+
+const initEnvironmentCharts = () => {
+  nextTick(() => {
+    initDeviceRingChart()
+    initAcCheckChart()
+    initSeasonChart()
+  })
+}
+
 const disposeAllCharts = () => {
   Object.values(charts).forEach(chart => {
     if (chart) {
@@ -1145,7 +2780,17 @@ const disposeAllCharts = () => {
     todayEnergyPie: null,
     historyEnergyLine: null,
     energyDistributionPie: null,
-    energyRankingBar: null
+    energyRankingBar: null,
+    deviceRingChart: null,
+    acCheckChart: null,
+    seasonChart: null,
+    elevatorFaultTrend: null,
+    faultTypePie: null,
+    fireDeviceRingChart: null,
+    fireLinkageTrend: null,
+    fireDeviceRank: null,
+    powerOverviewRing: null,
+    powerLoadTrend: null
   }
 }
 
@@ -1159,6 +2804,18 @@ watch(activeNav, (newVal) => {
   if (newVal === 'energy') {
     disposeAllCharts()
     nextTick(() => initAllCharts())
+  } else if (newVal === 'environment') {
+    disposeAllCharts()
+    nextTick(() => initEnvironmentCharts())
+  } else if (newVal === 'security') {
+    disposeAllCharts()
+    nextTick(() => initSecurityCharts())
+  } else if (newVal === 'quality') {
+    disposeAllCharts()
+    nextTick(() => initFireCharts())
+  } else if (newVal === 'power') {
+    disposeAllCharts()
+    nextTick(() => initPowerCharts())
   } else {
     disposeAllCharts()
   }
@@ -1268,6 +2925,7 @@ onUnmounted(() => {
   position: relative;
   display: flex;
   flex-direction: column;
+  padding-bottom: 80px;
 }
 
 .page-content {
@@ -2003,7 +3661,7 @@ onUnmounted(() => {
 .energy-page {
   display: flex;
   flex-direction: column;
-  padding: 16px 24px 0;
+  padding: 16px 24px 90px;
   height: 100%;
 }
 
@@ -2318,5 +3976,1365 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   min-height: 180px;
+}
+
+/* 智慧环境页面 */
+.environment-page {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px 90px;
+  height: 100%;
+}
+
+.environment-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.env-top-metrics {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 0 16px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.environment-main {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+}
+
+.env-left, .env-right {
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.env-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.env-panel {
+  background: rgba(0,25,50,0.92);
+  border: 1px solid rgba(0,150,255,0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.env-panel .panel-body {
+  flex: 1;
+  padding: 12px 16px;
+  overflow: hidden;
+}
+
+.env-device-stat-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.env-ring-chart {
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
+}
+
+.device-legend {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+}
+
+.legend-num {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.env-status-panel {
+  flex: 2;
+}
+
+.env-status-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 8px 16px !important;
+  overflow-y: auto;
+}
+
+.device-group {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,150,255,0.12);
+}
+
+.device-group:last-child {
+  border-bottom: none;
+}
+
+.group-header {
+  margin-bottom: 8px;
+}
+
+.group-name {
+  font-size: 13px;
+  color: #00d4ff;
+  font-weight: 500;
+}
+
+.group-stats {
+  display: flex;
+  gap: 16px;
+}
+
+.stat-badge {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.stat-badge.online {
+  color: #00ff88;
+  background: rgba(0,255,136,0.12);
+}
+
+.stat-badge.offline {
+  color: #ffaa00;
+  background: rgba(255,170,0,0.12);
+}
+
+.stat-badge.fault {
+  color: #ff4444;
+  background: rgba(255,68,68,0.12);
+}
+
+.env-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.env-marker {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.env-marker-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00d4ff;
+  box-shadow: 0 0 8px #00d4ff, 0 0 16px rgba(0,212,255,0.5);
+  flex-shrink: 0;
+}
+
+.env-marker-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 12px;
+  background: rgba(0,60,120,0.92);
+  border: 1px solid rgba(0,212,255,0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,212,255,0.25);
+}
+
+.env-marker-label {
+  font-size: 12px;
+  color: #00d4ff;
+  font-weight: 500;
+}
+
+.env-marker-value {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.env-marker-1 { top: 10%; left: 20%; }
+.env-marker-2 { top: 25%; right: 18%; }
+.env-marker-3 { top: 50%; left: 12%; }
+.env-marker-4 { bottom: 28%; right: 15%; }
+.env-marker-5 { bottom: 10%; left: 25%; }
+
+.env-chart {
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+}
+
+.env-run-panel {
+  flex: 1;
+}
+
+.env-run-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.run-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.run-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px 10px;
+  background: rgba(0,50,100,0.3);
+  border: 1px solid rgba(0,150,255,0.25);
+  border-radius: 10px;
+}
+
+.run-card-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: #00d4ff;
+  line-height: 1;
+}
+
+.run-card-unit {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+}
+
+.run-card-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 2px;
+}
+
+/* 智能安防页面 */
+.security-page {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px 90px;
+  height: 100%;
+}
+
+.security-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.security-top-metrics {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 0 16px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.security-main {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+}
+
+.security-left, .security-right {
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.security-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 16px;
+}
+
+.security-center-top {
+  background: rgba(0,25,50,0.92);
+  border: 1px solid rgba(0,150,255,0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.security-center-bottom {
+  flex: 1;
+  background: rgba(0,25,50,0.92);
+  border: 1px solid rgba(0,150,255,0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.security-center-bottom .building-wrapper {
+  flex: 1;
+  min-height: 0;
+}
+
+.security-panel {
+  background: rgba(0,25,50,0.92);
+  border: 1px solid rgba(0,150,255,0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.security-panel .panel-body {
+  flex: 1;
+  padding: 12px 16px;
+  overflow: hidden;
+}
+
+.security-chart {
+  width: 100%;
+  height: 100%;
+  min-height: 160px;
+}
+
+.security-fault-rank-panel {
+  flex: 1;
+}
+
+.security-rank-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px !important;
+  justify-content: center;
+}
+
+.rank-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rank-index {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  color: #fff;
+  background: rgba(0,150,255,0.3);
+}
+
+.rank-index.rank-1 {
+  background: #ff4444;
+  box-shadow: 0 0 8px rgba(255,68,68,0.5);
+}
+
+.rank-index.rank-2 {
+  background: #ffaa00;
+  box-shadow: 0 0 8px rgba(255,170,0,0.5);
+}
+
+.rank-index.rank-3 {
+  background: #00d4ff;
+  box-shadow: 0 0 8px rgba(0,212,255,0.5);
+}
+
+.rank-name {
+  font-size: 12px;
+  color: #b8eaff;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rank-bar-wrap {
+  flex: 1;
+  height: 6px;
+  background: rgba(0,150,255,0.12);
+  border-radius: 3px;
+  overflow: hidden;
+  min-width: 40px;
+}
+
+.rank-bar {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #00d4ff, #0096ff);
+  box-shadow: 0 0 6px rgba(0,212,255,0.4);
+}
+
+.rank-bar.util {
+  background: linear-gradient(90deg, #00ff88, #00d4ff);
+  box-shadow: 0 0 6px rgba(0,255,136,0.4);
+}
+
+.rank-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.fault-type-content {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 16px;
+}
+
+.fault-type-pie {
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
+}
+
+.fault-type-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.fault-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fault-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.fault-legend-label {
+  font-size: 12px;
+  color: #b8eaff;
+  flex: 1;
+}
+
+.fault-legend-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.security-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.security-marker {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.security-marker-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
+}
+
+.security-marker-dot.danger {
+  background: #ff4444;
+  color: #ff4444;
+}
+
+.security-marker-dot.warning {
+  background: #ffaa00;
+  color: #ffaa00;
+}
+
+.security-marker-dot.normal {
+  background: #00ff88;
+  color: #00ff88;
+}
+
+.security-marker-tag {
+  padding: 6px 12px;
+  background: rgba(0,60,120,0.92);
+  border: 1px solid rgba(0,212,255,0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,212,255,0.25);
+}
+
+.security-marker-label {
+  font-size: 12px;
+  color: #fff;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.security-marker-1 { top: 8%; left: 22%; }
+.security-marker-2 { top: 28%; right: 18%; }
+.security-marker-3 { top: 50%; left: 15%; }
+.security-marker-4 { bottom: 28%; right: 20%; }
+.security-marker-5 { bottom: 8%; left: 25%; }
+
+.security-util-rank-panel {
+  flex: 1;
+}
+
+.security-event-panel {
+  flex: 1;
+}
+
+.security-event-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 10px 8px;
+  background: rgba(0,50,100,0.3);
+  border: 1px solid rgba(0,150,255,0.25);
+  border-radius: 10px;
+}
+
+.event-card-value {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.event-card-unit {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+}
+
+.event-card-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 1px;
+}
+
+/* 智能消防页面 */
+.fire-page {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px 90px;
+  height: 100%;
+}
+
+.fire-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.fire-top-metrics {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 0 16px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.fire-main {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+}
+
+.fire-left, .fire-right {
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.fire-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.fire-panel {
+  background: rgba(0,25,50,0.92);
+  border: 1px solid rgba(0,150,255,0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.fire-panel .panel-body {
+  flex: 1;
+  padding: 12px 16px;
+  overflow: hidden;
+}
+
+.fire-device-stat-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.fire-ring-chart {
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
+}
+
+.fire-device-grid-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fire-device-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.fire-device-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px 8px;
+  background: rgba(0,50,100,0.3);
+  border: 1px solid rgba(0,150,255,0.25);
+  border-radius: 10px;
+}
+
+.fire-device-num {
+  font-size: 24px;
+  font-weight: 700;
+  color: #00d4ff;
+  line-height: 1;
+}
+
+.fire-device-total {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  margin-top: -2px;
+}
+
+.fire-device-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 2px;
+}
+
+.fire-alarm-panel {
+  flex: 2;
+}
+
+.fire-alarm-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 16px !important;
+  overflow: hidden;
+}
+
+.fire-alarm-summary {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0,150,255,0.15);
+}
+
+.fire-alarm-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.fire-alarm-total-label {
+  font-size: 12px;
+  color: #b8eaff;
+}
+
+.fire-alarm-total-value {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.fire-alarm-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.fire-alarm-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: rgba(0,40,80,0.4);
+  border-radius: 6px;
+  border: 1px solid rgba(0,150,255,0.12);
+}
+
+.fire-alarm-idx {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  width: 16px;
+  flex-shrink: 0;
+}
+
+.fire-alarm-name {
+  font-size: 12px;
+  color: #fff;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fire-alarm-time {
+  font-size: 10px;
+  color: rgba(255,255,255,0.45);
+  flex-shrink: 0;
+}
+
+.fire-alarm-status {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.fire-alarm-status.unhandled {
+  color: #ff4444;
+  background: rgba(255,68,68,0.15);
+}
+
+.fire-alarm-status.handled {
+  color: #00ff88;
+  background: rgba(0,255,136,0.12);
+}
+
+.fire-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.fire-marker {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.fire-marker-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.fire-marker-dot.normal {
+  background: #00ff88;
+  box-shadow: 0 0 8px #00ff88, 0 0 16px rgba(0,255,136,0.5);
+}
+
+.fire-marker-dot.warning {
+  background: #ffaa00;
+  box-shadow: 0 0 8px #ffaa00, 0 0 16px rgba(255,170,0,0.5);
+}
+
+.fire-marker-dot.danger {
+  background: #ff4444;
+  box-shadow: 0 0 8px #ff4444, 0 0 16px rgba(255,68,68,0.5);
+}
+
+.fire-marker-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 12px;
+  background: rgba(0,60,120,0.92);
+  border: 1px solid rgba(0,212,255,0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,212,255,0.25);
+}
+
+.fire-marker-tag.warn {
+  border-color: rgba(255,170,0,0.5);
+  box-shadow: 0 0 12px rgba(255,170,0,0.25);
+}
+
+.fire-marker-tag.danger {
+  border-color: rgba(255,68,68,0.5);
+  box-shadow: 0 0 12px rgba(255,68,68,0.25);
+}
+
+.fire-marker-label {
+  font-size: 12px;
+  color: #fff;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.fire-marker-1 { top: 8%; left: 20%; }
+.fire-marker-2 { top: 22%; right: 18%; }
+.fire-marker-3 { top: 40%; left: 15%; }
+.fire-marker-4 { top: 58%; right: 20%; }
+.fire-marker-5 { bottom: 18%; left: 25%; }
+.fire-marker-6 { top: 15%; right: 25%; }
+.fire-marker-7 { bottom: 8%; right: 18%; }
+
+.fire-chart {
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+}
+
+.fire-run-rank-panel {
+  flex: 1;
+}
+
+.fire-rank-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px !important;
+  justify-content: center;
+}
+
+.rank-bar.fire-rank {
+  background: linear-gradient(90deg, #ff4d5a, #ffaa00);
+  box-shadow: 0 0 6px rgba(255,77,90,0.4);
+}
+
+/* 智慧电力页面 */
+.power-page {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px 90px;
+  height: 100%;
+}
+
+.power-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.power-top-metrics {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 0 16px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.power-metric-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: rgba(0,25,50,0.92);
+  border: 1px solid rgba(0,150,255,0.3);
+  border-radius: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.power-metric-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.power-metric-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.power-metric-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+}
+
+.power-metric-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.power-metric-value small {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+}
+
+.power-metric-value.danger {
+  color: #ff4d5a;
+}
+
+.power-metric-trend {
+  font-size: 10px;
+  color: rgba(255,255,255,0.45);
+}
+
+.power-metric-trend.up {
+  color: #00ff88;
+}
+
+.power-metric-trend.normal {
+  color: #00d4ff;
+}
+
+.power-metric-trend.danger {
+  color: #ff4d5a;
+}
+
+.power-main {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+}
+
+.power-left, .power-right {
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.power-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.power-panel {
+  background: rgba(0,25,50,0.92);
+  border: 1px solid rgba(0,150,255,0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.power-panel .panel-body {
+  flex: 1;
+  padding: 12px 16px;
+  overflow: hidden;
+}
+
+.power-overview-body {
+  padding: 14px 16px;
+  flex: 1;
+}
+
+.power-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.power-ov-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 8px;
+  background: rgba(0,50,100,0.3);
+  border: 1px solid rgba(0,150,255,0.25);
+  border-radius: 10px;
+  gap: 2px;
+}
+
+.power-ov-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+}
+
+.power-ov-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #00d4ff;
+  line-height: 1;
+}
+
+.power-ov-unit {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+}
+
+.power-ring-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  gap: 12px;
+  flex: 1;
+}
+
+.power-ring-chart {
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+}
+
+.power-ring-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+  color: #b8eaff;
+}
+
+.power-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.power-legend-item i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.power-alarm-panel {
+  flex: 2;
+}
+
+.power-alarm-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 16px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.power-alarm-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: rgba(0,40,80,0.4);
+  border-radius: 6px;
+  border: 1px solid rgba(0,150,255,0.12);
+}
+
+.power-alarm-idx {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  width: 16px;
+  flex-shrink: 0;
+}
+
+.power-alarm-name {
+  font-size: 12px;
+  color: #fff;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.power-alarm-time {
+  font-size: 10px;
+  color: rgba(255,255,255,0.45);
+  flex-shrink: 0;
+}
+
+.power-alarm-status {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.power-alarm-status.danger {
+  color: #ff4444;
+  background: rgba(255,68,68,0.15);
+}
+
+.power-alarm-status.warning {
+  color: #ffaa00;
+  background: rgba(255,170,0,0.15);
+}
+
+.power-alarm-status.normal {
+  color: #00ff88;
+  background: rgba(0,255,136,0.12);
+}
+
+.power-center-panel {
+  flex: 1;
+}
+
+.power-center-body {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 0 0 12px 12px;
+}
+
+.power-building-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.power-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.power-marker {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.power-marker-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.power-marker-dot.normal {
+  background: #00ff88;
+  box-shadow: 0 0 8px #00ff88, 0 0 16px rgba(0,255,136,0.5);
+}
+
+.power-marker-dot.warning {
+  background: #ffaa00;
+  box-shadow: 0 0 8px #ffaa00, 0 0 16px rgba(255,170,0,0.5);
+}
+
+.power-marker-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 12px;
+  background: rgba(0,60,120,0.92);
+  border: 1px solid rgba(0,212,255,0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,212,255,0.25);
+}
+
+.power-marker-tag.warn {
+  border-color: rgba(255,170,0,0.5);
+  box-shadow: 0 0 12px rgba(255,170,0,0.25);
+}
+
+.power-marker-label {
+  font-size: 12px;
+  color: #fff;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.power-marker-1 { top: 8%; left: 20%; }
+.power-marker-2 { top: 22%; right: 18%; }
+.power-marker-3 { top: 40%; left: 15%; }
+.power-marker-4 { top: 58%; right: 20%; }
+.power-marker-5 { bottom: 15%; left: 25%; }
+.power-marker-6 { top: 12%; right: 22%; }
+
+.power-chart {
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+}
+
+.power-chart-lg {
+  min-height: 180px;
+}
+
+.power-params-body {
+  padding: 12px 16px;
+  flex: 1;
+}
+
+.power-params-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.power-param-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px 8px;
+  background: rgba(0,50,100,0.3);
+  border: 1px solid rgba(0,150,255,0.25);
+  border-radius: 10px;
+}
+
+.power-param-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+}
+
+.power-param-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #00d4ff;
+  line-height: 1;
+}
+
+.power-param-value small {
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.45);
+}
+
+.power-rank-panel {
+  flex: 1;
+}
+
+.power-rank-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+  justify-content: center;
+}
+
+.rank-bar.power-rank-bar {
+  background: linear-gradient(90deg, #00d4ff, rgba(0,212,255,0.4));
+  box-shadow: 0 0 6px rgba(0,212,255,0.4);
 }
 </style>
