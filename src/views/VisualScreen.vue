@@ -11,10 +11,6 @@
         <h1 class="system-title">智慧建筑智能运行中心</h1>
       </div>
       <div class="header-right">
-        <el-button class="header-btn back-btn" size="small" @click="goBack">
-          <el-icon><ArrowLeft /></el-icon>
-          返回主界面
-        </el-button>
         <el-button class="header-btn" size="small">大屏概览</el-button>
         <el-icon class="header-icon"><Bell /></el-icon>
         <el-icon class="header-icon"><User /></el-icon>
@@ -670,8 +666,245 @@
         </div>
       </div>
 
+      <!-- 智能能耗页面 -->
+      <div v-if="activeNav === 'energy'" class="page-content energy-page">
+        <div class="page-bg"></div>
+        <div class="energy-content">
+          <!-- 顶部数据卡片 -->
+          <div class="energy-top-cards">
+            <div class="energy-card">
+              <div class="card-icon" style="background: rgba(0,212,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #00d4ff;">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">今日总能耗</span>
+                <span class="card-value">651.00 kWh</span>
+                <span class="card-trend trend-down">较昨日 -25%</span>
+              </div>
+            </div>
+            <div class="energy-card">
+              <div class="card-icon" style="background: rgba(0,255,136,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #00ff88;">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="3" y1="9" x2="21" y2="9"/>
+                  <line x1="9" y1="21" x2="9" y2="9"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">本月总能耗</span>
+                <span class="card-value">18,420 kWh</span>
+                <span class="card-trend trend-down">较上月 -18%</span>
+              </div>
+            </div>
+            <div class="energy-card">
+              <div class="card-icon" style="background: rgba(0,150,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #0096ff;">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">综合能效</span>
+                <span class="card-value">1.28 kWh/m²</span>
+                <span class="card-trend trend-down">较上月 -5%</span>
+              </div>
+            </div>
+            <div class="energy-card">
+              <div class="card-icon" style="background: rgba(170,68,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #aa44ff;">
+                  <path d="M12 2l7 20-7-5-7 5z"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">节能率</span>
+                <span class="card-value">18.7%</span>
+                <span class="card-trend trend-up">较上月 +3%</span>
+              </div>
+            </div>
+            <div class="energy-card">
+              <div class="card-icon" style="background: rgba(80,160,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #50a0ff;">
+                  <path d="M21 10.5h-4V8a4 4 0 0 0-8 0v2.5H5c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h16c.6 0 1-.4 1-1v-10c0-.6-.4-1-1-1z"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">碳排放</span>
+                <span class="card-value">128.6 吨</span>
+                <span class="card-trend trend-down">较上月 -12%</span>
+              </div>
+            </div>
+            <div class="energy-card">
+              <div class="card-icon" style="background: rgba(255,68,68,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #ff4444;">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="card-title">异常能耗</span>
+                <span class="card-value">12 条</span>
+                <span class="card-trend trend-up">较昨日 +2</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 主体三栏布局 -->
+          <div class="energy-main">
+            <!-- 左侧区域 -->
+            <div class="energy-left">
+              <!-- 今日能耗统计 -->
+              <div class="energy-panel">
+                <div class="panel-header">
+                  <span class="panel-title">今日能耗统计</span>
+                </div>
+                <div class="panel-body energy-stat-body">
+                  <div class="energy-big-stat">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-main">
+                      <span class="stat-value">651.00</span>
+                      <span class="stat-unit">kWh</span>
+                    </div>
+                  </div>
+                  <div class="stat-compare">
+                    <span class="compare-label">同比：</span>
+                    <span class="compare-value down">-25.00%</span>
+                  </div>
+                  <div class="stat-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">节能良好</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 今日能耗分布 -->
+              <div class="energy-panel">
+                <div class="panel-header">
+                  <span class="panel-title">今日能耗分布</span>
+                </div>
+                <div class="panel-body">
+                  <div ref="todayEnergyPie" class="energy-chart"></div>
+                </div>
+              </div>
+
+              <!-- 今日能耗排名 -->
+              <div class="energy-panel">
+                <div class="panel-header">
+                  <span class="panel-title">今日能耗排名</span>
+                </div>
+                <div class="panel-body">
+                  <div class="ranking-list">
+                    <div class="ranking-item">
+                      <span class="rank-num">1</span>
+                      <span class="rank-name">地上2层</span>
+                      <div class="rank-bar"><div class="rank-fill" style="width: 100%;"></div></div>
+                      <span class="rank-value">2520 kWh</span>
+                    </div>
+                    <div class="ranking-item">
+                      <span class="rank-num">2</span>
+                      <span class="rank-name">地下2层</span>
+                      <div class="rank-bar"><div class="rank-fill" style="width: 100%;"></div></div>
+                      <span class="rank-value">2520 kWh</span>
+                    </div>
+                    <div class="ranking-item">
+                      <span class="rank-num">3</span>
+                      <span class="rank-name">屋顶</span>
+                      <div class="rank-bar"><div class="rank-fill" style="width: 53%;"></div></div>
+                      <span class="rank-value">1344 kWh</span>
+                    </div>
+                    <div class="ranking-item">
+                      <span class="rank-num">4</span>
+                      <span class="rank-name">地上12层</span>
+                      <div class="rank-bar"><div class="rank-fill" style="width: 33%;"></div></div>
+                      <span class="rank-value">840 kWh</span>
+                    </div>
+                    <div class="ranking-item">
+                      <span class="rank-num">5</span>
+                      <span class="rank-name">地上7层</span>
+                      <div class="rank-bar"><div class="rank-fill" style="width: 27%;"></div></div>
+                      <span class="rank-value">672 kWh</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 中间区域 -->
+            <div class="energy-center">
+              <div class="panel-header center-header">
+                <span class="panel-title">楼宇能耗总览</span>
+              </div>
+              <div class="building-wrapper">
+                <img src="/building-bg.jpg" alt="智慧建筑" class="building-image" />
+                <div class="energy-markers">
+                  <div class="marker marker-1">
+                    <div class="marker-content">
+                      <span class="marker-label">空调系统</span>
+                      <span class="marker-value">142.3 kWh</span>
+                    </div>
+                  </div>
+                  <div class="marker marker-2">
+                    <div class="marker-content">
+                      <span class="marker-label">照明系统</span>
+                      <span class="marker-value">88.6 kWh</span>
+                    </div>
+                  </div>
+                  <div class="marker marker-3">
+                    <div class="marker-content">
+                      <span class="marker-label">电梯系统</span>
+                      <span class="marker-value">52.1 kWh</span>
+                    </div>
+                  </div>
+                  <div class="marker marker-4">
+                    <div class="marker-content">
+                      <span class="marker-label">动力设备</span>
+                      <span class="marker-value">230.4 kWh</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 右侧区域 -->
+            <div class="energy-right">
+              <!-- 历史电耗趋势 -->
+              <div class="energy-panel">
+                <div class="panel-header">
+                  <span class="panel-title">历史电耗趋势</span>
+                </div>
+                <div class="panel-body">
+                  <div ref="historyEnergyLine" class="energy-chart"></div>
+                </div>
+              </div>
+
+              <!-- 能耗分布 -->
+              <div class="energy-panel">
+                <div class="panel-header">
+                  <span class="panel-title">能耗分布</span>
+                </div>
+                <div class="panel-body">
+                  <div ref="energyDistributionPie" class="energy-chart"></div>
+                </div>
+              </div>
+
+              <!-- 能耗排名 -->
+              <div class="energy-panel">
+                <div class="panel-header">
+                  <span class="panel-title">能耗排名</span>
+                </div>
+                <div class="panel-body">
+                  <div ref="energyRankingBar" class="energy-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 其他页面占位 -->
-      <div v-if="activeNav !== 'home'" class="page-content">
+      <div v-if="activeNav !== 'home' && activeNav !== 'energy'" class="page-content">
         <div class="placeholder-page">
           <h2>{{ getPageTitle() }}</h2>
           <p>页面开发中……</p>
@@ -682,17 +915,26 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { Bell, User, ArrowLeft } from '@element-plus/icons-vue'
-
-const router = useRouter()
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { Bell, User } from '@element-plus/icons-vue'
+import * as echarts from 'echarts'
 
 const currentDate = ref('')
 const currentTime = ref('')
 const activeNav = ref('home')
 
 let timer = null
+let charts = {
+  todayEnergyPie: null,
+  historyEnergyLine: null,
+  energyDistributionPie: null,
+  energyRankingBar: null
+}
+
+const todayEnergyPie = ref(null)
+const historyEnergyLine = ref(null)
+const energyDistributionPie = ref(null)
+const energyRankingBar = ref(null)
 
 const updateTime = () => {
   const now = new Date()
@@ -704,10 +946,6 @@ const updateTime = () => {
   const seconds = String(now.getSeconds()).padStart(2, '0')
   currentDate.value = `${year}-${month}-${day}`
   currentTime.value = `${hours}:${minutes}:${seconds}`
-}
-
-const goBack = () => {
-  router.push('/dashboard')
 }
 
 const getPageTitle = () => {
@@ -724,13 +962,218 @@ const getPageTitle = () => {
   return titles[activeNav.value] || ''
 }
 
+const initTodayEnergyPie = () => {
+  if (!todayEnergyPie.value) return
+  const chart = echarts.init(todayEnergyPie.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'item',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    series: [{
+      type: 'pie',
+      radius: ['45%', '70%'],
+      center: ['50%', '50%'],
+      avoidLabelOverlap: false,
+      itemStyle: {
+        borderRadius: 6,
+        borderColor: 'rgba(0,20,40,1)',
+        borderWidth: 2
+      },
+      label: { show: false },
+      emphasis: { label: { show: true, fontSize: 14, fontWeight: 'bold' } },
+      data: [
+        { value: 57, name: '空调系统', itemStyle: { color: '#00d4ff' } },
+        { value: 10, name: '照明系统', itemStyle: { color: '#00ff88' } },
+        { value: 27, name: '动力用电', itemStyle: { color: '#ffcc33' } },
+        { value: 6, name: '其他用电', itemStyle: { color: '#ff4d5a' } }
+      ]
+    }]
+  })
+  charts.todayEnergyPie = chart
+}
+
+const initHistoryEnergyLine = () => {
+  if (!historyEnergyLine.value) return
+  const chart = echarts.init(historyEnergyLine.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      top: '10%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff' }
+    },
+    yAxis: {
+      type: 'value',
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff' },
+      splitLine: { lineStyle: { color: 'rgba(0,212,255,0.15)' } }
+    },
+    series: [{
+      name: '电耗',
+      type: 'line',
+      smooth: true,
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: 'rgba(0,212,255,0.4)' },
+          { offset: 1, color: 'rgba(0,212,255,0)' }
+        ])
+      },
+      lineStyle: { color: '#00d4ff', width: 3 },
+      itemStyle: { color: '#00d4ff' },
+      data: [420, 530, 490, 620, 580, 760, 690]
+    }]
+  })
+  charts.historyEnergyLine = chart
+}
+
+const initEnergyDistributionPie = () => {
+  if (!energyDistributionPie.value) return
+  const chart = echarts.init(energyDistributionPie.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'item',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    legend: {
+      bottom: '5%',
+      left: 'center',
+      textStyle: { color: '#b8eaff' }
+    },
+    series: [{
+      type: 'pie',
+      radius: ['40%', '65%'],
+      center: ['50%', '40%'],
+      itemStyle: {
+        borderRadius: 5,
+        borderColor: 'rgba(0,20,40,1)',
+        borderWidth: 2
+      },
+      label: { show: true, color: '#b8eaff' },
+      data: [
+        { value: 45, name: '空调系统', itemStyle: { color: '#00d4ff' } },
+        { value: 20, name: '照明系统', itemStyle: { color: '#00ff88' } },
+        { value: 15, name: '电梯系统', itemStyle: { color: '#ffcc33' } },
+        { value: 12, name: '插座动力', itemStyle: { color: '#8b5cf6' } },
+        { value: 8, name: '其他', itemStyle: { color: '#ff4d5a' } }
+      ]
+    }]
+  })
+  charts.energyDistributionPie = chart
+}
+
+const initEnergyRankingBar = () => {
+  if (!energyRankingBar.value) return
+  const chart = echarts.init(energyRankingBar.value)
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(0,30,60,0.95)',
+      borderColor: 'rgba(0,212,255,0.5)',
+      textStyle: { color: '#fff' }
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      top: '5%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'value',
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff' },
+      splitLine: { lineStyle: { color: 'rgba(0,212,255,0.15)' } }
+    },
+    yAxis: {
+      type: 'category',
+      data: ['空调系统', '照明系统', '电梯系统', '动力设备'],
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
+      axisLabel: { color: '#b8eaff' }
+    },
+    series: [{
+      name: '能耗',
+      type: 'bar',
+      barWidth: '50%',
+      itemStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+          { offset: 0, color: '#00d4ff' },
+          { offset: 1, color: '#0066aa' }
+        ]),
+        borderRadius: [0, 4, 4, 0]
+      },
+      data: [3200, 1800, 1300, 980]
+    }]
+  })
+  charts.energyRankingBar = chart
+}
+
+const initAllCharts = () => {
+  nextTick(() => {
+    initTodayEnergyPie()
+    initHistoryEnergyLine()
+    initEnergyDistributionPie()
+    initEnergyRankingBar()
+  })
+}
+
+const disposeAllCharts = () => {
+  Object.values(charts).forEach(chart => {
+    if (chart) {
+      chart.dispose()
+    }
+  })
+  charts = {
+    todayEnergyPie: null,
+    historyEnergyLine: null,
+    energyDistributionPie: null,
+    energyRankingBar: null
+  }
+}
+
+const handleResize = () => {
+  Object.values(charts).forEach(chart => {
+    if (chart) chart.resize()
+  })
+}
+
+watch(activeNav, (newVal) => {
+  if (newVal === 'energy') {
+    disposeAllCharts()
+    nextTick(() => initAllCharts())
+  } else {
+    disposeAllCharts()
+  }
+})
+
 onMounted(() => {
   updateTime()
   timer = setInterval(updateTime, 1000)
+  window.addEventListener('resize', handleResize)
 })
 
 onUnmounted(() => {
   if (timer) clearInterval(timer)
+  disposeAllCharts()
+  window.removeEventListener('resize', handleResize)
 })
 </script>
 
@@ -806,20 +1249,6 @@ onUnmounted(() => {
   border: 1px solid rgba(0,150,255,0.5);
   color: #00d4ff;
   font-size: 14px;
-}
-
-.back-btn {
-  background: rgba(255,100,100,0.3);
-  border: 1px solid rgba(255,100,100,0.6);
-  color: #ff8888;
-  transition: all 0.3s;
-}
-
-.back-btn:hover {
-  background: rgba(255,100,100,0.5);
-  border-color: rgba(255,100,100,0.8);
-  color: #ffaaaa;
-  box-shadow: 0 0 15px rgba(255,100,100,0.3);
 }
 
 .header-icon {
@@ -1568,5 +1997,326 @@ onUnmounted(() => {
 .placeholder-page p {
   font-size: 16px;
   color: rgba(255,255,255,0.6);
+}
+
+/* 智能能耗页面 */
+.energy-page {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px 0;
+  height: 100%;
+}
+
+.energy-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.energy-top-cards {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 0 16px;
+  flex-shrink: 0;
+}
+
+.energy-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  background: rgba(0,30,60,0.9);
+  border: 1px solid rgba(0,150,255,0.35);
+  border-radius: 10px;
+  min-width: 180px;
+}
+
+.energy-card .card-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.energy-card .card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.energy-card .card-title {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+}
+
+.energy-card .card-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.energy-card .card-trend {
+  font-size: 12px;
+}
+
+.energy-card .card-trend.trend-down {
+  color: #00ff88;
+}
+
+.energy-card .card-trend.trend-up {
+  color: #ff4444;
+}
+
+.energy-main {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+}
+
+.energy-left, .energy-right {
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.energy-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.energy-panel {
+  background: rgba(0,25,50,0.92);
+  border: 1px solid rgba(0,150,255,0.3);
+  border-radius: 12px;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.energy-panel .panel-body {
+  flex: 1;
+  padding: 12px 16px;
+  overflow: hidden;
+}
+
+.energy-stat-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.energy-big-stat {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-icon {
+  font-size: 48px;
+}
+
+.stat-main {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.stat-value {
+  font-size: 42px;
+  font-weight: 700;
+  color: #00d4ff;
+}
+
+.stat-unit {
+  font-size: 20px;
+  color: rgba(255,255,255,0.8);
+}
+
+.stat-compare {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.compare-label {
+  color: rgba(255,255,255,0.7);
+}
+
+.compare-value {
+  font-weight: 600;
+}
+
+.compare-value.down {
+  color: #00ff88;
+}
+
+.compare-value.up {
+  color: #ff4444;
+}
+
+.stat-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 10px rgba(0,255,136,0.6);
+}
+
+.status-text {
+  font-size: 15px;
+  color: #00ff88;
+  font-weight: 600;
+}
+
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rank-num {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,212,255,0.2);
+  border: 1px solid rgba(0,212,255,0.4);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #00d4ff;
+  flex-shrink: 0;
+}
+
+.rank-name {
+  font-size: 14px;
+  color: #fff;
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.rank-bar {
+  flex: 1;
+  height: 20px;
+  background: rgba(0,50,100,0.4);
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.rank-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff 0%, #0096ff 100%);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.rank-value {
+  font-size: 14px;
+  color: #00d4ff;
+  font-weight: 600;
+  width: 70px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.center-header {
+  justify-content: center;
+}
+
+.building-wrapper {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(0,150,255,0.3);
+  background: rgba(0,20,40,0.6);
+}
+
+.building-wrapper .building-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.energy-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.marker {
+  position: absolute;
+  pointer-events: auto;
+}
+
+.marker .marker-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  background: rgba(0,60,120,0.9);
+  border: 1px solid rgba(0,212,255,0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,212,255,0.3);
+}
+
+.marker .marker-label {
+  font-size: 13px;
+  color: #00d4ff;
+  font-weight: 600;
+}
+
+.marker .marker-value {
+  font-size: 15px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.marker-1 { top: 20%; left: 15%; }
+.marker-2 { top: 35%; right: 20%; }
+.marker-3 { bottom: 30%; left: 10%; }
+.marker-4 { bottom: 15%; right: 15%; }
+
+.energy-chart {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
 }
 </style>
