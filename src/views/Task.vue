@@ -632,155 +632,133 @@ const handleResize = () => {
 
 <style scoped>
 .task-page {
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.stat-row {
-  margin-bottom: 20px;
+.stat-row,
+.chart-row {
+  margin: 0;
 }
 
 .stat-card {
   display: flex;
   align-items: center;
-  padding: 20px 16px;
-  background: rgba(6, 24, 52, 0.88);
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
-  transition: all 0.3s;
+  gap: 16px;
+  min-height: 112px;
+  padding: 22px 20px;
+  background: linear-gradient(180deg, rgba(13, 27, 46, 0.98) 0%, rgba(7, 14, 24, 0.96) 100%);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(0, 216, 255, 0.25);
+  border: 1px solid rgba(120, 200, 255, 0.12);
 }
 
-.stat-card::before {
+.stat-card::after {
   content: '';
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(circle, rgba(0, 216, 255, 0.05) 0%, transparent 70%);
+  right: -18px;
+  bottom: -38px;
+  width: 108px;
+  height: 108px;
   border-radius: 50%;
-  transform: translate(30%, -30%);
-}
-
-.stat-card:hover {
-  border-color: rgba(0, 216, 255, 0.5);
-  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
-  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .stat-card__icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 16px;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
 }
 
-.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #0d47a1 0%, #00d8ff 100%); }
-.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #e65100 0%, #ffcc33 100%); }
-.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #004d40 0%, #00f5a0 100%); }
-.stat-card--red .stat-card__icon { background: linear-gradient(135deg, #b71c1c 0%, #ff4d5a 100%); }
+.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #8be6ff 0%, #27b2da 100%); color: #05111c; }
+.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #ffe197 0%, #ffb44a 100%); color: #2a1800; }
+.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #80efc0 0%, #2fa276 100%); color: #06150f; }
+.stat-card--red .stat-card__icon { background: linear-gradient(135deg, #ffa8b2 0%, #ff6b7a 100%); color: #29050c; }
 
 .stat-card__content {
-  flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .stat-card__value {
-  font-size: 24px;
+  font-size: 34px;
   font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-  line-height: 1.2;
+  color: #eff7ff;
+  margin: 0 0 6px;
+  line-height: 1;
 }
 
 .stat-card__label {
   font-size: 13px;
-  color: #b8eaff;
-  margin: 4px 0 0 0;
-}
-
-.chart-row {
-  margin-bottom: 20px;
-}
-
-.chart-card {
-  margin-bottom: 20px;
-}
-
-.chart-card .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chart-card .card-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #00d8ff;
+  color: #93a7bd;
+  margin: 0;
 }
 
 .chart-wrapper {
   width: 100%;
-  height: 280px;
+  height: 300px;
 }
 
 .quick-filter {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .filter-label {
-  font-size: 14px;
-  color: #b8eaff;
-  font-weight: 500;
+  font-size: 13px;
+  color: #b4c5db;
+  font-weight: 600;
 }
 
 .filter-tag {
   cursor: pointer;
-  transition: all 0.3s;
-}
-
-.filter-tag:hover {
-  transform: translateY(-2px);
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 14px;
 }
 
 .card-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #00d8ff;
+  font-size: 18px;
+  font-weight: 700;
+  color: #eff7ff;
 }
 
 .search-bar {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 16px;
+  align-items: center;
+  margin-bottom: 18px;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-.search-bar__right {
-  flex-shrink: 0;
+.search-bar :deep(.el-form) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 0;
 }
 
 .pagination-wrapper {
-  margin-top: 16px;
-  display: flex;
-  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .card-header,
+  .search-bar {
+    align-items: stretch;
+    flex-direction: column;
+  }
 }
 </style>

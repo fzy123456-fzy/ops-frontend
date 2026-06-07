@@ -567,243 +567,138 @@ const handleResize = () => {
 
 <style scoped>
 .alarm-page {
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.stat-row {
-  margin-bottom: 20px;
+.stat-row,
+.chart-row {
+  margin: 0;
 }
 
 .stat-card {
   display: flex;
   align-items: center;
-  padding: 16px;
-  background: rgba(6, 24, 52, 0.88);
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
-  transition: all 0.3s;
+  gap: 16px;
+  min-height: 112px;
+  padding: 22px 20px;
+  background: linear-gradient(180deg, rgba(13, 27, 46, 0.98) 0%, rgba(7, 14, 24, 0.96) 100%);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(0, 216, 255, 0.25);
+  border: 1px solid rgba(120, 200, 255, 0.12);
 }
 
-.stat-card:hover {
-  border-color: rgba(0, 216, 255, 0.5);
-  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
-  transform: translateY(-2px);
+.stat-card::after {
+  content: '';
+  position: absolute;
+  right: -18px;
+  bottom: -38px;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .stat-card__icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 12px;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
   flex-shrink: 0;
 }
 
-.stat-card--red .stat-card__icon { background: rgba(255, 77, 90, 0.15); color: #ff4d5a; }
-.stat-card--orange .stat-card__icon { background: rgba(255, 204, 51, 0.15); color: #ffcc33; }
-.stat-card--blue .stat-card__icon { background: rgba(0, 216, 255, 0.15); color: #00d8ff; }
-.stat-card--green .stat-card__icon { background: rgba(0, 245, 160, 0.15); color: #00f5a0; }
+.stat-card--red .stat-card__icon { background: linear-gradient(135deg, #ffa8b2 0%, #ff6b7a 100%); color: #29050c; }
+.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #ffe197 0%, #ffb44a 100%); color: #2a1800; }
+.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #8be6ff 0%, #27b2da 100%); color: #05111c; }
+.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #80efc0 0%, #2fa276 100%); color: #06150f; }
 
 .stat-card__content {
-  flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .stat-card__value {
-  font-size: 24px;
+  font-size: 34px;
   font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-  line-height: 1.2;
+  color: #eff7ff;
+  margin: 0 0 6px;
+  line-height: 1;
 }
 
 .stat-card__label {
   font-size: 13px;
-  color: #b8eaff;
-  margin: 4px 0 0 0;
-}
-
-.chart-row {
-  margin-bottom: 20px;
-}
-
-.chart-card {
-  margin-bottom: 20px;
-}
-
-.chart-card .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chart-card .card-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #00d8ff;
+  color: #93a7bd;
+  margin: 0;
 }
 
 .chart-wrapper {
   width: 100%;
-  height: 280px;
+  height: 300px;
 }
 
 .quick-filter {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .filter-label {
-  font-size: 14px;
-  color: #b8eaff;
-  font-weight: 500;
+  font-size: 13px;
+  color: #b4c5db;
+  font-weight: 600;
 }
 
 .filter-tag {
   cursor: pointer;
-  transition: all 0.3s;
-}
-
-.filter-tag:hover {
-  transform: translateY(-2px);
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 14px;
 }
 
 .card-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #00d8ff;
+  font-size: 18px;
+  font-weight: 700;
+  color: #eff7ff;
 }
 
 .alarm-badge {
-  margin-left: 12px;
+  margin-left: auto;
 }
 
 .search-bar {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 16px;
+  align-items: center;
+  margin-bottom: 18px;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-.search-bar__right {
-  flex-shrink: 0;
-}
-
-.search-bar .el-form {
-  margin-bottom: 0;
+.search-bar :deep(.el-form) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 0;
 }
 
 .pagination-wrapper {
-  margin-top: 16px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  margin-top: 8px;
 }
 
-/* Table overrides */
-.thingsboard-table {
-  border: 1px solid rgba(0, 216, 255, 0.15);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.thingsboard-table :deep(.el-table__header) {
-  background: rgba(8, 35, 75, 0.78);
-}
-
-.thingsboard-table :deep(.el-table__header th) {
-  background: rgba(8, 35, 75, 0.78) !important;
-  color: #00d8ff !important;
-  font-weight: 600;
-  font-size: 13px;
-  border-bottom: 1px solid rgba(0, 216, 255, 0.2);
-  padding: 12px 0;
-}
-
-.thingsboard-table :deep(.el-table__row) {
-  transition: background-color 0.2s;
-}
-
-.thingsboard-table :deep(.el-table__row:hover) {
-  background-color: rgba(0, 216, 255, 0.08) !important;
-}
-
-.thingsboard-table :deep(.el-table__row td) {
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(0, 216, 255, 0.1);
-  font-size: 13px;
-  color: #b8eaff;
-}
-
-.thingsboard-table :deep(.el-table__body tr:last-child td) {
-  border-bottom: none;
-}
-
-.thingsboard-table :deep(.el-button.is-link) {
-  padding: 4px;
-  color: #00d8ff;
-}
-
-.thingsboard-table :deep(.el-button.is-link:hover) {
-  background-color: rgba(0, 216, 255, 0.1);
-  border-radius: 4px;
-}
-
-/* Pagination overrides */
-.pagination-wrapper :deep(.el-pagination) {
-  font-size: 13px;
-}
-
-.pagination-wrapper :deep(.el-pagination button) {
-  background: rgba(6, 24, 52, 0.6);
-  border: 1px solid rgba(0, 216, 255, 0.2);
-  color: #b8eaff;
-}
-
-.pagination-wrapper :deep(.el-pagination button:hover) {
-  color: #00d8ff;
-  border-color: rgba(0, 216, 255, 0.5);
-}
-
-.pagination-wrapper :deep(.el-pagination .el-pager li) {
-  background: rgba(6, 24, 52, 0.6);
-  border: 1px solid rgba(0, 216, 255, 0.15);
-  color: #b8eaff;
-  min-width: 32px;
-  height: 32px;
-  line-height: 32px;
-  margin: 0 2px;
-  border-radius: 6px;
-}
-
-.pagination-wrapper :deep(.el-pagination .el-pager li:hover) {
-  color: #00d8ff;
-  border-color: rgba(0, 216, 255, 0.5);
-}
-
-.pagination-wrapper :deep(.el-pagination .el-pager li.is-active) {
-  background: linear-gradient(135deg, #00d8ff, #0088cc);
-  border-color: #00d8ff;
-  color: #fff;
-}
-
-.pagination-wrapper :deep(.el-pagination .el-select .el-input__wrapper) {
-  background: rgba(8, 35, 75, 0.78);
-  box-shadow: 0 0 0 1px rgba(0, 216, 255, 0.35) inset;
+@media (max-width: 768px) {
+  .card-header,
+  .search-bar {
+    align-items: stretch;
+    flex-direction: column;
+  }
 }
 </style>

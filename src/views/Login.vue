@@ -1,23 +1,42 @@
 <template>
-  <div class="login-container">
-    <div class="animated-bg">
-      <div class="bg-circle circle-1"></div>
-      <div class="bg-circle circle-2"></div>
-      <div class="bg-circle circle-3"></div>
-      <div class="bg-circle circle-4"></div>
-      <div class="bg-grid"></div>
-    </div>
-    
-    <div class="login-box">
-      <div class="login-header">
-        <div class="logo-icon">
-          <el-icon :size="48" color="#409EFF"><Monitor /></el-icon>
+  <div class="login-page">
+    <div class="login-aurora login-aurora--one"></div>
+    <div class="login-aurora login-aurora--two"></div>
+
+    <section class="login-hero">
+      <p class="hero-kicker">Enterprise Operations</p>
+      <h1>让运维控制台看起来像一套真正的产品</h1>
+      <p class="hero-copy">
+        集中管理设备、告警、任务、算法、数字孪生与 AI 智能体，让巡检、分析和处置都落在同一张工作台上。
+      </p>
+
+      <div class="hero-metrics">
+        <div class="hero-metric">
+          <strong>24/7</strong>
+          <span>可视化监控</span>
         </div>
-        <h2>智慧运维管理平台</h2>
-        <p>Intelligent Operations Management Platform</p>
-        <div class="header-line"></div>
+        <div class="hero-metric">
+          <strong>10+</strong>
+          <span>核心业务模块</span>
+        </div>
+        <div class="hero-metric">
+          <strong>Mock</strong>
+          <span>离线演示兜底</span>
+        </div>
       </div>
-      
+    </section>
+
+    <section class="login-panel">
+      <div class="panel-top">
+        <div class="panel-mark">
+          <el-icon :size="28"><Monitor /></el-icon>
+        </div>
+        <div>
+          <p class="panel-kicker">Smart Ops Console</p>
+          <h2>登录智慧运维平台</h2>
+        </div>
+      </div>
+
       <el-form ref="formRef" :model="loginForm" :rules="rules" class="login-form">
         <el-form-item prop="username">
           <el-input
@@ -46,18 +65,19 @@
             class="login-btn"
             @click="handleLogin"
           >
-            登 录
+            进入控制台
           </el-button>
         </el-form-item>
       </el-form>
-      
-      <div class="login-footer">
-        <div class="demo-account">
+
+      <div class="panel-footer">
+        <div class="demo-tip">
           <el-icon><InfoFilled /></el-icon>
           <span>演示账号：admin / 123456</span>
         </div>
+        <p>后端未启动时会自动进入演示模式，适合展示与答辩。</p>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -73,7 +93,7 @@ const loading = ref(false)
 
 const loginForm = reactive({
   username: 'admin',
-  password: 'admin123'
+  password: '123456'
 })
 
 const rules = {
@@ -97,7 +117,7 @@ const handleLogin = async () => {
       ElMessage.error(res.data.message || '登录失败')
     }
   } catch (error) {
-    localStorage.setItem('token', 'ops-token-admin-' + Date.now())
+    localStorage.setItem('token', `ops-token-admin-${Date.now()}`)
     localStorage.setItem('userInfo', JSON.stringify({
       id: 1,
       username: 'admin',
@@ -113,199 +133,202 @@ const handleLogin = async () => {
 </script>
 
 <style scoped>
-.login-container {
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.login-page {
   position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, 460px);
+  align-items: center;
+  gap: 48px;
+  padding: 48px 64px;
   overflow: hidden;
 }
 
-.animated-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.bg-circle {
+.login-aurora {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  animation: float 20s infinite ease-in-out;
+  filter: blur(18px);
+  opacity: 0.8;
+  pointer-events: none;
 }
 
-.circle-1 {
-  width: 300px;
-  height: 300px;
-  top: -100px;
-  left: -100px;
-  animation-delay: 0s;
-}
-
-.circle-2 {
-  width: 200px;
-  height: 200px;
-  bottom: -50px;
-  right: -50px;
-  animation-delay: -5s;
-}
-
-.circle-3 {
-  width: 150px;
-  height: 150px;
-  top: 50%;
-  right: 10%;
-  animation-delay: -10s;
-}
-
-.circle-4 {
-  width: 250px;
-  height: 250px;
-  bottom: 20%;
-  left: 15%;
-  animation-delay: -15s;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(30px, -30px) scale(1.1);
-  }
-  50% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-  75% {
-    transform: translate(20px, 30px) scale(1.05);
-  }
-}
-
-.bg-grid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: gridMove 20s linear infinite;
-}
-
-@keyframes gridMove {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(50px, 50px);
-  }
-}
-
-.login-box {
+.login-aurora--one {
   width: 420px;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  animation: slideIn 0.5s ease-out;
+  height: 420px;
+  left: -120px;
+  top: -80px;
+  background: radial-gradient(circle, rgba(102, 217, 255, 0.28) 0%, transparent 70%);
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.login-aurora--two {
+  width: 520px;
+  height: 520px;
+  right: -160px;
+  bottom: -160px;
+  background: radial-gradient(circle, rgba(255, 183, 74, 0.2) 0%, transparent 72%);
 }
 
-.login-header {
-  text-align: center;
-  margin-bottom: 35px;
+.login-hero,
+.login-panel {
+  position: relative;
+  z-index: 1;
 }
 
-.logo-icon {
-  margin-bottom: 15px;
-  animation: pulse 2s infinite;
+.login-hero {
+  max-width: 640px;
 }
 
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
+.hero-kicker,
+.panel-kicker {
+  color: #7f96ad;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-.login-header h2 {
+.login-hero h1 {
+  margin: 20px 0 18px;
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 1.02;
+  color: #eff7ff;
+  max-width: 10em;
+}
+
+.hero-copy {
+  max-width: 560px;
+  color: #b4c5db;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.hero-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.hero-metric {
+  min-width: 150px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(120, 200, 255, 0.14);
+  background: rgba(9, 19, 34, 0.5);
+  backdrop-filter: blur(12px);
+}
+
+.hero-metric strong {
+  display: block;
+  color: #eff7ff;
   font-size: 28px;
-  color: #303133;
   margin-bottom: 8px;
-  font-weight: 600;
 }
 
-.login-header p {
-  color: #909399;
-  font-size: 14px;
+.hero-metric span {
+  color: #98aec4;
+  font-size: 13px;
 }
 
-.header-line {
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  margin: 15px auto 0;
-  border-radius: 2px;
+.login-panel {
+  padding: 32px;
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(12, 24, 42, 0.92) 0%, rgba(8, 16, 28, 0.94) 100%);
+  border: 1px solid rgba(120, 200, 255, 0.16);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(18px);
+}
+
+.panel-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.panel-mark {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  color: #07111f;
+  background: linear-gradient(135deg, #66d9ff 0%, #ffb74a 100%);
+}
+
+.panel-top h2 {
+  margin-top: 6px;
+  color: #eff7ff;
+  font-size: 28px;
 }
 
 .login-form {
-  margin-top: 30px;
+  margin-top: 18px;
+}
+
+.login-form :deep(.el-form-item) {
+  margin-bottom: 22px;
 }
 
 .login-btn {
   width: 100%;
-  height: 44px;
-  font-size: 16px;
-  letter-spacing: 4px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
-  transition: all 0.3s;
+  height: 48px;
+  font-size: 15px;
+  letter-spacing: 0.08em;
 }
 
-.login-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+.panel-footer {
+  margin-top: 12px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(120, 200, 255, 0.1);
 }
 
-.login-footer {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.demo-account {
+.demo-tip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  background: #f5f7fa;
-  border-radius: 20px;
-  color: #909399;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(102, 217, 255, 0.08);
+  color: #dbe9f7;
+  margin-bottom: 12px;
+}
+
+.panel-footer p {
+  color: #8fa5bb;
+  line-height: 1.7;
   font-size: 13px;
 }
 
-.demo-account .el-icon {
-  color: #409EFF;
+@media (max-width: 1100px) {
+  .login-page {
+    grid-template-columns: 1fr;
+    padding: 32px 20px;
+  }
+
+  .login-hero {
+    max-width: none;
+  }
+
+  .login-hero h1 {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    gap: 24px;
+  }
+
+  .login-hero h1 {
+    font-size: 40px;
+  }
+
+  .hero-copy {
+    font-size: 16px;
+  }
+
+  .login-panel {
+    padding: 24px;
+  }
 }
 </style>

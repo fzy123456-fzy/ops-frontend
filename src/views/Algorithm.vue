@@ -457,15 +457,14 @@ onUnmounted(() => {
 
 <style scoped>
 .algorithm-page {
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.stat-row {
-  margin-bottom: 20px;
-}
-
+.stat-row,
 .chart-row {
-  margin-bottom: 20px;
+  margin: 0;
 }
 
 .chart-container {
@@ -476,65 +475,58 @@ onUnmounted(() => {
 .stat-card {
   display: flex;
   align-items: center;
-  padding: 20px 16px;
-  background: rgba(6, 24, 52, 0.88);
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
-  transition: all 0.3s;
+  gap: 16px;
+  min-height: 112px;
+  padding: 22px 20px;
+  background: linear-gradient(180deg, rgba(13, 27, 46, 0.98) 0%, rgba(7, 14, 24, 0.96) 100%);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(0, 216, 255, 0.25);
+  border: 1px solid rgba(120, 200, 255, 0.12);
 }
 
-.stat-card::before {
+.stat-card::after {
   content: '';
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(circle, rgba(0, 216, 255, 0.05) 0%, transparent 70%);
+  right: -18px;
+  bottom: -38px;
+  width: 108px;
+  height: 108px;
   border-radius: 50%;
-  transform: translate(30%, -30%);
-}
-
-.stat-card:hover {
-  border-color: rgba(0, 216, 255, 0.5);
-  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
-  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .stat-card__icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 14px;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
   flex-shrink: 0;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #0d47a1 0%, #00d8ff 100%); }
-.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #004d40 0%, #00f5a0 100%); }
-.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #e65100 0%, #ffcc33 100%); }
-.stat-card--purple .stat-card__icon { background: linear-gradient(135deg, #4a148c 0%, #8b5cf6 100%); }
+.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #8be6ff 0%, #27b2da 100%); color: #05111c; }
+.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #80efc0 0%, #2fa276 100%); color: #06150f; }
+.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #ffe197 0%, #ffb44a 100%); color: #2a1800; }
+.stat-card--purple .stat-card__icon { background: linear-gradient(135deg, #d8a7ff 0%, #8f61e8 100%); color: #160522; }
 
-.stat-card__content { flex: 1; }
+.stat-card__content {
+  position: relative;
+  z-index: 1;
+}
 
 .stat-card__value {
-  font-size: 26px;
+  font-size: 34px;
   font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 4px;
+  color: #eff7ff;
+  margin: 0 0 6px;
   line-height: 1;
 }
 
 .stat-card__label {
   font-size: 13px;
-  color: #b8eaff;
+  color: #93a7bd;
   margin: 0;
 }
 
@@ -542,57 +534,59 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 14px;
 }
 
 .card-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #00d8ff;
+  font-size: 18px;
+  font-weight: 700;
+  color: #eff7ff;
 }
 
 .filter-tags {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
-  padding: 12px 16px;
-  background: rgba(6, 24, 52, 0.88);
-  border: 1px solid rgba(0, 216, 255, 0.18);
-  border-radius: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  background: rgba(9, 19, 34, 0.72);
+  border: 1px solid rgba(120, 200, 255, 0.1);
+  border-radius: 18px;
 }
 
 .filter-label {
   font-size: 13px;
-  color: #b8eaff;
-  margin-right: 12px;
-  font-weight: 500;
+  color: #b4c5db;
+  margin-right: 6px;
+  font-weight: 600;
 }
 
 .filter-tag {
-  margin-right: 8px;
   cursor: pointer;
-  transition: all 0.3s;
-}
-
-.filter-tag:hover {
-  transform: translateY(-2px);
 }
 
 .accuracy-high {
-  color: #00f5a0;
+  color: #41d39d;
   font-weight: 600;
 }
 
 .accuracy-medium {
-  color: #ffcc33;
+  color: #ffd166;
   font-weight: 500;
 }
 
 .accuracy-low {
-  color: #ff4d5a;
+  color: #ff6b7a;
   font-weight: 500;
 }
 
 @media (max-width: 768px) {
+  .card-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
   .chart-container {
     height: 250px;
   }
