@@ -3,7 +3,7 @@
     <el-card shadow="never" class="intro-card">
       <div class="intro-content">
         <div class="intro-icon">
-          <el-icon :size="32" color="#409EFF"><Monitor /></el-icon>
+          <el-icon :size="32" color="#00d8ff"><Monitor /></el-icon>
         </div>
         <div class="intro-text">
           <h3>欢迎使用智慧运维管理平台</h3>
@@ -342,21 +342,33 @@ const initPieChart = () => {
   if (!pieChartRef.value) return
   pieChart = echarts.init(pieChartRef.value)
   pieChart.setOption({
-    tooltip: { trigger: 'item', formatter: '{b}: {c}台 ({d}%)' },
-    legend: { bottom: '0%', left: 'center', itemWidth: 14, itemHeight: 14, textStyle: { fontSize: 12 } },
+    tooltip: {
+      trigger: 'item',
+      formatter: '{b}: {c}台 ({d}%)',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
+    legend: {
+      bottom: '0%',
+      left: 'center',
+      itemWidth: 14,
+      itemHeight: 14,
+      textStyle: { fontSize: 12, color: '#b8eaff' }
+    },
     series: [{
       name: '设备状态',
       type: 'pie',
       radius: ['42%', '68%'],
       center: ['50%', '45%'],
       avoidLabelOverlap: false,
-      itemStyle: { borderRadius: 6, borderColor: '#fff', borderWidth: 2 },
+      itemStyle: { borderRadius: 6, borderColor: 'rgba(6, 24, 52, 0.88)', borderWidth: 3 },
       label: { show: false },
-      emphasis: { label: { show: true, fontSize: 14, fontWeight: 'bold' } },
+      emphasis: { label: { show: true, fontSize: 14, fontWeight: 'bold', color: '#fff' } },
       data: [
-        { value: stats.deviceOnline, name: '在线', itemStyle: { color: '#67C23A' } },
-        { value: 1, name: '离线', itemStyle: { color: '#909399' } },
-        { value: 1, name: '告警', itemStyle: { color: '#F56C6C' } }
+        { value: stats.deviceOnline, name: '在线', itemStyle: { color: '#00f5a0' } },
+        { value: 1, name: '离线', itemStyle: { color: '#ffcc33' } },
+        { value: 1, name: '告警', itemStyle: { color: '#ff4d5a' } }
       ]
     }]
   })
@@ -372,24 +384,40 @@ const initLineChart = () => {
     dates.push(`${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`)
   }
   lineChart.setOption({
-    tooltip: { trigger: 'axis' },
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
     grid: { left: '3%', right: '4%', bottom: '3%', top: '8%', containLabel: true },
-    xAxis: { type: 'category', boundaryGap: false, data: dates, axisLine: { lineStyle: { color: '#EBEEF5' } }, axisLabel: { color: '#909399' } },
-    yAxis: { type: 'value', splitLine: { lineStyle: { color: '#F2F6FC', type: 'dashed' } }, axisLabel: { color: '#909399' } },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: dates,
+      axisLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.3)' } },
+      axisLabel: { color: '#b8eaff' },
+      axisTick: { show: false }
+    },
+    yAxis: {
+      type: 'value',
+      splitLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.12)', type: 'dashed' } },
+      axisLabel: { color: '#b8eaff' }
+    },
     series: [{
       name: '告警数',
       type: 'line',
       smooth: true,
       symbol: 'circle',
       symbolSize: 6,
-      lineStyle: { width: 3 },
+      lineStyle: { width: 3, color: '#00d8ff' },
       areaStyle: {
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-          { offset: 0, color: 'rgba(64, 158, 255, 0.25)' },
-          { offset: 1, color: 'rgba(64, 158, 255, 0.02)' }
+          { offset: 0, color: 'rgba(0, 216, 255, 0.25)' },
+          { offset: 1, color: 'rgba(0, 216, 255, 0.02)' }
         ])
       },
-      itemStyle: { color: '#409EFF' },
+      itemStyle: { color: '#00d8ff' },
       data: [3, 5, 2, 8, 4, 6, 4]
     }]
   })
@@ -399,15 +427,35 @@ const initBarChart = () => {
   if (!barChartRef.value) return
   barChart = echarts.init(barChartRef.value)
   barChart.setOption({
-    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { data: ['成功', '失败', '待执行'], bottom: '0%' },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
+    legend: {
+      data: ['成功', '失败', '待执行'],
+      bottom: '0%',
+      textStyle: { color: '#b8eaff' }
+    },
     grid: { left: '3%', right: '4%', bottom: '15%', top: '8%', containLabel: true },
-    xAxis: { type: 'category', data: ['巡检', '备份', '部署', '维护', '升级'], axisLine: { lineStyle: { color: '#EBEEF5' } }, axisLabel: { color: '#909399' } },
-    yAxis: { type: 'value', splitLine: { lineStyle: { color: '#F2F6FC', type: 'dashed' } }, axisLabel: { color: '#909399' } },
+    xAxis: {
+      type: 'category',
+      data: ['巡检', '备份', '部署', '维护', '升级'],
+      axisLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.3)' } },
+      axisLabel: { color: '#b8eaff' },
+      axisTick: { show: false }
+    },
+    yAxis: {
+      type: 'value',
+      splitLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.12)', type: 'dashed' } },
+      axisLabel: { color: '#b8eaff' }
+    },
     series: [
-      { name: '成功', type: 'bar', stack: 'total', data: [5, 4, 2, 3, 1], itemStyle: { color: '#67C23A' } },
-      { name: '失败', type: 'bar', stack: 'total', data: [0, 0, 0, 1, 0], itemStyle: { color: '#F56C6C' } },
-      { name: '待执行', type: 'bar', stack: 'total', data: [1, 0, 0, 2, 1], itemStyle: { color: '#909399' } }
+      { name: '成功', type: 'bar', stack: 'total', data: [5, 4, 2, 3, 1], itemStyle: { color: '#00f5a0' } },
+      { name: '失败', type: 'bar', stack: 'total', data: [0, 0, 0, 1, 0], itemStyle: { color: '#ff4d5a' } },
+      { name: '待执行', type: 'bar', stack: 'total', data: [1, 0, 0, 2, 1], itemStyle: { color: '#7aa9c7' } }
     ]
   })
 }
@@ -424,9 +472,13 @@ const initGaugeChart = () => {
         splitNumber: 5,
         radius: '70%',
         center: ['25%', '55%'],
-        title: { fontSize: 12, offsetCenter: [0, '70%'] },
-        detail: { fontSize: 16, offsetCenter: [0, '40%'], formatter: '{value}%' },
-        itemStyle: { color: '#409EFF' },
+        title: { fontSize: 12, offsetCenter: [0, '70%'], color: '#b8eaff' },
+        detail: { fontSize: 16, offsetCenter: [0, '40%'], formatter: '{value}%', color: '#00d8ff' },
+        itemStyle: { color: '#00d8ff' },
+        axisLine: { lineStyle: { color: [[0.45, '#00d8ff'], [1, 'rgba(0, 216, 255, 0.15)']] } },
+        axisTick: { lineStyle: { color: 'rgba(0, 216, 255, 0.3)' } },
+        splitLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.2)' } },
+        axisLabel: { color: '#b8eaff' },
         data: [{ value: 45, name: 'CPU' }]
       },
       {
@@ -436,9 +488,13 @@ const initGaugeChart = () => {
         splitNumber: 5,
         radius: '70%',
         center: ['75%', '55%'],
-        title: { fontSize: 12, offsetCenter: [0, '70%'] },
-        detail: { fontSize: 16, offsetCenter: [0, '40%'], formatter: '{value}%' },
-        itemStyle: { color: '#67C23A' },
+        title: { fontSize: 12, offsetCenter: [0, '70%'], color: '#b8eaff' },
+        detail: { fontSize: 16, offsetCenter: [0, '40%'], formatter: '{value}%', color: '#00f5a0' },
+        itemStyle: { color: '#00f5a0' },
+        axisLine: { lineStyle: { color: [[0.62, '#00f5a0'], [1, 'rgba(0, 245, 160, 0.15)']] } },
+        axisTick: { lineStyle: { color: 'rgba(0, 245, 160, 0.3)' } },
+        splitLine: { lineStyle: { color: 'rgba(0, 245, 160, 0.2)' } },
+        axisLabel: { color: '#b8eaff' },
         data: [{ value: 62, name: '内存' }]
       }
     ]
@@ -477,15 +533,15 @@ onUnmounted(() => {
   padding: 0;
 }
 
+/* ===== 欢迎卡片 ===== */
 .intro-card {
   margin-bottom: 16px;
-  border: none;
-  background: #fff;
+  background: rgba(6, 24, 52, 0.88);
+  border: 1px solid rgba(0, 216, 255, 0.35) !important;
+  border-radius: 4px;
+  box-shadow: 0 0 16px rgba(0, 216, 255, 0.08);
   position: relative;
   overflow: hidden;
-  border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e0e0e0;
 }
 
 .intro-card::before {
@@ -495,7 +551,7 @@ onUnmounted(() => {
   right: -10%;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 216, 255, 0.06) 0%, transparent 70%);
   border-radius: 50%;
 }
 
@@ -506,7 +562,7 @@ onUnmounted(() => {
   left: -5%;
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 216, 255, 0.04) 0%, transparent 70%);
   border-radius: 50%;
 }
 
@@ -524,23 +580,23 @@ onUnmounted(() => {
 
 .intro-icon {
   flex-shrink: 0;
-  color: #00695c;
 }
 
 .intro-text h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #00695c;
+  color: #00d8ff;
   margin: 0 0 6px;
 }
 
 .intro-text p {
   font-size: 14px;
-  color: #606266;
+  color: #b8eaff;
   margin: 0;
   line-height: 1.6;
 }
 
+/* ===== 页面标题 ===== */
 .page-title {
   margin-bottom: 16px;
   display: flex;
@@ -551,16 +607,17 @@ onUnmounted(() => {
 .title-left h2 {
   font-size: 20px;
   font-weight: 600;
-  color: #00695c;
+  color: #00d8ff;
   margin: 0 0 4px;
 }
 
 .page-subtitle {
   font-size: 12px;
-  color: #909399;
+  color: #7aa9c7;
   margin: 0;
 }
 
+/* ===== 统计卡片行 ===== */
 .stat-row {
   margin-bottom: 20px;
 }
@@ -569,17 +626,19 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   padding: 16px;
-  background: #fff;
+  background: rgba(6, 24, 52, 0.88);
   border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
   transition: all 0.3s;
   position: relative;
   overflow: hidden;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(0, 216, 255, 0.25);
 }
 
 .stat-card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 216, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .stat-card__icon {
@@ -594,23 +653,23 @@ onUnmounted(() => {
 }
 
 .stat-card--blue .stat-card__icon {
-  background: #e3f2fd;
-  color: #1976d2;
+  background: rgba(0, 216, 255, 0.15);
+  color: #00d8ff;
 }
 
 .stat-card--green .stat-card__icon {
-  background: #e8f5e9;
-  color: #388e3c;
+  background: rgba(0, 245, 160, 0.15);
+  color: #00f5a0;
 }
 
 .stat-card--orange .stat-card__icon {
-  background: #fff3e0;
-  color: #f57c00;
+  background: rgba(255, 204, 51, 0.15);
+  color: #ffcc33;
 }
 
 .stat-card--purple .stat-card__icon {
-  background: #f3e5f5;
-  color: #7b1fa2;
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
 }
 
 .stat-card__content {
@@ -620,14 +679,14 @@ onUnmounted(() => {
 .stat-card__value {
   font-size: 28px;
   font-weight: 600;
-  color: #00695c;
+  color: #ffffff;
   margin: 0 0 4px;
   line-height: 1;
 }
 
 .stat-card__label {
   font-size: 13px;
-  color: #909399;
+  color: #b8eaff;
   margin: 0;
 }
 
@@ -640,32 +699,35 @@ onUnmounted(() => {
 }
 
 .trend-up {
-  color: #67C23A;
+  color: #00f5a0;
 }
 
 .trend-down {
-  color: #F56C6C;
+  color: #ff4d5a;
 }
 
+/* ===== 快捷入口 ===== */
 .quick-entry-row {
   margin-bottom: 20px;
 }
 
 .quick-entry-card {
-  background: #fff;
+  background: rgba(6, 24, 52, 0.88);
   border-radius: 4px;
   padding: 16px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
   position: relative;
   overflow: hidden;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(0, 216, 255, 0.25);
 }
 
 .quick-entry-card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 216, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .entry-icon {
@@ -677,25 +739,31 @@ onUnmounted(() => {
   justify-content: center;
   margin: 0 auto 12px;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s;
 }
 
-.entry-icon--blue { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-.entry-icon--red { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-.entry-icon--green { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-.entry-icon--orange { background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%); }
-.entry-icon--purple { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
-.entry-icon--cyan { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-.entry-icon--pink { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
-.entry-icon--yellow { background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
+.quick-entry-card:hover .entry-icon {
+  transform: scale(1.1);
+}
+
+.entry-icon--blue { background: linear-gradient(135deg, #0d47a1 0%, #00d8ff 100%); }
+.entry-icon--red { background: linear-gradient(135deg, #b71c1c 0%, #ff4d5a 100%); }
+.entry-icon--green { background: linear-gradient(135deg, #004d40 0%, #00f5a0 100%); }
+.entry-icon--orange { background: linear-gradient(135deg, #e65100 0%, #ffcc33 100%); }
+.entry-icon--purple { background: linear-gradient(135deg, #311b92 0%, #8b5cf6 100%); }
+.entry-icon--cyan { background: linear-gradient(135deg, #006064 0%, #00d8ff 100%); }
+.entry-icon--pink { background: linear-gradient(135deg, #880e4f 0%, #ff4081 100%); }
+.entry-icon--yellow { background: linear-gradient(135deg, #e65100 0%, #ffcc33 100%); }
 
 .entry-name {
   font-size: 14px;
-  color: #303133;
+  color: #b8eaff;
   margin: 0;
   font-weight: 500;
 }
 
+/* ===== 图表行 ===== */
 .chart-row {
   margin-bottom: 20px;
 }
@@ -703,8 +771,14 @@ onUnmounted(() => {
 .chart-card,
 .list-card {
   border-radius: 4px;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 216, 255, 0.25) !important;
+  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
+  background: rgba(6, 24, 52, 0.88) !important;
+}
+
+.chart-card :deep(.el-card__header),
+.list-card :deep(.el-card__header) {
+  border-bottom: 1px solid rgba(0, 216, 255, 0.15);
 }
 
 .card-header {
@@ -716,13 +790,14 @@ onUnmounted(() => {
 .card-title {
   font-size: 16px;
   font-weight: 600;
-  color: #00695c;
+  color: #00d8ff;
 }
 
 .chart-wrapper {
   height: 320px;
 }
 
+/* ===== 列表行 ===== */
 .table-row {
   margin-bottom: 20px;
 }
@@ -737,13 +812,13 @@ onUnmounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(0, 216, 255, 0.12);
   border-radius: 0;
   transition: all 0.2s;
 }
 
 .list-item:hover {
-  background: #f5f5f5;
+  background: rgba(0, 216, 255, 0.06);
 }
 
 .list-item:last-child {
@@ -763,18 +838,17 @@ onUnmounted(() => {
   height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
-  box-shadow: 0 0 8px rgba(245, 108, 108, 0.4);
 }
 
-.list-item__dot--red { background: #F56C6C; box-shadow: 0 0 8px rgba(245, 108, 108, 0.4); }
-.list-item__dot--orange { background: #E6A23C; box-shadow: 0 0 8px rgba(230, 162, 60, 0.4); }
-.list-item__dot--blue { background: #409EFF; box-shadow: 0 0 8px rgba(64, 158, 255, 0.4); }
-.list-item__dot--green { background: #67C23A; box-shadow: 0 0 8px rgba(103, 194, 58, 0.4); }
-.list-item__dot--gray { background: #909399; box-shadow: 0 0 8px rgba(144, 147, 153, 0.4); }
+.list-item__dot--red { background: #ff4d5a; box-shadow: 0 0 8px rgba(255, 77, 90, 0.5); }
+.list-item__dot--orange { background: #ffcc33; box-shadow: 0 0 8px rgba(255, 204, 51, 0.5); }
+.list-item__dot--blue { background: #00d8ff; box-shadow: 0 0 8px rgba(0, 216, 255, 0.5); }
+.list-item__dot--green { background: #00f5a0; box-shadow: 0 0 8px rgba(0, 245, 160, 0.5); }
+.list-item__dot--gray { background: #7aa9c7; box-shadow: 0 0 8px rgba(122, 169, 199, 0.5); }
 
 .list-item__title {
   font-size: 14px;
-  color: #303133;
+  color: #b8eaff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -789,7 +863,26 @@ onUnmounted(() => {
 
 .list-item__time {
   font-size: 12px;
-  color: #8c98a8;
+  color: #7aa9c7;
   white-space: nowrap;
+}
+
+/* ===== 滚动条美化 ===== */
+.list-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+
+.list-wrapper::-webkit-scrollbar-track {
+  background: rgba(0, 216, 255, 0.05);
+  border-radius: 2px;
+}
+
+.list-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(0, 216, 255, 0.25);
+  border-radius: 2px;
+}
+
+.list-wrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 216, 255, 0.4);
 }
 </style>

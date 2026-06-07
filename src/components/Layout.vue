@@ -8,9 +8,9 @@
       <el-menu
         :default-active="activeMenu"
         :collapse="isCollapse"
-        background-color="#304156"
-        text-color="#bfcbd9"
-        active-text-color="#409EFF"
+        background-color="#0a1628"
+        text-color="#b8eaff"
+        active-text-color="#00d8ff"
         router
       >
         <el-menu-item index="/dashboard">
@@ -83,7 +83,7 @@
           </el-badge>
           <el-dropdown @command="handleCommand">
             <span class="user-info">
-              <el-avatar :size="32" style="background-color: #00695c">
+              <el-avatar :size="32" style="background-color: #0a5c8a">
                 {{ userInfo.realName?.charAt(0) || 'U' }}
               </el-avatar>
               <span class="username">{{ userInfo.realName || '用户' }}</span>
@@ -262,10 +262,11 @@ onUnmounted(() => {
 }
 
 .aside {
-  background: #00695c;
+  background: linear-gradient(180deg, #0a1628 0%, #051024 100%);
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
-  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.4);
+  border-right: 1px solid rgba(0, 216, 255, 0.15);
 }
 
 .logo {
@@ -274,13 +275,13 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 216, 255, 0.2);
 }
 
 .logo-text {
-  color: #fff;
+  color: #00d8ff;
   font-size: 15px;
   font-weight: 600;
   white-space: nowrap;
@@ -294,21 +295,21 @@ onUnmounted(() => {
 
 .el-menu-item {
   transition: all 0.2s !important;
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(184, 234, 255, 0.8) !important;
   border-radius: 0;
-  margin: 0;
+  margin: 2px 8px;
   height: 44px;
   line-height: 44px;
 }
 
 .el-menu-item:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  color: #fff !important;
+  background-color: rgba(0, 216, 255, 0.1) !important;
+  color: #00d8ff !important;
 }
 
 .el-menu-item.is-active {
-  background-color: rgba(255, 255, 255, 0.15) !important;
-  color: #fff !important;
+  background-color: rgba(0, 216, 255, 0.15) !important;
+  color: #00d8ff !important;
   font-weight: 500;
 }
 
@@ -316,10 +317,14 @@ onUnmounted(() => {
   content: '';
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: auto;
   width: 3px;
-  background: #fff;
+  height: 20px;
+  border-radius: 0 2px 2px 0;
+  background: #00d8ff;
+  box-shadow: 0 0 8px rgba(0, 216, 255, 0.6);
 }
 
 .main-container {
@@ -329,8 +334,9 @@ onUnmounted(() => {
 }
 
 .header {
-  background: #00695c;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(180deg, #0a1628 0%, #08142a 100%);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(0, 216, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -409,7 +415,7 @@ onUnmounted(() => {
 
 .notification-badge :deep(.el-badge__content) {
   background-color: #ff5252;
-  border: 2px solid #00695c;
+  border: 2px solid #0a1628;
 }
 
 .user-info {
@@ -434,11 +440,14 @@ onUnmounted(() => {
 }
 
 .main-content {
-  background: #f0f2f5;
+  background: #020b1f;
   padding: 16px;
   overflow-y: auto;
-  background-image: radial-gradient(#d0d0d0 1px, transparent 1px);
-  background-size: 20px 20px;
+  background-image:
+    radial-gradient(rgba(0, 216, 255, 0.06) 1px, transparent 1px),
+    radial-gradient(rgba(0, 216, 255, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px, 50px 50px;
+  background-position: 0 0, 15px 15px;
 }
 
 .visual-screen-menu {

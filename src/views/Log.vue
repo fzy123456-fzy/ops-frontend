@@ -128,7 +128,7 @@
               <el-icon><Search /></el-icon>
               查询
             </el-button>
-            <el-button @click="handleReset">
+            <el-button class="tech-outline-btn" @click="handleReset">
               <el-icon><Refresh /></el-icon>
               重置
             </el-button>
@@ -305,8 +305,19 @@ const initPieChart = () => {
   if (!pieChartRef.value) return
   pieChart = echarts.init(pieChartRef.value)
   pieChart.setOption({
-    tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
-    legend: { orient: 'vertical', left: 'left', top: 'center' },
+    tooltip: {
+      trigger: 'item',
+      formatter: '{b}: {c} ({d}%)',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
+    legend: {
+      orient: 'vertical',
+      left: 'left',
+      top: 'center',
+      textStyle: { color: '#b8eaff' }
+    },
     series: [
       {
         name: '操作类型',
@@ -314,17 +325,17 @@ const initPieChart = () => {
         radius: ['40%', '70%'],
         center: ['60%', '50%'],
         avoidLabelOverlap: false,
-        itemStyle: { borderRadius: 10, borderColor: '#fff', borderWidth: 2 },
+        itemStyle: { borderRadius: 10, borderColor: 'rgba(6, 24, 52, 0.88)', borderWidth: 3 },
         label: { show: false, position: 'center' },
-        emphasis: { label: { show: true, fontSize: 16, fontWeight: 'bold' } },
+        emphasis: { label: { show: true, fontSize: 16, fontWeight: 'bold', color: '#fff' } },
         labelLine: { show: false },
         data: [
-          { value: 3, name: '新增', itemStyle: { color: '#67C23A' } },
-          { value: 4, name: '修改', itemStyle: { color: '#409EFF' } },
-          { value: 1, name: '删除', itemStyle: { color: '#F56C6C' } },
-          { value: 3, name: '查询', itemStyle: { color: '#909399' } },
-          { value: 1, name: '登录', itemStyle: { color: '#E6A23C' } },
-          { value: 3, name: '其他', itemStyle: { color: '#C0C4CC' } }
+          { value: 3, name: '新增', itemStyle: { color: '#00f5a0' } },
+          { value: 4, name: '修改', itemStyle: { color: '#00d8ff' } },
+          { value: 1, name: '删除', itemStyle: { color: '#ff4d5a' } },
+          { value: 3, name: '查询', itemStyle: { color: '#7aa9c7' } },
+          { value: 1, name: '登录', itemStyle: { color: '#ffcc33' } },
+          { value: 3, name: '其他', itemStyle: { color: '#8b5cf6' } }
         ]
       }
     ]
@@ -335,19 +346,44 @@ const initLineChart = () => {
   if (!lineChartRef.value) return
   lineChart = echarts.init(lineChartRef.value)
   lineChart.setOption({
-    tooltip: { trigger: 'axis' },
-    legend: { data: ['操作次数'], bottom: '0%' },
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
+    legend: {
+      data: ['操作次数'],
+      bottom: '0%',
+      textStyle: { color: '#b8eaff' }
+    },
     grid: { left: '3%', right: '4%', bottom: '15%', top: '8%', containLabel: true },
-    xAxis: { type: 'category', boundaryGap: false, data: ['01-09', '01-10', '01-11', '01-12', '01-13', '01-14', '01-15'] },
-    yAxis: { type: 'value', name: '操作数' },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['01-09', '01-10', '01-11', '01-12', '01-13', '01-14', '01-15'],
+      axisLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.3)' } },
+      axisLabel: { color: '#b8eaff' },
+      axisTick: { show: false }
+    },
+    yAxis: {
+      type: 'value',
+      name: '操作数',
+      nameTextStyle: { color: '#b8eaff' },
+      splitLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.12)', type: 'dashed' } },
+      axisLabel: { color: '#b8eaff' }
+    },
     series: [
       {
         name: '操作次数',
         type: 'line',
         smooth: true,
+        symbol: 'circle',
+        symbolSize: 6,
         data: [12, 15, 8, 18, 14, 20, 15],
-        itemStyle: { color: '#409EFF' },
-        areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(64,158,255,0.3)' }, { offset: 1, color: 'rgba(64,158,255,0.05)' }]) }
+        itemStyle: { color: '#00d8ff' },
+        lineStyle: { width: 3, color: '#00d8ff' },
+        areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(0, 216, 255, 0.25)' }, { offset: 1, color: 'rgba(0, 216, 255, 0.02)' }]) }
       }
     ]
   })
@@ -430,12 +466,13 @@ const handleResize = () => {
   display: flex;
   align-items: center;
   padding: 20px 16px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(6, 24, 52, 0.88);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
+  transition: all 0.3s;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(0, 216, 255, 0.25);
 }
 
 .stat-card::before {
@@ -445,14 +482,15 @@ const handleResize = () => {
   right: 0;
   width: 80px;
   height: 80px;
-  background: radial-gradient(circle, rgba(64,158,255,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 216, 255, 0.05) 0%, transparent 70%);
   border-radius: 50%;
   transform: translate(30%, -30%);
 }
 
 .stat-card:hover {
+  border-color: rgba(0, 216, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .stat-card__icon {
@@ -464,13 +502,13 @@ const handleResize = () => {
   justify-content: center;
   margin-right: 16px;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #409EFF, #67C23A); }
-.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #67C23A, #409EFF); }
-.stat-card--red .stat-card__icon { background: linear-gradient(135deg, #F56C6C, #E6A23C); }
-.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #E6A23C, #F56C6C); }
+.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #0d47a1 0%, #00d8ff 100%); }
+.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #004d40 0%, #00f5a0 100%); }
+.stat-card--red .stat-card__icon { background: linear-gradient(135deg, #b71c1c 0%, #ff4d5a 100%); }
+.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #e65100 0%, #ffcc33 100%); }
 
 .stat-card__content {
   flex: 1;
@@ -479,14 +517,14 @@ const handleResize = () => {
 .stat-card__value {
   font-size: 24px;
   font-weight: 700;
-  color: #1a2332;
+  color: #ffffff;
   margin: 0;
   line-height: 1.2;
 }
 
 .stat-card__label {
   font-size: 13px;
-  color: #8c98a8;
+  color: #b8eaff;
   margin: 4px 0 0 0;
 }
 
@@ -507,7 +545,7 @@ const handleResize = () => {
 .chart-card .card-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1a2332;
+  color: #00d8ff;
 }
 
 .chart-wrapper {
@@ -525,7 +563,7 @@ const handleResize = () => {
 
 .filter-label {
   font-size: 14px;
-  color: #606266;
+  color: #b8eaff;
   font-weight: 500;
 }
 
@@ -547,7 +585,7 @@ const handleResize = () => {
 .card-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1a2332;
+  color: #00d8ff;
 }
 
 .search-bar {

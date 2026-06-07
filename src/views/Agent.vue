@@ -151,7 +151,7 @@
       <template #header>
         <div class="card-header">
           <span class="card-title">执行日志</span>
-          <el-button size="small" @click="handleRefreshLogs">
+          <el-button size="small" class="tech-outline-btn" @click="handleRefreshLogs">
             <el-icon><Refresh /></el-icon> 刷新
           </el-button>
         </div>
@@ -413,7 +413,11 @@ const updateWorkflowChart = () => {
   ]
 
   workflowChart.setOption({
-    tooltip: {},
+    tooltip: {
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
     animationDurationUpdate: 1500,
     animationEasingUpdate: 'quinticInOut',
     series: [
@@ -422,18 +426,18 @@ const updateWorkflowChart = () => {
         layout: 'none',
         symbolSize: 50,
         roam: true,
-        label: { show: true, fontSize: 12 },
+        label: { show: true, fontSize: 12, color: '#b8eaff' },
         edgeSymbol: ['circle', 'arrow'],
         edgeSymbolSize: [4, 10],
         data: nodes.map(n => ({
           ...n,
-          itemStyle: { color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399'][n.category] }
+          itemStyle: { color: ['#00d8ff', '#00f5a0', '#ffcc33', '#ff4d5a', '#7aa9c7'][n.category] }
         })),
         links: links.map(l => ({
           ...l,
-          lineStyle: { color: '#409EFF', curveness: 0.1, width: 2 }
+          lineStyle: { color: '#00d8ff', curveness: 0.1, width: 2, opacity: 0.6 }
         })),
-        lineStyle: { opacity: 0.9, width: 2, curveness: 0 }
+        lineStyle: { opacity: 0.6, width: 2, curveness: 0 }
       }
     ]
   })
@@ -453,22 +457,47 @@ const updateTaskTrendChart = () => {
   const failData = isWeek ? [2, 1, 3, 1, 2, 1, 2] : Array.from({ length: 30 }, () => Math.floor(Math.random() * 3 + 1))
 
   taskTrendChart.setOption({
-    tooltip: { trigger: 'axis' },
-    legend: { data: ['成功', '失败'], bottom: '0%' },
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
+    legend: {
+      data: ['成功', '失败'],
+      bottom: '0%',
+      textStyle: { color: '#b8eaff' }
+    },
     grid: { left: '3%', right: '4%', bottom: '15%', top: '8%', containLabel: true },
-    xAxis: { type: 'category', boundaryGap: false, data: days },
-    yAxis: { type: 'value', name: '任务数' },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: days,
+      axisLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.3)' } },
+      axisLabel: { color: '#b8eaff' },
+      axisTick: { show: false }
+    },
+    yAxis: {
+      type: 'value',
+      name: '任务数',
+      nameTextStyle: { color: '#b8eaff' },
+      splitLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.12)', type: 'dashed' } },
+      axisLabel: { color: '#b8eaff' }
+    },
     series: [
       {
         name: '成功',
         type: 'line',
         smooth: true,
+        symbol: 'circle',
+        symbolSize: 6,
         data: successData,
-        itemStyle: { color: '#67C23A' },
+        itemStyle: { color: '#00f5a0' },
+        lineStyle: { width: 2, color: '#00f5a0' },
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: 'rgba(103,194,58,0.3)' },
-            { offset: 1, color: 'rgba(103,194,58,0.05)' }
+            { offset: 0, color: 'rgba(0, 245, 160, 0.2)' },
+            { offset: 1, color: 'rgba(0, 245, 160, 0.02)' }
           ])
         }
       },
@@ -476,12 +505,15 @@ const updateTaskTrendChart = () => {
         name: '失败',
         type: 'line',
         smooth: true,
+        symbol: 'circle',
+        symbolSize: 6,
         data: failData,
-        itemStyle: { color: '#F56C6C' },
+        itemStyle: { color: '#ff4d5a' },
+        lineStyle: { width: 2, color: '#ff4d5a' },
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: 'rgba(245,108,108,0.3)' },
-            { offset: 1, color: 'rgba(245,108,108,0.05)' }
+            { offset: 0, color: 'rgba(255, 77, 90, 0.2)' },
+            { offset: 1, color: 'rgba(255, 77, 90, 0.02)' }
           ])
         }
       }
@@ -529,12 +561,13 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   padding: 20px 16px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(6, 24, 52, 0.88);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
+  transition: all 0.3s;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(0, 216, 255, 0.25);
 }
 
 .stat-card::before {
@@ -544,14 +577,15 @@ onUnmounted(() => {
   right: 0;
   width: 80px;
   height: 80px;
-  background: radial-gradient(circle, rgba(102,126,234,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 216, 255, 0.05) 0%, transparent 70%);
   border-radius: 50%;
   transform: translate(30%, -30%);
 }
 
 .stat-card:hover {
+  border-color: rgba(0, 216, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .stat-card__icon {
@@ -564,27 +598,27 @@ onUnmounted(() => {
   margin-right: 14px;
   flex-shrink: 0;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-.stat-card--red .stat-card__icon { background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%); }
+.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #0d47a1 0%, #00d8ff 100%); }
+.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #004d40 0%, #00f5a0 100%); }
+.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #e65100 0%, #ffcc33 100%); }
+.stat-card--red .stat-card__icon { background: linear-gradient(135deg, #b71c1c 0%, #ff4d5a 100%); }
 
 .stat-card__content { flex: 1; }
 
 .stat-card__value {
   font-size: 26px;
   font-weight: 700;
-  color: #1a2332;
+  color: #ffffff;
   margin: 0 0 4px;
   line-height: 1;
 }
 
 .stat-card__label {
   font-size: 13px;
-  color: #8c98a8;
+  color: #b8eaff;
   margin: 0;
 }
 
@@ -597,7 +631,7 @@ onUnmounted(() => {
 .card-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1a2332;
+  color: #00d8ff;
 }
 
 .chart-container {
@@ -615,7 +649,7 @@ onUnmounted(() => {
 
 .filter-label {
   font-size: 13px;
-  color: #606266;
+  color: #b8eaff;
   margin-right: 10px;
   font-weight: 500;
 }
@@ -631,32 +665,32 @@ onUnmounted(() => {
 }
 
 .success-rate-high {
-  color: #67C23A;
+  color: #00f5a0;
   font-weight: 600;
 }
 
 .success-rate-medium {
-  color: #E6A23C;
+  color: #ffcc33;
   font-weight: 600;
 }
 
 .success-rate-low {
-  color: #F56C6C;
+  color: #ff4d5a;
   font-weight: 600;
 }
 
 .arch-card {
-  background: #f8f9fa;
+  background: rgba(6, 24, 52, 0.88);
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 16px;
-  border: 1px solid #ebeef5;
+  border: 1px solid rgba(0, 216, 255, 0.25);
   transition: all 0.3s;
 }
 
 .arch-card:hover {
-  border-color: #409eff;
-  box-shadow: 0 2px 12px rgba(64, 158, 255, 0.15);
+  border-color: rgba(0, 216, 255, 0.5);
+  box-shadow: 0 0 16px rgba(0, 216, 255, 0.12);
 }
 
 .arch-header {
@@ -666,26 +700,26 @@ onUnmounted(() => {
 }
 
 .arch-icon {
-  color: #409eff;
+  color: #00d8ff;
   margin-right: 8px;
 }
 
 .arch-name {
   font-size: 14px;
   font-weight: 600;
-  color: #303133;
+  color: #ffffff;
 }
 
 .arch-framework {
   font-size: 12px;
-  color: #409eff;
+  color: #00d8ff;
   margin: 0 0 8px;
   font-weight: 500;
 }
 
 .arch-desc {
   font-size: 12px;
-  color: #606266;
+  color: #7aa9c7;
   margin: 0 0 10px;
   line-height: 1.5;
   min-height: 36px;

@@ -321,14 +321,14 @@ const handlePreview3D = (row) => {
             type: 'scatter',
             symbolSize: 20,
             data: Array.from({ length: 50 }, () => [Math.random() * 100, Math.random() * 100, Math.random() * 10]),
-            itemStyle: { color: '#409EFF', opacity: 0.6 },
+            itemStyle: { color: '#00d8ff', opacity: 0.6 },
             emphasis: { itemStyle: { borderColor: '#fff', borderWidth: 2 } }
           },
           {
             type: 'effectScatter',
             symbolSize: 15,
             data: [[50, 50, 8]],
-            itemStyle: { color: '#67C23A' },
+            itemStyle: { color: '#00f5a0' },
             rippleEffect: { brushType: 'stroke', scale: 3 }
           }
         ]
@@ -346,13 +346,19 @@ const initScene3D = () => {
 const updateSceneView = () => {
   if (!scene3DChart) return
   const config = {
-    overview: { color: '#409EFF', count: 80, title: '园区全景' },
-    building: { color: '#67C23A', count: 50, title: '建筑视图' },
-    equipment: { color: '#E6A23C', count: 120, title: '设备视图' }
+    overview: { color: '#00d8ff', count: 80, title: '园区全景' },
+    building: { color: '#00f5a0', count: 50, title: '建筑视图' },
+    equipment: { color: '#ffcc33', count: 120, title: '设备视图' }
   }
   const c = config[sceneView.value]
   scene3DChart.setOption({
-    tooltip: { trigger: 'item', formatter: '{b}' },
+    tooltip: {
+      trigger: 'item',
+      formatter: '{b}',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
     xAxis: { show: false, min: 0, max: 100 },
     yAxis: { show: false, min: 0, max: 100 },
     grid: { top: 10, bottom: 10, left: 10, right: 10 },
@@ -369,7 +375,7 @@ const updateSceneView = () => {
         type: 'effectScatter',
         symbolSize: 12,
         data: Array.from({ length: 5 }, () => [Math.random() * 80 + 10, Math.random() * 80 + 10]),
-        itemStyle: { color: '#F56C6C' },
+        itemStyle: { color: '#ff4d5a' },
         rippleEffect: { brushType: 'stroke', scale: 4 }
       }
     ],
@@ -378,7 +384,7 @@ const updateSceneView = () => {
         type: 'text',
         left: 'center',
         top: 'middle',
-        style: { text: c.title, fill: 'rgba(0,0,0,0.15)', font: 'bold 48px sans-serif' }
+        style: { text: c.title, fill: 'rgba(0, 216, 255, 0.1)', font: 'bold 48px sans-serif' }
       }
     ]
   })
@@ -389,21 +395,40 @@ const initDataFlow = () => {
   dataFlowChart = echarts.init(dataFlowRef.value)
   const hours = Array.from({ length: 24 }, (_, i) => `${i}:00`)
   dataFlowChart.setOption({
-    tooltip: { trigger: 'axis', formatter: '{b}: {c} 条/秒' },
+    tooltip: {
+      trigger: 'axis',
+      formatter: '{b}: {c} 条/秒',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
     grid: { top: 10, bottom: 30, left: 50, right: 10 },
-    xAxis: { type: 'category', data: hours, axisLabel: { rotate: 45, fontSize: 10 } },
-    yAxis: { type: 'value', name: '速率', nameTextStyle: { fontSize: 10 } },
+    xAxis: {
+      type: 'category',
+      data: hours,
+      axisLabel: { rotate: 45, fontSize: 10, color: '#b8eaff' },
+      axisLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.3)' } },
+      axisTick: { show: false }
+    },
+    yAxis: {
+      type: 'value',
+      name: '速率',
+      nameTextStyle: { fontSize: 10, color: '#b8eaff' },
+      splitLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.12)', type: 'dashed' } },
+      axisLabel: { color: '#b8eaff' }
+    },
     series: [
       {
         name: '数据速率',
         type: 'line',
         smooth: true,
         data: Array.from({ length: 24 }, () => Math.floor(Math.random() * 800 + 800)),
-        itemStyle: { color: '#409EFF' },
+        itemStyle: { color: '#00d8ff' },
+        lineStyle: { width: 2, color: '#00d8ff' },
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: 'rgba(64,158,255,0.3)' },
-            { offset: 1, color: 'rgba(64,158,255,0.05)' }
+            { offset: 0, color: 'rgba(0, 216, 255, 0.25)' },
+            { offset: 1, color: 'rgba(0, 216, 255, 0.02)' }
           ])
         }
       }
@@ -459,7 +484,8 @@ onUnmounted(() => {
 .scene-3d-container {
   width: 100%;
   height: 450px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  background: rgba(6, 24, 52, 0.88);
+  border: 1px solid rgba(0, 216, 255, 0.25);
   border-radius: 8px;
 }
 
@@ -471,7 +497,8 @@ onUnmounted(() => {
 .data-flow-stats {
   margin-top: 16px;
   padding: 12px;
-  background: #f5f7fa;
+  background: rgba(6, 24, 52, 0.88);
+  border: 1px solid rgba(0, 216, 255, 0.18);
   border-radius: 6px;
 }
 
@@ -483,21 +510,22 @@ onUnmounted(() => {
 .flow-stat__value {
   font-size: 24px;
   font-weight: 700;
-  color: #409EFF;
+  color: #00d8ff;
   margin: 0 0 4px;
   line-height: 1;
 }
 
 .flow-stat__label {
   font-size: 12px;
-  color: #909399;
+  color: #b8eaff;
   margin: 0;
 }
 
 .preview-3d-container {
   width: 100%;
   height: 400px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  background: rgba(6, 24, 52, 0.88);
+  border: 1px solid rgba(0, 216, 255, 0.25);
   border-radius: 8px;
   margin-bottom: 16px;
 }
@@ -510,12 +538,13 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   padding: 20px 16px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(6, 24, 52, 0.88);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
+  transition: all 0.3s;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(0, 216, 255, 0.25);
 }
 
 .stat-card::before {
@@ -525,14 +554,15 @@ onUnmounted(() => {
   right: 0;
   width: 80px;
   height: 80px;
-  background: radial-gradient(circle, rgba(102,126,234,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 216, 255, 0.05) 0%, transparent 70%);
   border-radius: 50%;
   transform: translate(30%, -30%);
 }
 
 .stat-card:hover {
+  border-color: rgba(0, 216, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .stat-card__icon {
@@ -545,27 +575,27 @@ onUnmounted(() => {
   margin-right: 14px;
   flex-shrink: 0;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-.stat-card--purple .stat-card__icon { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #0d47a1 0%, #00d8ff 100%); }
+.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #004d40 0%, #00f5a0 100%); }
+.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #e65100 0%, #ffcc33 100%); }
+.stat-card--purple .stat-card__icon { background: linear-gradient(135deg, #4a148c 0%, #8b5cf6 100%); }
 
 .stat-card__content { flex: 1; }
 
 .stat-card__value {
   font-size: 26px;
   font-weight: 700;
-  color: #1a2332;
+  color: #ffffff;
   margin: 0 0 4px;
   line-height: 1;
 }
 
 .stat-card__label {
   font-size: 13px;
-  color: #8c98a8;
+  color: #b8eaff;
   margin: 0;
 }
 
@@ -578,7 +608,7 @@ onUnmounted(() => {
 .card-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1a2332;
+  color: #00d8ff;
 }
 
 .filter-tags {
@@ -590,7 +620,7 @@ onUnmounted(() => {
 
 .filter-label {
   font-size: 13px;
-  color: #606266;
+  color: #b8eaff;
   font-weight: 500;
 }
 
@@ -604,17 +634,17 @@ onUnmounted(() => {
 }
 
 .twin-module-card {
-  background: linear-gradient(90deg, #f8f9fa 0%, #f5f7fa 100%);
-  border-radius: 12px;
+  background: rgba(6, 24, 52, 0.88);
+  border-radius: 8px;
   padding: 16px;
   margin-bottom: 16px;
-  border: 1px solid #ebeef5;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 216, 255, 0.25);
+  transition: all 0.3s;
 }
 
 .twin-module-card:hover {
-  border-color: #409eff;
-  box-shadow: 0 4px 16px rgba(64, 158, 255, 0.15);
+  border-color: rgba(0, 216, 255, 0.5);
+  box-shadow: 0 0 16px rgba(0, 216, 255, 0.12);
   transform: translateY(-2px);
 }
 
@@ -625,19 +655,19 @@ onUnmounted(() => {
 }
 
 .module-icon {
-  color: #409eff;
+  color: #00d8ff;
   margin-right: 8px;
 }
 
 .module-name {
   font-size: 14px;
   font-weight: 600;
-  color: #1a2332;
+  color: #00d8ff;
 }
 
 .module-desc {
   font-size: 12px;
-  color: #606266;
+  color: #7aa9c7;
   margin: 0 0 8px;
   line-height: 1.5;
   min-height: 36px;
@@ -645,7 +675,7 @@ onUnmounted(() => {
 
 .module-source {
   font-size: 12px;
-  color: #8c98a8;
+  color: #7aa9c7;
   margin: 0 0 10px;
 }
 

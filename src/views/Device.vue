@@ -78,7 +78,7 @@
               <el-icon><Search /></el-icon>
               查询
             </el-button>
-            <el-button @click="handleReset">
+            <el-button class="tech-outline-btn" @click="handleReset">
               <el-icon><Refresh /></el-icon>
               重置
             </el-button>
@@ -182,7 +182,7 @@
         </el-form-item>
       </el-form>
       <template #footer>
-        <el-button @click="dialogVisible = false">取消</el-button>
+        <el-button class="tech-outline-btn" @click="dialogVisible = false">取消</el-button>
         <el-button type="primary" :loading="submitLoading" @click="handleSubmit">确定</el-button>
       </template>
     </el-dialog>
@@ -251,9 +251,9 @@ const getStatusColor = (status) => statusMap[status]?.color || 'info'
 const getStatusText = (status) => statusMap[status]?.text || status
 const getUsageColor = (usage) => {
   const n = Number(usage)
-  if (n > 80) return '#F56C6C'
-  if (n > 60) return '#E6A23C'
-  return '#67C23A'
+  if (n > 80) return '#ff4d5a'
+  if (n > 60) return '#ffcc33'
+  return '#00f5a0'
 }
 
 const normalizeItem = (item) => ({
@@ -424,23 +424,25 @@ onMounted(() => loadData())
   display: flex;
   align-items: center;
   padding: 16px;
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  background: rgba(6, 24, 52, 0.88);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
   transition: all 0.3s;
   position: relative;
   overflow: hidden;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(0, 216, 255, 0.25);
 }
 
 .stat-card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 216, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .stat-card__icon {
   width: 48px;
   height: 48px;
-  border-radius: 4px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -448,24 +450,24 @@ onMounted(() => loadData())
   flex-shrink: 0;
 }
 
-.stat-card--blue .stat-card__icon { background: #e3f2fd; color: #1976d2; }
-.stat-card--green .stat-card__icon { background: #e8f5e9; color: #388e3c; }
-.stat-card--orange .stat-card__icon { background: #fff3e0; color: #f57c00; }
-.stat-card--gray .stat-card__icon { background: #f5f5f5; color: #616161; }
+.stat-card--blue .stat-card__icon { background: rgba(0, 216, 255, 0.15); color: #00d8ff; }
+.stat-card--green .stat-card__icon { background: rgba(0, 245, 160, 0.15); color: #00f5a0; }
+.stat-card--orange .stat-card__icon { background: rgba(255, 204, 51, 0.15); color: #ffcc33; }
+.stat-card--gray .stat-card__icon { background: rgba(122, 169, 199, 0.15); color: #7aa9c7; }
 
 .stat-card__content { flex: 1; }
 
 .stat-card__value {
   font-size: 26px;
   font-weight: 700;
-  color: #1a2332;
+  color: #ffffff;
   margin: 0 0 4px;
   line-height: 1;
 }
 
 .stat-card__label {
   font-size: 13px;
-  color: #8c98a8;
+  color: #b8eaff;
   margin: 0;
 }
 
@@ -479,7 +481,7 @@ onMounted(() => loadData())
 
 .filter-label {
   font-size: 14px;
-  color: #606266;
+  color: #b8eaff;
   font-weight: 500;
 }
 
@@ -501,7 +503,7 @@ onMounted(() => loadData())
 .card-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1a2332;
+  color: #00d8ff;
 }
 
 .search-bar {
@@ -524,23 +526,23 @@ onMounted(() => loadData())
   align-items: center;
 }
 
-/* ThingsBoard风格表格样式 */
+/* Table overrides */
 .thingsboard-table {
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  border: 1px solid rgba(0, 216, 255, 0.15);
+  border-radius: 8px;
   overflow: hidden;
 }
 
 .thingsboard-table :deep(.el-table__header) {
-  background: #f5f5f5;
+  background: rgba(8, 35, 75, 0.78);
 }
 
 .thingsboard-table :deep(.el-table__header th) {
-  background: #f5f5f5 !important;
-  color: #616161;
-  font-weight: 500;
+  background: rgba(8, 35, 75, 0.78) !important;
+  color: #00d8ff !important;
+  font-weight: 600;
   font-size: 13px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(0, 216, 255, 0.2);
   padding: 12px 0;
 }
 
@@ -549,14 +551,14 @@ onMounted(() => loadData())
 }
 
 .thingsboard-table :deep(.el-table__row:hover) {
-  background-color: #f5f5f5 !important;
+  background-color: rgba(0, 216, 255, 0.08) !important;
 }
 
 .thingsboard-table :deep(.el-table__row td) {
   padding: 10px 0;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(0, 216, 255, 0.1);
   font-size: 13px;
-  color: #424242;
+  color: #b8eaff;
 }
 
 .thingsboard-table :deep(.el-table__body tr:last-child td) {
@@ -565,52 +567,54 @@ onMounted(() => loadData())
 
 .thingsboard-table :deep(.el-button.is-link) {
   padding: 4px;
+  color: #00d8ff;
 }
 
 .thingsboard-table :deep(.el-button.is-link:hover) {
-  background-color: rgba(0, 105, 92, 0.1);
+  background-color: rgba(0, 216, 255, 0.1);
   border-radius: 4px;
 }
 
-/* 分页样式 */
+/* Pagination overrides */
 .pagination-wrapper :deep(.el-pagination) {
   font-size: 13px;
 }
 
 .pagination-wrapper :deep(.el-pagination button) {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  color: #616161;
+  background: rgba(6, 24, 52, 0.6);
+  border: 1px solid rgba(0, 216, 255, 0.2);
+  color: #b8eaff;
 }
 
 .pagination-wrapper :deep(.el-pagination button:hover) {
-  color: #00695c;
-  border-color: #00695c;
+  color: #00d8ff;
+  border-color: rgba(0, 216, 255, 0.5);
 }
 
 .pagination-wrapper :deep(.el-pagination .el-pager li) {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  color: #616161;
+  background: rgba(6, 24, 52, 0.6);
+  border: 1px solid rgba(0, 216, 255, 0.15);
+  color: #b8eaff;
   min-width: 32px;
   height: 32px;
   line-height: 32px;
   margin: 0 2px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .pagination-wrapper :deep(.el-pagination .el-pager li:hover) {
-  color: #00695c;
-  border-color: #00695c;
+  color: #00d8ff;
+  border-color: rgba(0, 216, 255, 0.5);
 }
 
 .pagination-wrapper :deep(.el-pagination .el-pager li.is-active) {
-  background: #00695c;
-  border-color: #00695c;
+  background: linear-gradient(135deg, #00d8ff, #0088cc);
+  border-color: #00d8ff;
   color: #fff;
 }
 
 .pagination-wrapper :deep(.el-pagination .el-select .el-input__wrapper) {
-  box-shadow: 0 0 0 1px #e0e0e0 inset;
+  background: rgba(8, 35, 75, 0.78);
+  box-shadow: 0 0 0 1px rgba(0, 216, 255, 0.35) inset;
 }
 </style>

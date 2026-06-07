@@ -130,7 +130,7 @@
               <el-icon><Search /></el-icon>
               查询
             </el-button>
-            <el-button @click="handleReset">
+            <el-button class="tech-outline-btn" @click="handleReset">
               <el-icon><Refresh /></el-icon>
               重置
             </el-button>
@@ -234,7 +234,7 @@
         </el-form-item>
       </el-form>
       <template #footer>
-        <el-button @click="processDialogVisible = false">取消</el-button>
+        <el-button class="tech-outline-btn" @click="processDialogVisible = false">取消</el-button>
         <el-button type="primary" :loading="processLoading" @click="submitProcess">确定</el-button>
       </template>
     </el-dialog>
@@ -383,8 +383,19 @@ const initPieChart = () => {
   if (!pieChartRef.value) return
   pieChart = echarts.init(pieChartRef.value)
   pieChart.setOption({
-    tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
-    legend: { orient: 'vertical', left: 'left', top: 'center' },
+    tooltip: {
+      trigger: 'item',
+      formatter: '{b}: {c} ({d}%)',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
+    legend: {
+      orient: 'vertical',
+      left: 'left',
+      top: 'center',
+      textStyle: { color: '#b8eaff' }
+    },
     series: [
       {
         name: '告警级别',
@@ -392,15 +403,15 @@ const initPieChart = () => {
         radius: ['40%', '70%'],
         center: ['60%', '50%'],
         avoidLabelOverlap: false,
-        itemStyle: { borderRadius: 10, borderColor: '#fff', borderWidth: 2 },
+        itemStyle: { borderRadius: 10, borderColor: 'rgba(6, 24, 52, 0.88)', borderWidth: 3 },
         label: { show: false, position: 'center' },
-        emphasis: { label: { show: true, fontSize: 16, fontWeight: 'bold' } },
+        emphasis: { label: { show: true, fontSize: 16, fontWeight: 'bold', color: '#fff' } },
         labelLine: { show: false },
         data: [
-          { value: 2, name: '严重', itemStyle: { color: '#F56C6C' } },
-          { value: 3, name: '重要', itemStyle: { color: '#E6A23C' } },
-          { value: 2, name: '一般', itemStyle: { color: '#909399' } },
-          { value: 3, name: '提示', itemStyle: { color: '#67C23A' } }
+          { value: 2, name: '严重', itemStyle: { color: '#ff4d5a' } },
+          { value: 3, name: '重要', itemStyle: { color: '#ffcc33' } },
+          { value: 2, name: '一般', itemStyle: { color: '#7aa9c7' } },
+          { value: 3, name: '提示', itemStyle: { color: '#00f5a0' } }
         ]
       }
     ]
@@ -411,27 +422,53 @@ const initLineChart = () => {
   if (!lineChartRef.value) return
   lineChart = echarts.init(lineChartRef.value)
   lineChart.setOption({
-    tooltip: { trigger: 'axis' },
-    legend: { data: ['新增告警', '已处理'], bottom: '0%' },
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
+    legend: {
+      data: ['新增告警', '已处理'],
+      bottom: '0%',
+      textStyle: { color: '#b8eaff' }
+    },
     grid: { left: '3%', right: '4%', bottom: '15%', top: '8%', containLabel: true },
-    xAxis: { type: 'category', boundaryGap: false, data: ['01-09', '01-10', '01-11', '01-12', '01-13', '01-14', '01-15'] },
-    yAxis: { type: 'value' },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['01-09', '01-10', '01-11', '01-12', '01-13', '01-14', '01-15'],
+      axisLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.3)' } },
+      axisLabel: { color: '#b8eaff' },
+      axisTick: { show: false }
+    },
+    yAxis: {
+      type: 'value',
+      splitLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.12)', type: 'dashed' } },
+      axisLabel: { color: '#b8eaff' }
+    },
     series: [
       {
         name: '新增告警',
         type: 'line',
         smooth: true,
+        symbol: 'circle',
+        symbolSize: 6,
         data: [3, 5, 2, 4, 3, 6, 4],
-        itemStyle: { color: '#409EFF' },
-        areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(64,158,255,0.3)' }, { offset: 1, color: 'rgba(64,158,255,0.05)' }]) }
+        itemStyle: { color: '#00d8ff' },
+        lineStyle: { width: 3, color: '#00d8ff' },
+        areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(0, 216, 255, 0.25)' }, { offset: 1, color: 'rgba(0, 216, 255, 0.02)' }]) }
       },
       {
         name: '已处理',
         type: 'line',
         smooth: true,
+        symbol: 'circle',
+        symbolSize: 6,
         data: [2, 3, 4, 2, 5, 3, 5],
-        itemStyle: { color: '#67C23A' },
-        areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(103,194,58,0.3)' }, { offset: 1, color: 'rgba(103,194,58,0.05)' }]) }
+        itemStyle: { color: '#00f5a0' },
+        lineStyle: { width: 3, color: '#00f5a0' },
+        areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(0, 245, 160, 0.25)' }, { offset: 1, color: 'rgba(0, 245, 160, 0.02)' }]) }
       }
     ]
   })
@@ -541,23 +578,25 @@ const handleResize = () => {
   display: flex;
   align-items: center;
   padding: 16px;
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  background: rgba(6, 24, 52, 0.88);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
   transition: all 0.3s;
   position: relative;
   overflow: hidden;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(0, 216, 255, 0.25);
 }
 
 .stat-card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 216, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .stat-card__icon {
   width: 48px;
   height: 48px;
-  border-radius: 4px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -565,10 +604,10 @@ const handleResize = () => {
   flex-shrink: 0;
 }
 
-.stat-card--red .stat-card__icon { background: #ffebee; color: #c62828; }
-.stat-card--orange .stat-card__icon { background: #fff3e0; color: #e65100; }
-.stat-card--blue .stat-card__icon { background: #e3f2fd; color: #1565c0; }
-.stat-card--green .stat-card__icon { background: #e8f5e9; color: #2e7d32; }
+.stat-card--red .stat-card__icon { background: rgba(255, 77, 90, 0.15); color: #ff4d5a; }
+.stat-card--orange .stat-card__icon { background: rgba(255, 204, 51, 0.15); color: #ffcc33; }
+.stat-card--blue .stat-card__icon { background: rgba(0, 216, 255, 0.15); color: #00d8ff; }
+.stat-card--green .stat-card__icon { background: rgba(0, 245, 160, 0.15); color: #00f5a0; }
 
 .stat-card__content {
   flex: 1;
@@ -577,14 +616,14 @@ const handleResize = () => {
 .stat-card__value {
   font-size: 24px;
   font-weight: 700;
-  color: #1a2332;
+  color: #ffffff;
   margin: 0;
   line-height: 1.2;
 }
 
 .stat-card__label {
   font-size: 13px;
-  color: #8c98a8;
+  color: #b8eaff;
   margin: 4px 0 0 0;
 }
 
@@ -605,7 +644,7 @@ const handleResize = () => {
 .chart-card .card-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1a2332;
+  color: #00d8ff;
 }
 
 .chart-wrapper {
@@ -623,7 +662,7 @@ const handleResize = () => {
 
 .filter-label {
   font-size: 14px;
-  color: #606266;
+  color: #b8eaff;
   font-weight: 500;
 }
 
@@ -645,7 +684,7 @@ const handleResize = () => {
 .card-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1a2332;
+  color: #00d8ff;
 }
 
 .alarm-badge {
@@ -676,23 +715,23 @@ const handleResize = () => {
   align-items: center;
 }
 
-/* ThingsBoard风格表格样式 */
+/* Table overrides */
 .thingsboard-table {
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  border: 1px solid rgba(0, 216, 255, 0.15);
+  border-radius: 8px;
   overflow: hidden;
 }
 
 .thingsboard-table :deep(.el-table__header) {
-  background: #f5f5f5;
+  background: rgba(8, 35, 75, 0.78);
 }
 
 .thingsboard-table :deep(.el-table__header th) {
-  background: #f5f5f5 !important;
-  color: #616161;
-  font-weight: 500;
+  background: rgba(8, 35, 75, 0.78) !important;
+  color: #00d8ff !important;
+  font-weight: 600;
   font-size: 13px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(0, 216, 255, 0.2);
   padding: 12px 0;
 }
 
@@ -701,14 +740,14 @@ const handleResize = () => {
 }
 
 .thingsboard-table :deep(.el-table__row:hover) {
-  background-color: #f5f5f5 !important;
+  background-color: rgba(0, 216, 255, 0.08) !important;
 }
 
 .thingsboard-table :deep(.el-table__row td) {
   padding: 10px 0;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(0, 216, 255, 0.1);
   font-size: 13px;
-  color: #424242;
+  color: #b8eaff;
 }
 
 .thingsboard-table :deep(.el-table__body tr:last-child td) {
@@ -717,52 +756,54 @@ const handleResize = () => {
 
 .thingsboard-table :deep(.el-button.is-link) {
   padding: 4px;
+  color: #00d8ff;
 }
 
 .thingsboard-table :deep(.el-button.is-link:hover) {
-  background-color: rgba(0, 105, 92, 0.1);
+  background-color: rgba(0, 216, 255, 0.1);
   border-radius: 4px;
 }
 
-/* 分页样式 */
+/* Pagination overrides */
 .pagination-wrapper :deep(.el-pagination) {
   font-size: 13px;
 }
 
 .pagination-wrapper :deep(.el-pagination button) {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  color: #616161;
+  background: rgba(6, 24, 52, 0.6);
+  border: 1px solid rgba(0, 216, 255, 0.2);
+  color: #b8eaff;
 }
 
 .pagination-wrapper :deep(.el-pagination button:hover) {
-  color: #00695c;
-  border-color: #00695c;
+  color: #00d8ff;
+  border-color: rgba(0, 216, 255, 0.5);
 }
 
 .pagination-wrapper :deep(.el-pagination .el-pager li) {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  color: #616161;
+  background: rgba(6, 24, 52, 0.6);
+  border: 1px solid rgba(0, 216, 255, 0.15);
+  color: #b8eaff;
   min-width: 32px;
   height: 32px;
   line-height: 32px;
   margin: 0 2px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .pagination-wrapper :deep(.el-pagination .el-pager li:hover) {
-  color: #00695c;
-  border-color: #00695c;
+  color: #00d8ff;
+  border-color: rgba(0, 216, 255, 0.5);
 }
 
 .pagination-wrapper :deep(.el-pagination .el-pager li.is-active) {
-  background: #00695c;
-  border-color: #00695c;
+  background: linear-gradient(135deg, #00d8ff, #0088cc);
+  border-color: #00d8ff;
   color: #fff;
 }
 
 .pagination-wrapper :deep(.el-pagination .el-select .el-input__wrapper) {
-  box-shadow: 0 0 0 1px #e0e0e0 inset;
+  background: rgba(8, 35, 75, 0.78);
+  box-shadow: 0 0 0 1px rgba(0, 216, 255, 0.35) inset;
 }
 </style>

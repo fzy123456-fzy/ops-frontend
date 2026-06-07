@@ -320,22 +320,48 @@ const updateCallTrendChart = () => {
   const data = isWeek ? [1250, 1580, 1420, 1890, 1650, 2100, 1850] : Array.from({ length: 30 }, () => Math.floor(Math.random() * 1500 + 800))
 
   callTrendChart.setOption({
-    tooltip: { trigger: 'axis', formatter: '{b}: {c} 次' },
-    legend: { data: ['调用次数'], bottom: '0%' },
+    tooltip: {
+      trigger: 'axis',
+      formatter: '{b}: {c} 次',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
+    legend: {
+      data: ['调用次数'],
+      bottom: '0%',
+      textStyle: { color: '#b8eaff' }
+    },
     grid: { left: '3%', right: '4%', bottom: '15%', top: '8%', containLabel: true },
-    xAxis: { type: 'category', boundaryGap: false, data: days },
-    yAxis: { type: 'value', name: '调用次数' },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: days,
+      axisLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.3)' } },
+      axisLabel: { color: '#b8eaff' },
+      axisTick: { show: false }
+    },
+    yAxis: {
+      type: 'value',
+      name: '调用次数',
+      nameTextStyle: { color: '#b8eaff' },
+      splitLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.12)', type: 'dashed' } },
+      axisLabel: { color: '#b8eaff' }
+    },
     series: [
       {
         name: '调用次数',
         type: 'line',
         smooth: true,
+        symbol: 'circle',
+        symbolSize: 6,
         data,
-        itemStyle: { color: '#409EFF' },
+        itemStyle: { color: '#00d8ff' },
+        lineStyle: { width: 3, color: '#00d8ff' },
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: 'rgba(64,158,255,0.3)' },
-            { offset: 1, color: 'rgba(64,158,255,0.05)' }
+            { offset: 0, color: 'rgba(0, 216, 255, 0.25)' },
+            { offset: 1, color: 'rgba(0, 216, 255, 0.02)' }
           ])
         }
       }
@@ -359,7 +385,13 @@ const updatePerformanceChart = () => {
   if (!model) return
 
   performanceChart.setOption({
-    tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+    tooltip: {
+      trigger: 'item',
+      formatter: '{b}: {c}%',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
     radar: {
       indicator: [
         { name: '准确率', max: 100 },
@@ -370,7 +402,11 @@ const updatePerformanceChart = () => {
         { name: '资源利用率', max: 100 }
       ],
       radius: '65%',
-      center: ['50%', '50%']
+      center: ['50%', '50%'],
+      axisName: { color: '#b8eaff' },
+      splitLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.15)' } },
+      splitArea: { areaStyle: { color: ['rgba(0, 216, 255, 0.02)', 'rgba(0, 216, 255, 0.04)'] } },
+      axisLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.2)' } }
     },
     series: [
       {
@@ -387,8 +423,9 @@ const updatePerformanceChart = () => {
               Math.floor(Math.random() * 25 + 75)
             ],
             name: selectedModel.value,
-            itemStyle: { color: '#67C23A' },
-            areaStyle: { color: 'rgba(103,194,58,0.2)' }
+            itemStyle: { color: '#00f5a0' },
+            lineStyle: { color: '#00f5a0', width: 2 },
+            areaStyle: { color: 'rgba(0, 245, 160, 0.15)' }
           }
         ]
       }
@@ -440,12 +477,13 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   padding: 20px 16px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(6, 24, 52, 0.88);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
+  transition: all 0.3s;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(0, 216, 255, 0.25);
 }
 
 .stat-card::before {
@@ -455,14 +493,15 @@ onUnmounted(() => {
   right: 0;
   width: 80px;
   height: 80px;
-  background: radial-gradient(circle, rgba(102,126,234,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 216, 255, 0.05) 0%, transparent 70%);
   border-radius: 50%;
   transform: translate(30%, -30%);
 }
 
 .stat-card:hover {
+  border-color: rgba(0, 216, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .stat-card__icon {
@@ -475,27 +514,27 @@ onUnmounted(() => {
   margin-right: 14px;
   flex-shrink: 0;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-.stat-card--purple .stat-card__icon { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #0d47a1 0%, #00d8ff 100%); }
+.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #004d40 0%, #00f5a0 100%); }
+.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #e65100 0%, #ffcc33 100%); }
+.stat-card--purple .stat-card__icon { background: linear-gradient(135deg, #4a148c 0%, #8b5cf6 100%); }
 
 .stat-card__content { flex: 1; }
 
 .stat-card__value {
   font-size: 26px;
   font-weight: 700;
-  color: #1a2332;
+  color: #ffffff;
   margin: 0 0 4px;
   line-height: 1;
 }
 
 .stat-card__label {
   font-size: 13px;
-  color: #8c98a8;
+  color: #b8eaff;
   margin: 0;
 }
 
@@ -508,7 +547,7 @@ onUnmounted(() => {
 .card-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1a2332;
+  color: #00d8ff;
 }
 
 .filter-tags {
@@ -516,13 +555,14 @@ onUnmounted(() => {
   align-items: center;
   margin-bottom: 16px;
   padding: 12px 16px;
-  background: linear-gradient(90deg, #f5f7fa 0%, #eef1f5 100%);
+  background: rgba(6, 24, 52, 0.88);
+  border: 1px solid rgba(0, 216, 255, 0.18);
   border-radius: 8px;
 }
 
 .filter-label {
   font-size: 13px;
-  color: #606266;
+  color: #b8eaff;
   margin-right: 12px;
   font-weight: 500;
 }
@@ -538,17 +578,17 @@ onUnmounted(() => {
 }
 
 .accuracy-high {
-  color: #67C23A;
+  color: #00f5a0;
   font-weight: 600;
 }
 
 .accuracy-medium {
-  color: #E6A23C;
+  color: #ffcc33;
   font-weight: 500;
 }
 
 .accuracy-low {
-  color: #F56C6C;
+  color: #ff4d5a;
   font-weight: 500;
 }
 

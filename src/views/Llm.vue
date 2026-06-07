@@ -45,7 +45,7 @@
           <template #header>
             <div class="card-header">
               <span class="card-title">对话测试</span>
-              <el-button size="small" @click="clearChat">
+              <el-button size="small" class="danger-outline-btn" @click="clearChat">
                 <el-icon><Delete /></el-icon> 清空对话
               </el-button>
             </div>
@@ -157,7 +157,7 @@
           <template #header>
             <div class="card-header">
               <span class="card-title">记忆管理</span>
-              <el-button size="small" @click="handleClearMemory">
+              <el-button size="small" class="danger-outline-btn" @click="handleClearMemory">
                 <el-icon><Delete /></el-icon> 清理记忆
               </el-button>
             </div>
@@ -461,21 +461,43 @@ const updateCallStatsChart = () => {
   const data = isWeek ? [85, 92, 78, 105, 95, 120, 110] : Array.from({ length: 30 }, () => Math.floor(Math.random() * 60 + 70))
 
   callStatsChart.setOption({
-    tooltip: { trigger: 'axis', formatter: '{b}: {c} 次' },
+    tooltip: {
+      trigger: 'axis',
+      formatter: '{b}: {c} 次',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
     grid: { left: '3%', right: '4%', bottom: '8%', top: '8%', containLabel: true },
-    xAxis: { type: 'category', boundaryGap: false, data: days },
-    yAxis: { type: 'value', name: '调用次数' },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: days,
+      axisLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.3)' } },
+      axisLabel: { color: '#b8eaff' },
+      axisTick: { show: false }
+    },
+    yAxis: {
+      type: 'value',
+      name: '调用次数',
+      nameTextStyle: { color: '#b8eaff' },
+      splitLine: { lineStyle: { color: 'rgba(0, 216, 255, 0.12)', type: 'dashed' } },
+      axisLabel: { color: '#b8eaff' }
+    },
     series: [
       {
         name: '调用次数',
         type: 'line',
         smooth: true,
+        symbol: 'circle',
+        symbolSize: 6,
         data,
-        itemStyle: { color: '#67C23A' },
+        itemStyle: { color: '#00d8ff' },
+        lineStyle: { width: 3, color: '#00d8ff' },
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: 'rgba(103,194,58,0.3)' },
-            { offset: 1, color: 'rgba(103,194,58,0.05)' }
+            { offset: 0, color: 'rgba(0, 216, 255, 0.25)' },
+            { offset: 1, color: 'rgba(0, 216, 255, 0.02)' }
           ])
         }
       }
@@ -487,8 +509,14 @@ const initKbPieChart = () => {
   if (!kbPieChartRef.value) return
   kbPieChart = echarts.init(kbPieChartRef.value)
   kbPieChart.setOption({
-    tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
-    legend: { orient: 'vertical', left: 'left', top: 'center', textStyle: { fontSize: 11 } },
+    tooltip: {
+      trigger: 'item',
+      formatter: '{b}: {c} ({d}%)',
+      backgroundColor: 'rgba(6, 24, 52, 0.92)',
+      borderColor: 'rgba(0, 216, 255, 0.35)',
+      textStyle: { color: '#b8eaff' }
+    },
+    legend: { orient: 'vertical', left: 'left', top: 'center', textStyle: { fontSize: 11, color: '#b8eaff' } },
     series: [
       {
         name: '知识库',
@@ -496,15 +524,15 @@ const initKbPieChart = () => {
         radius: ['40%', '70%'],
         center: ['60%', '50%'],
         avoidLabelOverlap: false,
-        itemStyle: { borderRadius: 8, borderColor: '#fff', borderWidth: 2 },
+        itemStyle: { borderRadius: 8, borderColor: 'rgba(6, 24, 52, 0.88)', borderWidth: 2 },
         label: { show: false },
-        emphasis: { label: { show: true, fontSize: 12, fontWeight: 'bold' } },
+        emphasis: { label: { show: true, fontSize: 12, fontWeight: 'bold', color: '#fff' } },
         data: [
-          { value: 45, name: '运维手册', itemStyle: { color: '#409EFF' } },
-          { value: 38, name: '故障案例', itemStyle: { color: '#67C23A' } },
-          { value: 25, name: '能耗知识', itemStyle: { color: '#E6A23C' } },
-          { value: 18, name: '碳排政策', itemStyle: { color: '#F56C6C' } },
-          { value: 30, name: 'IoT文档', itemStyle: { color: '#909399' } }
+          { value: 45, name: '运维手册', itemStyle: { color: '#00d8ff' } },
+          { value: 38, name: '故障案例', itemStyle: { color: '#00f5a0' } },
+          { value: 25, name: '能耗知识', itemStyle: { color: '#ffcc33' } },
+          { value: 18, name: '碳排政策', itemStyle: { color: '#ff4d5a' } },
+          { value: 30, name: 'IoT文档', itemStyle: { color: '#7aa9c7' } }
         ]
       }
     ]
@@ -560,7 +588,8 @@ onUnmounted(() => {
   height: 400px;
   overflow-y: auto;
   padding: 16px;
-  background: #f5f7fa;
+  background: rgba(6, 24, 52, 0.88);
+  border: 1px solid rgba(0, 216, 255, 0.25);
   border-radius: 6px;
   margin-bottom: 16px;
 }
@@ -583,12 +612,12 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: #e4e8eb;
-  color: #409EFF;
+  background: rgba(0, 216, 255, 0.15);
+  color: #00d8ff;
 }
 
 .user-message .message-avatar {
-  background: #409EFF;
+  background: linear-gradient(135deg, #00d8ff, #00f5a0);
   color: #fff;
 }
 
@@ -598,22 +627,23 @@ onUnmounted(() => {
 }
 
 .message-text {
-  background: #fff;
+  background: rgba(8, 35, 75, 0.78);
   padding: 10px 14px;
   border-radius: 8px;
   margin: 0 0 4px;
   line-height: 1.6;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 216, 255, 0.18);
+  color: #b8eaff;
 }
 
 .user-message .message-text {
-  background: #409EFF;
+  background: linear-gradient(135deg, #0d47a1, #00d8ff);
   color: #fff;
 }
 
 .message-time {
   font-size: 11px;
-  color: #909399;
+  color: #7aa9c7;
   margin: 0;
 }
 
@@ -627,7 +657,7 @@ onUnmounted(() => {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #909399;
+  background: #00d8ff;
   animation: typing 1.4s infinite;
 }
 
@@ -653,12 +683,13 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   padding: 20px 16px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(6, 24, 52, 0.88);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
+  transition: all 0.3s;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(0, 216, 255, 0.25);
 }
 
 .stat-card::before {
@@ -668,14 +699,15 @@ onUnmounted(() => {
   right: 0;
   width: 80px;
   height: 80px;
-  background: radial-gradient(circle, rgba(102,126,234,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 216, 255, 0.05) 0%, transparent 70%);
   border-radius: 50%;
   transform: translate(30%, -30%);
 }
 
 .stat-card:hover {
+  border-color: rgba(0, 216, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .stat-card__icon {
@@ -688,27 +720,27 @@ onUnmounted(() => {
   margin-right: 14px;
   flex-shrink: 0;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-.stat-card--purple .stat-card__icon { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #0d47a1 0%, #00d8ff 100%); }
+.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #004d40 0%, #00f5a0 100%); }
+.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #e65100 0%, #ffcc33 100%); }
+.stat-card--purple .stat-card__icon { background: linear-gradient(135deg, #4a148c 0%, #8b5cf6 100%); }
 
 .stat-card__content { flex: 1; }
 
 .stat-card__value {
   font-size: 26px;
   font-weight: 700;
-  color: #1a2332;
+  color: #ffffff;
   margin: 0 0 4px;
   line-height: 1;
 }
 
 .stat-card__label {
   font-size: 13px;
-  color: #8c98a8;
+  color: #b8eaff;
   margin: 0;
 }
 
@@ -721,7 +753,7 @@ onUnmounted(() => {
 .card-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1a2332;
+  color: #00d8ff;
 }
 
 .filter-tags {
@@ -729,13 +761,14 @@ onUnmounted(() => {
   align-items: center;
   margin-bottom: 16px;
   padding: 12px 16px;
-  background: linear-gradient(90deg, #f5f7fa 0%, #eef1f5 100%);
+  background: rgba(6, 24, 52, 0.88);
+  border: 1px solid rgba(0, 216, 255, 0.18);
   border-radius: 8px;
 }
 
 .filter-label {
   font-size: 13px;
-  color: #606266;
+  color: #b8eaff;
   margin-right: 12px;
   font-weight: 500;
 }
@@ -751,17 +784,17 @@ onUnmounted(() => {
 }
 
 .reasoning-card {
-  background: #f8f9fa;
+  background: rgba(6, 24, 52, 0.88);
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 16px;
-  border: 1px solid #ebeef5;
+  border: 1px solid rgba(0, 216, 255, 0.25);
   transition: all 0.3s;
 }
 
 .reasoning-card:hover {
-  border-color: #409eff;
-  box-shadow: 0 2px 12px rgba(64, 158, 255, 0.15);
+  border-color: rgba(0, 216, 255, 0.5);
+  box-shadow: 0 0 16px rgba(0, 216, 255, 0.12);
 }
 
 .reasoning-header {
@@ -771,19 +804,19 @@ onUnmounted(() => {
 }
 
 .reasoning-icon {
-  color: #409eff;
+  color: #00d8ff;
   margin-right: 8px;
 }
 
 .reasoning-name {
   font-size: 14px;
   font-weight: 600;
-  color: #303133;
+  color: #ffffff;
 }
 
 .reasoning-desc {
   font-size: 12px;
-  color: #606266;
+  color: #7aa9c7;
   margin: 0 0 10px;
   line-height: 1.5;
   min-height: 36px;
