@@ -39,12 +39,50 @@
       </el-col>
     </el-row>
 
+    <section class="integration-preview">
+      <div class="integration-preview__header">
+        <div>
+          <p class="integration-preview__eyebrow">AI Integration Ready</p>
+          <h2>本地模型与知识库接口预留</h2>
+          <p class="integration-preview__desc">已在前端完成 `Ollama` 与 `RAGFlow` 的展示位预留，后续只需联调后端地址即可接入真实能力。</p>
+        </div>
+        <div class="integration-preview__badge">支持本地部署演示</div>
+      </div>
+      <div class="integration-grid">
+        <div class="integration-card integration-card--ollama">
+          <div class="integration-card__top">
+            <span class="integration-card__title">Ollama 接入位</span>
+            <span class="integration-card__status">已预留</span>
+          </div>
+          <p class="integration-card__text">对应本地模型状态、对话测试、模型调用统计三块区域，适合接入本地推理与对话能力。</p>
+          <div class="integration-card__meta">
+            <span>前端接口层: `src/api/llm.js`</span>
+            <span>展示页: `对话测试 / 模型状态`</span>
+          </div>
+        </div>
+        <div class="integration-card integration-card--ragflow">
+          <div class="integration-card__top">
+            <span class="integration-card__title">RAGFlow 接入位</span>
+            <span class="integration-card__status">已预留</span>
+          </div>
+          <p class="integration-card__text">对应知识库管理、文档上传、检索增强问答和记忆管理区域，适合接入知识库与检索链路。</p>
+          <div class="integration-card__meta">
+            <span>前端接口层: `src/api/llm.js`</span>
+            <span>展示页: `RAGFlow知识库 / 记忆管理`</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <el-row :gutter="20" class="chart-row">
       <el-col :xs="24" :md="16">
         <el-card shadow="never">
           <template #header>
             <div class="card-header">
-              <span class="card-title">对话测试</span>
+              <div class="card-header__title">
+                <span class="card-title">对话测试</span>
+                <span class="header-tag">Ollama 预留</span>
+              </div>
               <el-button size="small" class="danger-outline-btn" @click="clearChat">
                 <el-icon><Delete /></el-icon> 清空对话
               </el-button>
@@ -99,7 +137,10 @@
         </el-card>
         <el-card shadow="never" style="margin-top: 20px">
           <template #header>
-            <span class="card-title">知识库分布</span>
+            <div class="card-header__title">
+              <span class="card-title">知识库分布</span>
+              <span class="header-tag header-tag--green">RAGFlow 预留</span>
+            </div>
           </template>
           <div ref="kbPieChartRef" class="chart-container-small"></div>
         </el-card>
@@ -111,7 +152,10 @@
         <el-card shadow="never" style="margin-bottom: 20px">
           <template #header>
             <div class="card-header">
-              <span class="card-title">RAGFlow知识库</span>
+              <div class="card-header__title">
+                <span class="card-title">RAGFlow知识库</span>
+                <span class="header-tag header-tag--green">知识库接入位</span>
+              </div>
               <el-button type="primary" size="small" @click="handleAddKb">
                 <el-icon><Plus /></el-icon> 新增知识库
               </el-button>
@@ -156,7 +200,10 @@
         <el-card shadow="never" style="margin-bottom: 20px">
           <template #header>
             <div class="card-header">
-              <span class="card-title">记忆管理</span>
+              <div class="card-header__title">
+                <span class="card-title">记忆管理</span>
+                <span class="header-tag header-tag--green">检索增强预留</span>
+              </div>
               <el-button size="small" class="danger-outline-btn" @click="handleClearMemory">
                 <el-icon><Delete /></el-icon> 清理记忆
               </el-button>
@@ -568,6 +615,116 @@ onUnmounted(() => {
   gap: 20px;
 }
 
+.integration-preview {
+  padding: 24px 26px;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at top left, rgba(102, 217, 255, 0.16), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(0, 245, 160, 0.12), transparent 24%),
+    linear-gradient(135deg, rgba(11, 24, 41, 0.98), rgba(7, 14, 24, 0.96));
+  border: 1px solid rgba(120, 200, 255, 0.14);
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.18);
+}
+
+.integration-preview__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.integration-preview__eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #66d9ff;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.integration-preview__header h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #eff7ff;
+}
+
+.integration-preview__desc {
+  margin: 10px 0 0;
+  max-width: 760px;
+  color: #93a7bd;
+  line-height: 1.7;
+}
+
+.integration-preview__badge {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(9, 34, 57, 0.82);
+  border: 1px solid rgba(102, 217, 255, 0.14);
+  color: #c8f2ff;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.integration-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.integration-card {
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(120, 200, 255, 0.1);
+  background: rgba(9, 19, 34, 0.72);
+}
+
+.integration-card--ollama {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.integration-card--ragflow {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.integration-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.integration-card__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #eff7ff;
+}
+
+.integration-card__status {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(0, 245, 160, 0.14);
+  border: 1px solid rgba(0, 245, 160, 0.14);
+  color: #8af2c2;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.integration-card__text {
+  margin: 0 0 12px;
+  color: #b4c5db;
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+.integration-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #7aa9c7;
+  font-size: 12px;
+}
+
 .stat-row,
 .chart-row {
   margin: 0;
@@ -742,10 +899,33 @@ onUnmounted(() => {
   gap: 14px;
 }
 
+.card-header__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .card-title {
   font-size: 18px;
   font-weight: 700;
   color: #eff7ff;
+}
+
+.header-tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(102, 217, 255, 0.12);
+  border: 1px solid rgba(102, 217, 255, 0.14);
+  color: #bfeeff;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.header-tag--green {
+  background: rgba(0, 245, 160, 0.12);
+  border-color: rgba(0, 245, 160, 0.14);
+  color: #8af2c2;
 }
 
 .filter-tags {
@@ -805,9 +985,15 @@ onUnmounted(() => {
 }
 
 @media (max-width: 768px) {
+  .integration-preview__header,
+  .integration-grid,
   .card-header {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .integration-grid {
+    grid-template-columns: 1fr;
   }
 
   .chat-box {
