@@ -450,7 +450,7 @@
             <div class="panel-title-bar">
               <span class="panel-title">LLM智能助手</span>
               <div class="search-box">
-                <input type="text" placeholder="" />
+                <input type="text" placeholder="输入运行分析问题" />
                 <div class="send-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M22 2L11 13M22 2L15 22l-4-9-9-4"/>
@@ -478,9 +478,17 @@
                 </div>
               </div>
               <div class="llm-analysis">
-                <p class="analysis-text">正在分析空调系统本月能耗数据……</p>
+                <div class="analysis-meta">
+                  <span class="analysis-meta__label">当前任务</span>
+                  <span class="analysis-meta__value">空调系统月度能耗诊断</span>
+                </div>
+                <p class="analysis-text">已定位 3 个高能耗时段，异常主要集中在 14:00-17:00 冷机联动策略。</p>
+                <div class="analysis-chips">
+                  <span class="analysis-chip">峰值负荷 +8.2%</span>
+                  <span class="analysis-chip">冷机启停频繁</span>
+                </div>
                 <p class="analysis-alert">
-                  <span style="color:#ff4444;">约5.3%超标</span>
+                  <span style="color:#ff6b76;">约5.3%超标</span>
                   <span class="analysis-btn">分析中</span>
                 </p>
               </div>
@@ -498,6 +506,7 @@
                 <div class="agent-card">
                   <div class="agent-status status-running">运行中</div>
                   <div class="agent-name">能耗优化 Agent</div>
+                  <div class="agent-desc">正在生成冷机群控优化策略</div>
                   <div class="agent-progress">
                     <div class="progress-bar">
                       <div class="progress-fill" style="width:70%;"></div>
@@ -509,6 +518,7 @@
                 <div class="agent-card">
                   <div class="agent-status status-processing">进行中</div>
                   <div class="agent-name">故障诊断 Agent</div>
+                  <div class="agent-desc">针对风机异常进行根因定位</div>
                   <div class="agent-progress">
                     <div class="progress-bar">
                       <div class="progress-fill" style="width:85%;"></div>
@@ -520,6 +530,7 @@
                 <div class="agent-card">
                   <div class="agent-status status-running">运行中</div>
                   <div class="agent-name">工单调度 Agent</div>
+                  <div class="agent-desc">夜间巡检工单自动编排中</div>
                   <div class="agent-progress">
                     <div class="progress-bar">
                       <div class="progress-fill" style="width:55%;"></div>
@@ -530,7 +541,8 @@
 
                 <div class="agent-card">
                   <div class="agent-status status-processing">进行中</div>
-                  <div class="agent-name">工单调度 Agent</div>
+                  <div class="agent-name">知识编排 Agent</div>
+                  <div class="agent-desc">更新知识包并同步 SOP 索引</div>
                   <div class="agent-progress">
                     <div class="progress-bar">
                       <div class="progress-fill" style="width:65%;"></div>
@@ -558,6 +570,10 @@
                     <span class="circle-value">75.2%</span>
                     <span class="circle-label">综合评分</span>
                   </div>
+                </div>
+                <div class="circle-summary">
+                  <span>预计月度可节能</span>
+                  <strong>¥ 52,800</strong>
                 </div>
               </div>
               <div class="list-section">
@@ -3815,7 +3831,7 @@ onUnmounted(() => {
   display: flex;
   gap: 16px;
   padding: 14px 0 0;
-  height: 198px;
+  height: 220px;
   position: relative;
   z-index: 1;
   flex-shrink: 0;
@@ -3825,7 +3841,7 @@ onUnmounted(() => {
   background: linear-gradient(180deg, rgba(10, 26, 45, 0.96) 0%, rgba(6, 18, 30, 0.94) 100%);
   border: 1px solid rgba(102, 217, 255, 0.14);
   border-radius: 20px;
-  padding: 12px 16px;
+  padding: 14px 16px 16px;
   box-shadow: 0 20px 38px rgba(0,0,0,0.18);
   display: flex;
   flex-direction: column;
@@ -3851,7 +3867,7 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 14px;
   font-weight: 600;
   color: #eaf7ff;
@@ -3866,8 +3882,9 @@ onUnmounted(() => {
 /* LLM智能助手 */
 .llm-content {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   flex: 1;
+  min-height: 0;
 }
 
 .search-box {
@@ -3877,7 +3894,7 @@ onUnmounted(() => {
   border: 1px solid rgba(102,217,255,0.1);
   border-radius: 12px;
   padding: 6px 10px;
-  width: 160px;
+  width: 184px;
 }
 
 .search-box input {
@@ -3912,14 +3929,20 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border-right: 1px solid rgba(0,150,255,0.2);
-  padding-right: 20px;
+  min-width: 148px;
+  border-right: 1px solid rgba(0,150,255,0.16);
+  padding-right: 18px;
+  justify-content: center;
 }
 
 .function-item {
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 8px 10px;
+  background: rgba(10, 33, 57, 0.46);
+  border: 1px solid rgba(102,217,255,0.08);
+  border-radius: 12px;
 }
 
 .function-icon {
@@ -3931,7 +3954,7 @@ onUnmounted(() => {
 
 .function-label {
   font-size: 13px;
-  color: #fff;
+  color: #eef8ff;
 }
 
 .llm-analysis {
@@ -3939,17 +3962,56 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
+  min-width: 0;
+}
+
+.analysis-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.analysis-meta__label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.06em;
+}
+
+.analysis-meta__value {
+  font-size: 14px;
+  color: #f3fbff;
+  font-weight: 600;
 }
 
 .analysis-text {
   font-size: 13px;
   color: rgba(255,255,255,0.8);
+  line-height: 1.7;
+}
+
+.analysis-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.analysis-chip {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(11, 44, 72, 0.72);
+  border: 1px solid rgba(102,217,255,0.12);
+  color: #bfeeff;
+  font-size: 11px;
 }
 
 .analysis-alert {
   font-size: 14px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .analysis-btn {
@@ -3966,24 +4028,27 @@ onUnmounted(() => {
 .agent-content {
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  min-height: 0;
 }
 
 .agent-cards {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
   width: 100%;
 }
 
 .agent-card {
-  flex: 1;
   padding: 14px;
-  background: rgba(10, 33, 57, 0.78);
-  border: 1px solid rgba(102,217,255,0.08);
+  background: linear-gradient(180deg, rgba(10, 33, 57, 0.84), rgba(8, 25, 43, 0.72));
+  border: 1px solid rgba(102,217,255,0.1);
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  justify-content: space-between;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
 .agent-status {
@@ -4008,6 +4073,14 @@ onUnmounted(() => {
   font-size: 13px;
   color: #fff;
   font-weight: 500;
+  line-height: 1.5;
+}
+
+.agent-desc {
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.58);
+  min-height: 32px;
 }
 
 .agent-progress {
@@ -4040,7 +4113,7 @@ onUnmounted(() => {
 /* AI智能推荐 */
 .recommend-content {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   height: 100%;
 }
 
@@ -4048,8 +4121,10 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 140px;
+  width: 150px;
   flex-shrink: 0;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .circle-chart {
@@ -4074,6 +4149,28 @@ onUnmounted(() => {
   justify-content: center;
 }
 
+.circle-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  width: 100%;
+  border-radius: 14px;
+  background: rgba(10, 33, 57, 0.62);
+  border: 1px solid rgba(102,217,255,0.08);
+}
+
+.circle-summary span {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+}
+
+.circle-summary strong {
+  font-size: 18px;
+  color: #f3fbff;
+}
+
 .circle-value {
   font-size: 28px;
   font-weight: 700;
@@ -4095,7 +4192,7 @@ onUnmounted(() => {
 .recommend-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 9px;
   flex: 1;
 }
 
@@ -4103,9 +4200,9 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
-  background: rgba(10, 33, 57, 0.78);
-  border: 1px solid rgba(102,217,255,0.08);
+  padding: 11px 12px;
+  background: linear-gradient(180deg, rgba(10, 33, 57, 0.82), rgba(7, 25, 43, 0.7));
+  border: 1px solid rgba(102,217,255,0.1);
   border-radius: 12px;
 }
 
@@ -4120,6 +4217,7 @@ onUnmounted(() => {
   font-size: 13px;
   color: #fff;
   flex: 1;
+  line-height: 1.45;
 }
 
 .item-range {
