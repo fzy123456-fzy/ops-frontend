@@ -1834,8 +1834,358 @@
         </div>
       </div>
 
+      <div v-if="activeNav === 'device'" class="page-content device-screen-page">
+        <div class="page-bg"></div>
+        <div class="device-screen-content">
+          <div class="device-screen-top">
+            <div
+              v-for="card in deviceScreenStats"
+              :key="card.label"
+              class="device-screen-stat"
+              :class="card.tone"
+            >
+              <div class="device-screen-stat__icon">{{ card.icon }}</div>
+              <div class="device-screen-stat__meta">
+                <span class="device-screen-stat__label">{{ card.label }}</span>
+                <strong class="device-screen-stat__value">{{ card.value }}</strong>
+                <span class="device-screen-stat__trend">{{ card.trend }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="device-screen-main">
+            <div class="device-screen-side">
+              <div class="device-screen-panel">
+                <div class="panel-header">
+                  <span class="panel-title">设备分组态势</span>
+                  <span class="panel-more">实时</span>
+                </div>
+                <div class="panel-body device-group-board">
+                  <div
+                    v-for="group in deviceScreenGroups"
+                    :key="group.name"
+                    class="device-group-card"
+                  >
+                    <div class="device-group-card__top">
+                      <span class="device-group-card__name">{{ group.name }}</span>
+                      <span class="device-group-card__count">{{ group.total }} 台</span>
+                    </div>
+                    <div class="device-group-card__stats">
+                      <span class="device-badge badge-online">在线 {{ group.online }}</span>
+                      <span class="device-badge badge-warning">告警 {{ group.warning }}</span>
+                      <span class="device-badge badge-offline">离线 {{ group.offline }}</span>
+                    </div>
+                    <div class="device-group-card__bar">
+                      <div class="device-group-card__fill" :style="{ width: group.health + '%' }"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="device-screen-panel">
+                <div class="panel-header">
+                  <span class="panel-title">高风险设备</span>
+                  <span class="panel-more">TOP 4</span>
+                </div>
+                <div class="panel-body device-risk-board">
+                  <div
+                    v-for="item in deviceScreenRisks"
+                    :key="item.name"
+                    class="device-risk-item"
+                  >
+                    <div class="device-risk-item__main">
+                      <span class="device-risk-item__name">{{ item.name }}</span>
+                      <span class="device-risk-item__location">{{ item.location }}</span>
+                    </div>
+                    <div class="device-risk-item__load">
+                      <span>{{ item.metric }}</span>
+                      <strong>{{ item.value }}</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="device-screen-center">
+              <div class="device-center-header">
+                <div>
+                  <span class="panel-title">设备总览拓扑</span>
+                  <p class="device-center-header__sub">聚焦楼宇内服务器、网络、存储与边缘控制设备的分布与状态。</p>
+                </div>
+                <div class="device-center-header__status">
+                  <span class="status-pill">在线率 94.6%</span>
+                  <span class="status-pill status-pill--warn">待巡检 08</span>
+                </div>
+              </div>
+              <div class="device-topology-board">
+                <img src="/building-bg.jpg" alt="设备拓扑总览" class="building-image" />
+                <div class="device-topology-grid"></div>
+                <div
+                  v-for="marker in deviceScreenMarkers"
+                  :key="marker.name"
+                  class="device-topology-marker"
+                  :class="marker.level"
+                  :style="{ top: marker.top, left: marker.left }"
+                >
+                  <span class="device-topology-marker__dot"></span>
+                  <div class="device-topology-marker__card">
+                    <span class="device-topology-marker__name">{{ marker.name }}</span>
+                    <span class="device-topology-marker__value">{{ marker.value }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="device-screen-side">
+              <div class="device-screen-panel">
+                <div class="panel-header">
+                  <span class="panel-title">巡检与维护队列</span>
+                  <span class="panel-more">今日</span>
+                </div>
+                <div class="panel-body device-task-board">
+                  <div
+                    v-for="task in deviceScreenTasks"
+                    :key="task.name"
+                    class="device-task-item"
+                  >
+                    <div class="device-task-item__header">
+                      <span class="device-task-item__name">{{ task.name }}</span>
+                      <span class="device-task-item__status" :class="task.statusClass">{{ task.status }}</span>
+                    </div>
+                    <div class="device-task-item__meta">
+                      <span>{{ task.owner }}</span>
+                      <span>{{ task.time }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="device-screen-panel">
+                <div class="panel-header">
+                  <span class="panel-title">资源压力雷达</span>
+                  <span class="panel-more">近 2 小时</span>
+                </div>
+                <div class="panel-body device-pressure-board">
+                  <div
+                    v-for="item in deviceScreenPressure"
+                    :key="item.label"
+                    class="device-pressure-row"
+                  >
+                    <div class="device-pressure-row__meta">
+                      <span>{{ item.label }}</span>
+                      <strong>{{ item.value }}</strong>
+                    </div>
+                    <div class="device-pressure-row__bar">
+                      <div class="device-pressure-row__fill" :style="{ width: item.percent + '%' }"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="activeNav === 'asset'" class="page-content asset-screen-page">
+        <div class="page-bg"></div>
+        <div class="asset-screen-content">
+          <div class="asset-screen-top">
+            <div v-for="card in assetScreenStats" :key="card.label" class="asset-stat-card">
+              <span class="asset-stat-card__label">{{ card.label }}</span>
+              <strong class="asset-stat-card__value">{{ card.value }}</strong>
+              <span class="asset-stat-card__trend">{{ card.trend }}</span>
+            </div>
+          </div>
+
+          <div class="asset-screen-main">
+            <div class="asset-panel">
+              <div class="panel-header">
+                <span class="panel-title">资产分层矩阵</span>
+                <span class="panel-more">全局视图</span>
+              </div>
+              <div class="panel-body asset-matrix-board">
+                <div v-for="item in assetScreenMatrix" :key="item.name" class="asset-matrix-card">
+                  <div class="asset-matrix-card__head">
+                    <span>{{ item.name }}</span>
+                    <strong>{{ item.value }}</strong>
+                  </div>
+                  <p>{{ item.desc }}</p>
+                  <div class="asset-matrix-card__bar">
+                    <div class="asset-matrix-card__fill" :style="{ width: item.percent + '%' }"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="asset-center-panel">
+              <div class="asset-center-header">
+                <div>
+                  <span class="panel-title">数据资产驾驶舱</span>
+                  <p class="asset-center-header__sub">统一管理主数据、模型资产、知识库与接口服务资产状态。</p>
+                </div>
+                <span class="status-pill">可追溯率 98.2%</span>
+              </div>
+              <div class="asset-center-grid">
+                <div v-for="item in assetScreenDomains" :key="item.name" class="asset-domain-card">
+                  <span class="asset-domain-card__name">{{ item.name }}</span>
+                  <strong class="asset-domain-card__value">{{ item.value }}</strong>
+                  <span class="asset-domain-card__meta">{{ item.meta }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="asset-panel">
+              <div class="panel-header">
+                <span class="panel-title">治理任务清单</span>
+                <span class="panel-more">今日 6 项</span>
+              </div>
+              <div class="panel-body asset-task-board">
+                <div v-for="item in assetScreenTasks" :key="item.name" class="asset-task-item">
+                  <div class="asset-task-item__head">
+                    <span>{{ item.name }}</span>
+                    <span class="asset-task-item__status" :class="item.statusClass">{{ item.status }}</span>
+                  </div>
+                  <div class="asset-task-item__meta">
+                    <span>{{ item.owner }}</span>
+                    <span>{{ item.time }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="activeNav === 'ai'" class="page-content ai-screen-page">
+        <div class="page-bg"></div>
+        <div class="ai-screen-content">
+          <div class="ai-screen-top">
+            <div v-for="card in aiScreenStats" :key="card.label" class="ai-stat-card">
+              <span class="ai-stat-card__label">{{ card.label }}</span>
+              <strong class="ai-stat-card__value">{{ card.value }}</strong>
+              <span class="ai-stat-card__trend">{{ card.trend }}</span>
+            </div>
+          </div>
+
+          <div class="ai-screen-main">
+            <div class="ai-panel">
+              <div class="panel-header">
+                <span class="panel-title">模型服务编队</span>
+                <span class="panel-more">在线</span>
+              </div>
+              <div class="panel-body ai-model-board">
+                <div v-for="item in aiScreenModels" :key="item.name" class="ai-model-card">
+                  <div class="ai-model-card__head">
+                    <span>{{ item.name }}</span>
+                    <span class="ai-model-card__tag">{{ item.tag }}</span>
+                  </div>
+                  <div class="ai-model-card__metrics">
+                    <span>QPS {{ item.qps }}</span>
+                    <span>时延 {{ item.latency }}</span>
+                    <span>成本 {{ item.cost }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ai-center-panel">
+              <div class="ai-center-panel__hero">
+                <span class="panel-title">AI 运营调度中枢</span>
+                <p>覆盖模型调用、Agent 协同、知识命中率与业务自动化表现，适合答辩和演示展示。</p>
+              </div>
+              <div class="ai-agent-grid">
+                <div v-for="item in aiScreenAgents" :key="item.name" class="ai-agent-card">
+                  <span class="ai-agent-card__name">{{ item.name }}</span>
+                  <strong>{{ item.value }}</strong>
+                  <span>{{ item.meta }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ai-panel">
+              <div class="panel-header">
+                <span class="panel-title">运营事件流</span>
+                <span class="panel-more">实时</span>
+              </div>
+              <div class="panel-body ai-event-board">
+                <div v-for="item in aiScreenEvents" :key="item.title" class="ai-event-item">
+                  <div class="ai-event-item__title">
+                    <span>{{ item.title }}</span>
+                    <span class="ai-event-item__time">{{ item.time }}</span>
+                  </div>
+                  <p>{{ item.desc }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="activeNav === 'settings'" class="page-content settings-screen-page">
+        <div class="page-bg"></div>
+        <div class="settings-screen-content">
+          <div class="settings-screen-top">
+            <div v-for="card in settingsScreenStats" :key="card.label" class="settings-stat-card">
+              <span class="settings-stat-card__label">{{ card.label }}</span>
+              <strong class="settings-stat-card__value">{{ card.value }}</strong>
+              <span class="settings-stat-card__trend">{{ card.trend }}</span>
+            </div>
+          </div>
+
+          <div class="settings-screen-main">
+            <div class="settings-panel">
+              <div class="panel-header">
+                <span class="panel-title">系统配置域</span>
+                <span class="panel-more">策略 12 项</span>
+              </div>
+              <div class="panel-body settings-config-board">
+                <div v-for="item in settingsScreenConfigs" :key="item.name" class="settings-config-card">
+                  <span class="settings-config-card__name">{{ item.name }}</span>
+                  <strong>{{ item.value }}</strong>
+                  <span>{{ item.meta }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-center-panel">
+              <div class="settings-center-panel__hero">
+                <span class="panel-title">系统设置与发布控制台</span>
+                <p>统一监管权限、安全、告警、备份、日志与版本策略，强化中控台的管控氛围。</p>
+              </div>
+              <div class="settings-release-board">
+                <div v-for="item in settingsScreenReleases" :key="item.name" class="settings-release-item">
+                  <div>
+                    <span class="settings-release-item__name">{{ item.name }}</span>
+                    <span class="settings-release-item__meta">{{ item.meta }}</span>
+                  </div>
+                  <span class="settings-release-item__status" :class="item.statusClass">{{ item.status }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-panel">
+              <div class="panel-header">
+                <span class="panel-title">安全巡检看板</span>
+                <span class="panel-more">最近 24h</span>
+              </div>
+              <div class="panel-body settings-security-board">
+                <div v-for="item in settingsScreenSecurity" :key="item.label" class="settings-security-row">
+                  <div class="settings-security-row__meta">
+                    <span>{{ item.label }}</span>
+                    <strong>{{ item.value }}</strong>
+                  </div>
+                  <div class="settings-security-row__bar">
+                    <div class="settings-security-row__fill" :style="{ width: item.percent + '%' }"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 其他页面占位 -->
-      <div v-if="activeNav !== 'home' && activeNav !== 'energy' && activeNav !== 'environment' && activeNav !== 'security' && activeNav !== 'quality' && activeNav !== 'power'" class="page-content">
+      <div v-if="activeNav !== 'home' && activeNav !== 'energy' && activeNav !== 'environment' && activeNav !== 'security' && activeNav !== 'quality' && activeNav !== 'power' && activeNav !== 'device' && activeNav !== 'asset' && activeNav !== 'ai' && activeNav !== 'settings'" class="page-content">
         <div class="placeholder-page">
           <h2>{{ getPageTitle() }}</h2>
           <p>页面开发中……</p>
@@ -2034,6 +2384,135 @@ const powerLoadRank = ref([
   { name: '动力设备回路', value: 245 },
   { name: '照明回路', value: 128 },
   { name: '插座回路', value: 86 }
+])
+
+const deviceScreenStats = ref([
+  { label: '纳管设备', value: '248 台', trend: '较昨日 +6', icon: 'S', tone: 'tone-blue' },
+  { label: '在线设备', value: '234 台', trend: '在线率 94.6%', icon: 'O', tone: 'tone-green' },
+  { label: '告警设备', value: '11 台', trend: '待处理 4 台', icon: '!', tone: 'tone-orange' },
+  { label: '维护窗口', value: '08 项', trend: '夜间批次 22:00', icon: 'M', tone: 'tone-purple' }
+])
+
+const deviceScreenGroups = ref([
+  { name: '计算节点集群', total: 68, online: 64, warning: 3, offline: 1, health: 88 },
+  { name: '网络与安全设备', total: 42, online: 40, warning: 1, offline: 1, health: 91 },
+  { name: '存储与备份设备', total: 36, online: 33, warning: 2, offline: 1, health: 82 },
+  { name: '楼层边缘控制器', total: 102, online: 97, warning: 5, offline: 0, health: 93 }
+])
+
+const deviceScreenRisks = ref([
+  { name: '数据库服务器 DB-01', location: '机房A / 2号柜', metric: '内存占用', value: '86%' },
+  { name: '核心交换机 SW-Core', location: '网络区 / A侧', metric: '端口异常', value: '12 条' },
+  { name: '存储阵列 SAN-02', location: '机房B / 存储区', metric: '磁盘压力', value: '81%' },
+  { name: '边缘网关 EG-17', location: '12F / 东翼弱电井', metric: '离线时长', value: '37 min' }
+])
+
+const deviceScreenMarkers = ref([
+  { name: '主数据库集群', value: '3 台 / 1 告警', top: '18%', left: '18%', level: 'level-warn' },
+  { name: '核心交换区', value: '8 台 / 全在线', top: '30%', left: '68%', level: 'level-good' },
+  { name: '楼层控制器', value: '97 台 / 5 波动', top: '54%', left: '20%', level: 'level-mid' },
+  { name: '备份存储区', value: '12 台 / 1 离线', top: '64%', left: '64%', level: 'level-warn' },
+  { name: 'UPS 供电单元', value: '2 台 / 正常', top: '78%', left: '42%', level: 'level-good' }
+])
+
+const deviceScreenTasks = ref([
+  { name: '夜间补丁窗口编排', owner: '运维一组 / 刘工', time: '22:00 - 23:30', status: '待执行', statusClass: 'status-pending' },
+  { name: 'DB-01 内存泄漏排查', owner: '数据库组 / 陈工', time: '处理中', status: '进行中', statusClass: 'status-running' },
+  { name: '边缘网关 EG-17 复联确认', owner: '现场巡检 / 王工', time: '17:40 前反馈', status: '待巡检', statusClass: 'status-warn' },
+  { name: 'SAN-02 冷数据迁移', owner: '存储组 / 李工', time: '已完成', status: '已闭环', statusClass: 'status-done' }
+])
+
+const deviceScreenPressure = ref([
+  { label: 'CPU 集群均值', value: '67%', percent: 67 },
+  { label: '内存池均值', value: '73%', percent: 73 },
+  { label: '存储容量占用', value: '79%', percent: 79 },
+  { label: '网络吞吐峰值', value: '58%', percent: 58 },
+  { label: '边缘链路健康度', value: '91%', percent: 91 }
+])
+
+const assetScreenStats = ref([
+  { label: '资产目录', value: '1,286 项', trend: '今日新增 12 项' },
+  { label: '数据表资产', value: '426 张', trend: '血缘覆盖 97%' },
+  { label: '模型资产', value: '58 个', trend: '在线服务 49 个' },
+  { label: '接口资产', value: '212 个', trend: '健康度 95.4%' }
+])
+
+const assetScreenMatrix = ref([
+  { name: '主数据资产', value: '248', desc: '客户、设备、组织与楼宇主数据统一治理', percent: 88 },
+  { name: '实时流数据', value: '96', desc: '楼宇传感器与运行指标流转通道', percent: 82 },
+  { name: '知识文档库', value: '1.8TB', desc: '制度、手册、历史工单与经验沉淀', percent: 74 },
+  { name: '服务API资产', value: '212', desc: '开放给 AI 与业务系统的服务接口集合', percent: 91 }
+])
+
+const assetScreenDomains = ref([
+  { name: '设备资产域', value: '384 份', meta: '同步成功率 99.2%' },
+  { name: '能耗资产域', value: '126 份', meta: '口径一致性 优' },
+  { name: '工单资产域', value: '82 份', meta: '近 7 日新增 14' },
+  { name: 'AI知识资产域', value: '56 份', meta: '命中率 81.6%' }
+])
+
+const assetScreenTasks = ref([
+  { name: '设备主数据口径校正', owner: '数据治理组', time: '18:00 前', status: '进行中', statusClass: 'status-running' },
+  { name: '知识文档增量归档', owner: '知识运营组', time: '21:00 批次', status: '待执行', statusClass: 'status-pending' },
+  { name: '接口资产权限复核', owner: '平台架构组', time: '今日完成', status: '待巡检', statusClass: 'status-warn' },
+  { name: '资产血缘图刷新', owner: '数仓团队', time: '已同步', status: '已闭环', statusClass: 'status-done' }
+])
+
+const aiScreenStats = ref([
+  { label: '今日调用量', value: '86.4 万次', trend: '较昨日 +13.2%' },
+  { label: 'Agent 任务', value: '412 项', trend: '自动完成率 78%' },
+  { label: '知识命中率', value: '81.6%', trend: '提升 4.2%' },
+  { label: '运营成本', value: '¥ 3,268', trend: '单次成本下降 9%' }
+])
+
+const aiScreenModels = ref([
+  { name: '运维分析模型', tag: '主力', qps: '248', latency: '1.2s', cost: '低' },
+  { name: '知识问答模型', tag: '高频', qps: '186', latency: '0.9s', cost: '中' },
+  { name: '工单调度模型', tag: '调度', qps: '92', latency: '1.6s', cost: '低' },
+  { name: '视觉巡检模型', tag: '图像', qps: '44', latency: '2.4s', cost: '高' }
+])
+
+const aiScreenAgents = ref([
+  { name: '节能优化 Agent', value: '34', meta: '运行中的任务流' },
+  { name: '故障诊断 Agent', value: '18', meta: '高优先级分析' },
+  { name: '巡检协同 Agent', value: '27', meta: '巡检单自动生成' },
+  { name: '知识编排 Agent', value: '12', meta: '知识包持续更新' }
+])
+
+const aiScreenEvents = ref([
+  { title: '知识问答命中率提升', time: '17:26', desc: '新一批 SOP 文档进入知识库后，问答命中率提升至 81.6%。' },
+  { title: '故障诊断链路自动闭环', time: '16:48', desc: '数据库集群异常已完成根因识别并联动推送维修建议。' },
+  { title: '节能建议批量下发', time: '15:32', desc: 'AI 自动生成 12 条节能建议并分发到现场控制策略。' },
+  { title: 'Agent 成本预警解除', time: '14:05', desc: '模型路由优化后，本日推理成本已回落至预算区间。' }
+])
+
+const settingsScreenStats = ref([
+  { label: '配置项', value: '312 条', trend: '今日变更 8 条' },
+  { label: '告警策略', value: '68 组', trend: '有效策略 64 组' },
+  { label: '权限角色', value: '24 类', trend: '最近审计 2 小时前' },
+  { label: '备份任务', value: '16 条', trend: '成功率 100%' }
+])
+
+const settingsScreenConfigs = ref([
+  { name: '权限中心', value: '24 角色', meta: '最小权限策略开启' },
+  { name: '消息告警', value: '68 组', meta: '短信 / 邮件 / 企业微信' },
+  { name: '系统日志', value: '14 天', meta: '热存储在线' },
+  { name: '灾备策略', value: '双活', meta: '跨机房复制正常' }
+])
+
+const settingsScreenReleases = ref([
+  { name: '可视化大屏配置发布', meta: '版本 v2.6.1 / 计划 22:30', status: '待发布', statusClass: 'status-pending' },
+  { name: 'AI 路由策略更新', meta: '版本 v1.9.4 / 灰度中', status: '进行中', statusClass: 'status-running' },
+  { name: '账号权限审计任务', meta: '今日例行批次', status: '待巡检', statusClass: 'status-warn' },
+  { name: '备份恢复演练记录', meta: '最近一次 06-06', status: '已完成', statusClass: 'status-done' }
+])
+
+const settingsScreenSecurity = ref([
+  { label: '弱口令清理率', value: '96%', percent: 96 },
+  { label: '审计日志覆盖率', value: '100%', percent: 100 },
+  { label: '补丁窗口执行率', value: '84%', percent: 84 },
+  { label: '备份校验通过率', value: '99%', percent: 99 },
+  { label: '异常登录拦截率', value: '91%', percent: 91 }
 ])
 
 const updateTime = () => {
@@ -3732,6 +4211,755 @@ onUnmounted(() => {
 .placeholder-page p {
   font-size: 16px;
   color: rgba(255,255,255,0.6);
+}
+
+.device-screen-page {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px 90px;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.device-screen-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 14%, rgba(0, 212, 255, 0.16), transparent 24%),
+    radial-gradient(circle at 88% 18%, rgba(0, 255, 136, 0.12), transparent 24%);
+  pointer-events: none;
+}
+
+.device-screen-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.device-screen-top {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.device-screen-stat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(9, 31, 52, 0.96), rgba(5, 18, 33, 0.94));
+  border: 1px solid rgba(92, 195, 255, 0.18);
+  box-shadow: 0 18px 36px rgba(0, 10, 20, 0.28);
+}
+
+.device-screen-stat__icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #08111d;
+  flex-shrink: 0;
+}
+
+.device-screen-stat.tone-blue .device-screen-stat__icon {
+  background: linear-gradient(135deg, #83e8ff, #2fa9ff);
+}
+
+.device-screen-stat.tone-green .device-screen-stat__icon {
+  background: linear-gradient(135deg, #99f7ca, #29c389);
+}
+
+.device-screen-stat.tone-orange .device-screen-stat__icon {
+  background: linear-gradient(135deg, #ffe29e, #ffb347);
+}
+
+.device-screen-stat.tone-purple .device-screen-stat__icon {
+  background: linear-gradient(135deg, #d2b4ff, #9275ff);
+}
+
+.device-screen-stat__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.device-screen-stat__label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.device-screen-stat__value {
+  font-size: 24px;
+  color: #f5fbff;
+  line-height: 1.1;
+}
+
+.device-screen-stat__trend {
+  font-size: 12px;
+  color: #87b6d8;
+}
+
+.device-screen-main {
+  display: grid;
+  grid-template-columns: 24% 1fr 24%;
+  gap: 18px;
+  flex: 1;
+  min-height: 0;
+}
+
+.device-screen-side,
+.device-screen-center {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 0;
+}
+
+.device-screen-panel {
+  background: linear-gradient(180deg, rgba(8, 29, 47, 0.96), rgba(4, 18, 31, 0.94));
+  border: 1px solid rgba(92, 195, 255, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 18px 34px rgba(0, 9, 18, 0.28);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.device-group-board,
+.device-risk-board,
+.device-task-board,
+.device-pressure-board {
+  padding: 14px 16px;
+}
+
+.device-group-board,
+.device-risk-board,
+.device-task-board {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: auto;
+}
+
+.device-group-card,
+.device-risk-item,
+.device-task-item {
+  padding: 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(8, 45, 72, 0.72), rgba(4, 24, 38, 0.78));
+  border: 1px solid rgba(92, 195, 255, 0.12);
+}
+
+.device-group-card__top,
+.device-task-item__header,
+.device-risk-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.device-group-card__name,
+.device-risk-item__name,
+.device-task-item__name {
+  color: #eff8ff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.device-group-card__count,
+.device-risk-item__location,
+.device-task-item__meta {
+  color: #8eaecb;
+  font-size: 12px;
+}
+
+.device-group-card__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 10px;
+}
+
+.device-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  border: 1px solid transparent;
+}
+
+.badge-online {
+  color: #80efbf;
+  background: rgba(26, 95, 65, 0.26);
+  border-color: rgba(117, 243, 180, 0.14);
+}
+
+.badge-warning {
+  color: #ffd57c;
+  background: rgba(111, 72, 11, 0.24);
+  border-color: rgba(255, 206, 97, 0.14);
+}
+
+.badge-offline {
+  color: #b5c5d6;
+  background: rgba(84, 97, 112, 0.24);
+  border-color: rgba(195, 211, 228, 0.12);
+}
+
+.device-group-card__bar,
+.device-pressure-row__bar {
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(119, 171, 214, 0.12);
+}
+
+.device-group-card__fill,
+.device-pressure-row__fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #00d4ff, #00f5a0);
+}
+
+.device-risk-item__main,
+.device-risk-item__load {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.device-risk-item__load {
+  text-align: right;
+}
+
+.device-risk-item__load span {
+  font-size: 11px;
+  color: #8eaecb;
+}
+
+.device-risk-item__load strong {
+  color: #ffcc66;
+  font-size: 18px;
+}
+
+.device-center-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 2px;
+}
+
+.device-center-header__sub {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: #88a9c7;
+}
+
+.device-center-header__status {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.status-pill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: #d9f7ff;
+  background: rgba(8, 34, 56, 0.78);
+  border: 1px solid rgba(92, 195, 255, 0.14);
+}
+
+.status-pill--warn {
+  color: #ffd57c;
+  background: rgba(76, 49, 8, 0.78);
+  border-color: rgba(255, 206, 97, 0.14);
+}
+
+.device-topology-board {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(92, 195, 255, 0.18);
+  background:
+    radial-gradient(circle at top, rgba(0, 212, 255, 0.12), transparent 44%),
+    linear-gradient(180deg, rgba(0, 18, 32, 0.72), rgba(0, 10, 18, 0.72));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.device-topology-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(120, 200, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 200, 255, 0.08) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,0.72), transparent 96%);
+  pointer-events: none;
+}
+
+.device-topology-marker {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.device-topology-marker__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.device-topology-marker.level-good .device-topology-marker__dot {
+  background: #00f5a0;
+  box-shadow: 0 0 10px rgba(0, 245, 160, 0.6);
+}
+
+.device-topology-marker.level-mid .device-topology-marker__dot {
+  background: #ffcc33;
+  box-shadow: 0 0 10px rgba(255, 204, 51, 0.55);
+}
+
+.device-topology-marker.level-warn .device-topology-marker__dot {
+  background: #ff6b76;
+  box-shadow: 0 0 10px rgba(255, 107, 118, 0.55);
+}
+
+.device-topology-marker__card {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(8, 49, 78, 0.95), rgba(4, 27, 44, 0.92));
+  border: 1px solid rgba(92, 195, 255, 0.18);
+  box-shadow: 0 10px 24px rgba(0, 10, 20, 0.28);
+}
+
+.device-topology-marker__name {
+  font-size: 12px;
+  color: #e9f7ff;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.device-topology-marker__value {
+  font-size: 11px;
+  color: #89b0cf;
+  white-space: nowrap;
+}
+
+.device-task-item__status {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  border: 1px solid transparent;
+}
+
+.status-pending {
+  color: #a8d9ff;
+  background: rgba(15, 59, 92, 0.34);
+  border-color: rgba(117, 202, 255, 0.14);
+}
+
+.status-running {
+  color: #80efbf;
+  background: rgba(21, 95, 61, 0.26);
+  border-color: rgba(117, 243, 180, 0.14);
+}
+
+.status-warn {
+  color: #ffd57c;
+  background: rgba(111, 72, 11, 0.24);
+  border-color: rgba(255, 206, 97, 0.14);
+}
+
+.status-done {
+  color: #dbe8f4;
+  background: rgba(74, 89, 103, 0.24);
+  border-color: rgba(197, 213, 228, 0.12);
+}
+
+.device-task-item__meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.device-pressure-board {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+  flex: 1;
+}
+
+.device-pressure-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.device-pressure-row__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  color: #8eaecb;
+}
+
+.device-pressure-row__meta strong {
+  color: #eff8ff;
+  font-size: 16px;
+}
+
+.asset-screen-page,
+.ai-screen-page,
+.settings-screen-page {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px 90px;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.asset-screen-page::after,
+.ai-screen-page::after,
+.settings-screen-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.asset-screen-page::after {
+  background:
+    radial-gradient(circle at 14% 16%, rgba(0, 212, 255, 0.16), transparent 24%),
+    radial-gradient(circle at 84% 18%, rgba(255, 204, 51, 0.12), transparent 24%);
+}
+
+.ai-screen-page::after {
+  background:
+    radial-gradient(circle at 16% 18%, rgba(170, 120, 255, 0.18), transparent 24%),
+    radial-gradient(circle at 86% 18%, rgba(0, 255, 255, 0.14), transparent 24%);
+}
+
+.settings-screen-page::after {
+  background:
+    radial-gradient(circle at 14% 18%, rgba(90, 170, 255, 0.15), transparent 24%),
+    radial-gradient(circle at 86% 18%, rgba(0, 255, 136, 0.1), transparent 24%);
+}
+
+.asset-screen-content,
+.ai-screen-content,
+.settings-screen-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.asset-screen-top,
+.ai-screen-top,
+.settings-screen-top {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.asset-stat-card,
+.ai-stat-card,
+.settings-stat-card,
+.asset-panel,
+.ai-panel,
+.settings-panel,
+.asset-center-panel,
+.ai-center-panel,
+.settings-center-panel {
+  background: linear-gradient(180deg, rgba(9, 31, 52, 0.96), rgba(5, 18, 33, 0.94));
+  border: 1px solid rgba(92, 195, 255, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 18px 34px rgba(0, 10, 20, 0.28);
+}
+
+.asset-stat-card,
+.ai-stat-card,
+.settings-stat-card {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.asset-stat-card__label,
+.ai-stat-card__label,
+.settings-stat-card__label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.asset-stat-card__value,
+.ai-stat-card__value,
+.settings-stat-card__value {
+  font-size: 24px;
+  line-height: 1.1;
+  color: #f5fbff;
+}
+
+.asset-stat-card__trend,
+.ai-stat-card__trend,
+.settings-stat-card__trend {
+  font-size: 12px;
+  color: #87b6d8;
+}
+
+.asset-screen-main,
+.ai-screen-main,
+.settings-screen-main {
+  display: grid;
+  grid-template-columns: 24% 1fr 24%;
+  gap: 18px;
+  flex: 1;
+  min-height: 0;
+}
+
+.asset-panel,
+.ai-panel,
+.settings-panel,
+.asset-center-panel,
+.ai-center-panel,
+.settings-center-panel {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.asset-matrix-board,
+.asset-task-board,
+.ai-model-board,
+.ai-event-board,
+.settings-config-board,
+.settings-security-board {
+  padding: 14px 16px;
+}
+
+.asset-matrix-board,
+.asset-task-board,
+.ai-model-board,
+.ai-event-board,
+.settings-config-board {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: auto;
+}
+
+.asset-matrix-card,
+.asset-task-item,
+.ai-model-card,
+.ai-event-item,
+.settings-config-card,
+.settings-release-item {
+  padding: 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(8, 45, 72, 0.72), rgba(4, 24, 38, 0.78));
+  border: 1px solid rgba(92, 195, 255, 0.12);
+}
+
+.asset-matrix-card__head,
+.asset-task-item__head,
+.ai-model-card__head,
+.ai-event-item__title,
+.settings-security-row__meta,
+.settings-release-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.asset-matrix-card__head span,
+.asset-task-item__head span:first-child,
+.ai-model-card__head span:first-child,
+.ai-event-item__title span:first-child,
+.settings-config-card__name,
+.settings-release-item__name {
+  color: #eff8ff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.asset-matrix-card__head strong,
+.settings-config-card strong {
+  color: #ffd57c;
+  font-size: 20px;
+}
+
+.asset-matrix-card p,
+.ai-center-panel__hero p,
+.settings-center-panel__hero p,
+.ai-event-item p,
+.settings-config-card span,
+.settings-release-item__meta {
+  margin: 8px 0 0;
+  color: #8eaecb;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.asset-matrix-card__bar,
+.settings-security-row__bar {
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(119, 171, 214, 0.12);
+  margin-top: 12px;
+}
+
+.asset-matrix-card__fill,
+.settings-security-row__fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #00d4ff, #00f5a0);
+}
+
+.asset-center-panel,
+.ai-center-panel,
+.settings-center-panel {
+  padding: 18px;
+}
+
+.asset-center-header,
+.ai-center-panel__hero,
+.settings-center-panel__hero {
+  margin-bottom: 16px;
+}
+
+.asset-center-header__sub {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: #88a9c7;
+}
+
+.asset-center-grid,
+.ai-agent-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.asset-domain-card,
+.ai-agent-card {
+  padding: 16px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(8, 45, 72, 0.7), rgba(5, 24, 37, 0.76));
+  border: 1px solid rgba(92, 195, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.asset-domain-card__name,
+.ai-agent-card__name {
+  color: #e7f6ff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.asset-domain-card__value,
+.ai-agent-card strong {
+  color: #f4fbff;
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.asset-domain-card__meta,
+.ai-agent-card span:last-child {
+  color: #8eaecb;
+  font-size: 12px;
+}
+
+.asset-task-item__meta,
+.ai-model-card__metrics {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+  color: #8eaecb;
+  font-size: 12px;
+}
+
+.ai-model-card__tag,
+.asset-task-item__status,
+.settings-release-item__status {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  border: 1px solid transparent;
+}
+
+.ai-model-card__tag {
+  color: #d8c2ff;
+  background: rgba(89, 47, 138, 0.28);
+  border-color: rgba(186, 154, 255, 0.14);
+}
+
+.ai-event-item__time {
+  color: #8eaecb;
+  font-size: 12px;
+}
+
+.settings-config-board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.settings-config-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-release-board {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-security-board {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+  flex: 1;
+}
+
+.settings-security-row strong {
+  color: #eff8ff;
+  font-size: 16px;
 }
 
 /* 智能能耗页面 */

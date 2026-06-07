@@ -1,5 +1,44 @@
 <template>
   <div class="device-page">
+    <section class="device-hero">
+      <div class="device-hero__content">
+        <p class="device-hero__eyebrow">Device Command Center</p>
+        <div class="device-hero__heading">
+          <div>
+            <h1>设备管理中枢</h1>
+            <p>聚合设备资产、运行状态与资源负载，快速定位高风险节点与异常设备。</p>
+          </div>
+          <div class="device-hero__badges">
+            <div class="hero-badge">
+              <span class="hero-badge__label">在线率</span>
+              <span class="hero-badge__value">{{ onlineRate }}%</span>
+            </div>
+            <div class="hero-badge hero-badge--warn">
+              <span class="hero-badge__label">高负载设备</span>
+              <span class="hero-badge__value">{{ overloadedCount }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="device-hero__grid">
+        <div class="hero-grid-card">
+          <span class="hero-grid-card__label">核心机房</span>
+          <strong>{{ stats.total }}</strong>
+          <span>纳管设备</span>
+        </div>
+        <div class="hero-grid-card">
+          <span class="hero-grid-card__label">告警聚焦</span>
+          <strong>{{ stats.warning }}</strong>
+          <span>待关注节点</span>
+        </div>
+        <div class="hero-grid-card">
+          <span class="hero-grid-card__label">离线设备</span>
+          <strong>{{ stats.offline }}</strong>
+          <span>需巡检恢复</span>
+        </div>
+      </div>
+    </section>
+
     <el-row :gutter="20" class="stat-row">
       <el-col :xs="12" :sm="6">
         <div class="stat-card stat-card--blue">
@@ -39,10 +78,17 @@
       </el-col>
     </el-row>
 
-    <el-card shadow="never">
+    <el-card shadow="never" class="device-console-card">
       <template #header>
         <div class="card-header">
-          <span class="card-title">设备管理</span>
+          <div>
+            <span class="card-title">设备管理</span>
+            <p class="card-subtitle">统一查看设备信息、区域分布与资源占用，支持快速筛选和维护。</p>
+          </div>
+          <div class="card-header__meta">
+            <span class="meta-pill">当前页 {{ tableData.length }} 台</span>
+            <span class="meta-pill meta-pill--accent">告警 {{ stats.warning }} 台</span>
+          </div>
         </div>
       </template>
 
@@ -94,8 +140,27 @@
 
       <el-table :data="tableData" v-loading="loading" style="width: 100%" row-key="id" class="thingsboard-table">
         <el-table-column type="selection" width="40" align="center" />
-        <el-table-column prop="deviceName" label="设备名称" min-width="150" show-overflow-tooltip />
-        <el-table-column prop="ipAddress" label="IP地址" width="140" />
+        <el-table-column prop="deviceName" label="设备信息" min-width="230">
+          <template #default="{ row }">
+            <div class="device-cell">
+              <div class="device-cell__avatar" :class="`device-cell__avatar--${row.deviceType}`">
+                {{ row.deviceName.slice(0, 1) }}
+              </div>
+              <div class="device-cell__content">
+                <span class="device-cell__name">{{ row.deviceName }}</span>
+                <span class="device-cell__desc">{{ row.description || '暂无设备描述' }}</span>
+              </div>
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column prop="ipAddress" label="网络信息" width="190">
+          <template #default="{ row }">
+            <div class="network-cell">
+              <span class="network-cell__ip">{{ row.ipAddress }}</span>
+              <span class="network-cell__os">{{ row.osType || '未填写系统信息' }}</span>
+            </div>
+          </template>
+        </el-table-column>
         <el-table-column prop="deviceType" label="设备类型" width="110">
           <template #default="{ row }">
             <el-tag :type="getTypeColor(row.deviceType)" size="small" effect="plain">
@@ -103,7 +168,14 @@
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="location" label="所属区域" min-width="140" show-overflow-tooltip />
+        <el-table-column prop="location" label="所属区域" min-width="170" show-overflow-tooltip>
+          <template #default="{ row }">
+            <div class="location-cell">
+              <span class="location-cell__main">{{ row.location }}</span>
+              <span class="location-cell__sub">设备编号 #{{ row.id }}</span>
+            </div>
+          </template>
+        </el-table-column>
         <el-table-column prop="status" label="状态" width="90" align="center">
           <template #default="{ row }">
             <el-tag :type="getStatusColor(row.status)" size="small">
@@ -111,24 +183,45 @@
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="cpuUsage" label="CPU" width="100" align="center">
+        <el-table-column label="资源负载" min-width="230">
           <template #default="{ row }">
-            <el-progress :percentage="Number(row.cpuUsage)" :color="getUsageColor(row.cpuUsage)" :stroke-width="8" :show-text="true" />
+            <div class="resource-stack">
+              <div class="resource-item">
+                <span class="resource-item__label">CPU</span>
+                <el-progress :percentage="Number(row.cpuUsage)" :color="getUsageColor(row.cpuUsage)" :stroke-width="8" :show-text="false" />
+                <span class="resource-item__value">{{ Number(row.cpuUsage).toFixed(0) }}%</span>
+              </div>
+              <div class="resource-item">
+                <span class="resource-item__label">MEM</span>
+                <el-progress :percentage="Number(row.memoryUsage)" :color="getUsageColor(row.memoryUsage)" :stroke-width="8" :show-text="false" />
+                <span class="resource-item__value">{{ Number(row.memoryUsage).toFixed(0) }}%</span>
+              </div>
+              <div class="resource-item">
+                <span class="resource-item__label">DISK</span>
+                <el-progress :percentage="Number(row.diskUsage)" :color="getUsageColor(row.diskUsage)" :stroke-width="8" :show-text="false" />
+                <span class="resource-item__value">{{ Number(row.diskUsage).toFixed(0) }}%</span>
+              </div>
+            </div>
           </template>
         </el-table-column>
-        <el-table-column prop="memoryUsage" label="内存" width="100" align="center">
+        <el-table-column label="健康评分" width="110" align="center">
           <template #default="{ row }">
-            <el-progress :percentage="Number(row.memoryUsage)" :color="getUsageColor(row.memoryUsage)" :stroke-width="8" :show-text="true" />
+            <div class="health-badge" :class="getHealthClass(row)">
+              <strong>{{ getHealthScore(row) }}</strong>
+              <span>{{ getHealthText(row) }}</span>
+            </div>
           </template>
         </el-table-column>
         <el-table-column prop="updateTime" label="更新时间" width="170" />
-        <el-table-column label="操作" width="120" fixed="right" align="center">
+        <el-table-column label="操作" width="140" fixed="right" align="center">
           <template #default="{ row }">
             <el-button type="primary" link size="small" @click="handleEdit(row)">
               <el-icon><Edit /></el-icon>
+              编辑
             </el-button>
             <el-button type="danger" link size="small" @click="handleDelete(row)">
               <el-icon><Delete /></el-icon>
+              删除
             </el-button>
           </template>
         </el-table-column>
@@ -190,7 +283,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Edit, Delete } from '@element-plus/icons-vue'
 import { getDeviceList, getDevicePage, addDevice, updateDevice, deleteDevice } from '../api/device'
@@ -208,6 +301,10 @@ const searchForm = reactive({ deviceName: '', status: '' })
 const pagination = reactive({ current: 1, size: 10, total: 0 })
 
 const stats = reactive({ total: 0, online: 0, offline: 0, warning: 0 })
+const onlineRate = computed(() => (stats.total ? Math.round((stats.online / stats.total) * 100) : 0))
+const overloadedCount = computed(() => tableData.value.filter((item) => {
+  return Number(item.cpuUsage) >= 80 || Number(item.memoryUsage) >= 80 || Number(item.diskUsage) >= 80
+}).length)
 
 const statusTags = [
   { label: '全部', value: '', type: '' },
@@ -254,6 +351,22 @@ const getUsageColor = (usage) => {
   if (n > 80) return '#ff4d5a'
   if (n > 60) return '#ffcc33'
   return '#00f5a0'
+}
+const getHealthScore = (row) => {
+  const avg = (Number(row.cpuUsage) + Number(row.memoryUsage) + Number(row.diskUsage)) / 3
+  return Math.max(32, Math.round(100 - avg * 0.72))
+}
+const getHealthText = (row) => {
+  const score = getHealthScore(row)
+  if (score >= 80) return '优'
+  if (score >= 65) return '稳'
+  return '风险'
+}
+const getHealthClass = (row) => {
+  const score = getHealthScore(row)
+  if (score >= 80) return 'health-badge--good'
+  if (score >= 65) return 'health-badge--mid'
+  return 'health-badge--risk'
 }
 
 const normalizeItem = (item) => ({
@@ -413,106 +526,279 @@ onMounted(() => loadData())
 
 <style scoped>
 .device-page {
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.stat-row {
-  margin-bottom: 20px;
+.device-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.9fr) minmax(280px, 1fr);
+  gap: 20px;
+  padding: 28px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top left, rgba(0, 212, 255, 0.18), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(0, 245, 160, 0.14), transparent 28%),
+    linear-gradient(135deg, rgba(9, 22, 39, 0.98), rgba(5, 11, 20, 0.96));
+  border: 1px solid rgba(115, 198, 255, 0.14);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+}
+
+.device-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.06), transparent 28%),
+    repeating-linear-gradient(90deg, rgba(120, 200, 255, 0.04) 0, rgba(120, 200, 255, 0.04) 1px, transparent 1px, transparent 64px);
+  pointer-events: none;
+}
+
+.device-hero__content,
+.device-hero__grid {
+  position: relative;
+  z-index: 1;
+}
+
+.device-hero__eyebrow {
+  margin: 0 0 12px;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #7fdcff;
+}
+
+.device-hero__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.device-hero__heading h1 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.1;
+  color: #f4fbff;
+}
+
+.device-hero__heading p {
+  max-width: 620px;
+  margin: 10px 0 0;
+  color: #98abc1;
+  line-height: 1.7;
+}
+
+.device-hero__badges {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.hero-badge {
+  min-width: 120px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(11, 29, 50, 0.76);
+  border: 1px solid rgba(125, 217, 255, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+.hero-badge--warn {
+  background: rgba(55, 29, 12, 0.68);
+  border-color: rgba(255, 201, 112, 0.16);
+}
+
+.hero-badge__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #92a6ba;
+}
+
+.hero-badge__value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f4fbff;
+}
+
+.device-hero__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  align-self: stretch;
+}
+
+.hero-grid-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 130px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(8, 20, 36, 0.74);
+  border: 1px solid rgba(114, 195, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.hero-grid-card__label {
+  color: #88a3bf;
+  font-size: 12px;
+}
+
+.hero-grid-card strong {
+  font-size: 34px;
+  line-height: 1;
+  color: #eff7ff;
+}
+
+.hero-grid-card span:last-child {
+  color: #6f859d;
+  font-size: 12px;
+}
+
+.stat-row,
+.chart-row {
+  margin: 0;
 }
 
 .stat-card {
   display: flex;
   align-items: center;
-  padding: 16px;
-  background: rgba(6, 24, 52, 0.88);
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0, 216, 255, 0.06);
-  transition: all 0.3s;
+  gap: 16px;
+  min-height: 112px;
+  padding: 22px 20px;
+  background: linear-gradient(180deg, rgba(13, 27, 46, 0.98) 0%, rgba(7, 14, 24, 0.96) 100%);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(0, 216, 255, 0.25);
+  border: 1px solid rgba(120, 200, 255, 0.12);
 }
 
-.stat-card:hover {
-  border-color: rgba(0, 216, 255, 0.5);
-  box-shadow: 0 0 20px rgba(0, 216, 255, 0.15);
-  transform: translateY(-2px);
+.stat-card::after {
+  content: '';
+  position: absolute;
+  right: -18px;
+  bottom: -38px;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .stat-card__icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 12px;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
   flex-shrink: 0;
 }
 
-.stat-card--blue .stat-card__icon { background: rgba(0, 216, 255, 0.15); color: #00d8ff; }
-.stat-card--green .stat-card__icon { background: rgba(0, 245, 160, 0.15); color: #00f5a0; }
-.stat-card--orange .stat-card__icon { background: rgba(255, 204, 51, 0.15); color: #ffcc33; }
-.stat-card--gray .stat-card__icon { background: rgba(122, 169, 199, 0.15); color: #7aa9c7; }
+.stat-card--blue .stat-card__icon { background: linear-gradient(135deg, #8be6ff 0%, #27b2da 100%); color: #05111c; }
+.stat-card--green .stat-card__icon { background: linear-gradient(135deg, #80efc0 0%, #2fa276 100%); color: #06150f; }
+.stat-card--orange .stat-card__icon { background: linear-gradient(135deg, #ffe197 0%, #ffb44a 100%); color: #2a1800; }
+.stat-card--gray .stat-card__icon { background: linear-gradient(135deg, #d0d8e4 0%, #8ea1b7 100%); color: #0b1623; }
 
-.stat-card__content { flex: 1; }
+.stat-card__content {
+  position: relative;
+  z-index: 1;
+}
 
 .stat-card__value {
-  font-size: 26px;
+  font-size: 34px;
   font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 4px;
+  color: #eff7ff;
+  margin: 0 0 6px;
   line-height: 1;
 }
 
 .stat-card__label {
   font-size: 13px;
-  color: #b8eaff;
+  color: #93a7bd;
   margin: 0;
 }
 
 .quick-filter {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .filter-label {
-  font-size: 14px;
-  color: #b8eaff;
-  font-weight: 500;
+  font-size: 13px;
+  color: #b4c5db;
+  font-weight: 600;
 }
 
 .filter-tag {
   cursor: pointer;
-  transition: all 0.3s;
-}
-
-.filter-tag:hover {
-  transform: translateY(-2px);
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 14px;
 }
 
 .card-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #00d8ff;
+  font-size: 18px;
+  font-weight: 700;
+  color: #eff7ff;
+}
+
+.card-subtitle {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: #90a5bc;
+}
+
+.card-header__meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.meta-pill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(10, 23, 40, 0.85);
+  border: 1px solid rgba(118, 200, 255, 0.12);
+  font-size: 12px;
+  color: #b7cae0;
+}
+
+.meta-pill--accent {
+  background: rgba(63, 27, 18, 0.8);
+  border-color: rgba(255, 180, 100, 0.14);
+  color: #ffd59a;
+}
+
+.device-console-card {
+  overflow: hidden;
 }
 
 .search-bar {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 16px;
+  align-items: center;
+  margin-bottom: 18px;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.search-bar :deep(.el-form) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 0;
 }
 
 .search-bar__right {
@@ -520,101 +806,151 @@ onMounted(() => loadData())
 }
 
 .pagination-wrapper {
-  margin-top: 16px;
+  margin-top: 8px;
+}
+
+.thingsboard-table {
+  border-radius: 18px;
+}
+
+.device-cell {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.device-cell__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #05111c;
+  flex-shrink: 0;
+}
+
+.device-cell__avatar--server {
+  background: linear-gradient(135deg, #8be6ff 0%, #35b9e7 100%);
+}
+
+.device-cell__avatar--network {
+  background: linear-gradient(135deg, #92f0c0 0%, #31af81 100%);
+}
+
+.device-cell__avatar--storage {
+  background: linear-gradient(135deg, #ffe5a8 0%, #ffb34d 100%);
+}
+
+.device-cell__content,
+.network-cell,
+.location-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.device-cell__name,
+.network-cell__ip,
+.location-cell__main {
+  color: #edf7ff;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.device-cell__desc,
+.network-cell__os,
+.location-cell__sub {
+  color: #90a5bc;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.resource-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resource-item {
+  display: grid;
+  grid-template-columns: 36px 1fr 40px;
+  gap: 10px;
   align-items: center;
 }
 
-/* Table overrides */
-.thingsboard-table {
-  border: 1px solid rgba(0, 216, 255, 0.15);
-  border-radius: 8px;
-  overflow: hidden;
+.resource-item__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #7fdcff;
 }
 
-.thingsboard-table :deep(.el-table__header) {
-  background: rgba(8, 35, 75, 0.78);
+.resource-item__value {
+  text-align: right;
+  font-size: 12px;
+  color: #b6c9dd;
 }
 
-.thingsboard-table :deep(.el-table__header th) {
-  background: rgba(8, 35, 75, 0.78) !important;
-  color: #00d8ff !important;
-  font-weight: 600;
-  font-size: 13px;
-  border-bottom: 1px solid rgba(0, 216, 255, 0.2);
-  padding: 12px 0;
+.health-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 62px;
+  min-height: 62px;
+  padding: 8px;
+  border-radius: 18px;
+  border: 1px solid transparent;
 }
 
-.thingsboard-table :deep(.el-table__row) {
-  transition: background-color 0.2s;
+.health-badge strong {
+  font-size: 20px;
+  line-height: 1;
 }
 
-.thingsboard-table :deep(.el-table__row:hover) {
-  background-color: rgba(0, 216, 255, 0.08) !important;
+.health-badge span {
+  margin-top: 4px;
+  font-size: 11px;
 }
 
-.thingsboard-table :deep(.el-table__row td) {
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(0, 216, 255, 0.1);
-  font-size: 13px;
-  color: #b8eaff;
+.health-badge--good {
+  background: rgba(21, 68, 49, 0.22);
+  border-color: rgba(111, 234, 172, 0.18);
+  color: #87f2bc;
 }
 
-.thingsboard-table :deep(.el-table__body tr:last-child td) {
-  border-bottom: none;
+.health-badge--mid {
+  background: rgba(85, 58, 12, 0.22);
+  border-color: rgba(255, 206, 97, 0.18);
+  color: #ffd870;
 }
 
-.thingsboard-table :deep(.el-button.is-link) {
-  padding: 4px;
-  color: #00d8ff;
+.health-badge--risk {
+  background: rgba(83, 25, 33, 0.22);
+  border-color: rgba(255, 125, 125, 0.18);
+  color: #ff9a9a;
 }
 
-.thingsboard-table :deep(.el-button.is-link:hover) {
-  background-color: rgba(0, 216, 255, 0.1);
-  border-radius: 4px;
-}
+@media (max-width: 768px) {
+  .device-hero,
+  .device-hero__heading,
+  .device-hero__grid,
+  .card-header,
+  .search-bar {
+    align-items: stretch;
+    flex-direction: column;
+  }
 
-/* Pagination overrides */
-.pagination-wrapper :deep(.el-pagination) {
-  font-size: 13px;
-}
+  .device-hero__grid {
+    grid-template-columns: 1fr;
+  }
 
-.pagination-wrapper :deep(.el-pagination button) {
-  background: rgba(6, 24, 52, 0.6);
-  border: 1px solid rgba(0, 216, 255, 0.2);
-  color: #b8eaff;
-}
-
-.pagination-wrapper :deep(.el-pagination button:hover) {
-  color: #00d8ff;
-  border-color: rgba(0, 216, 255, 0.5);
-}
-
-.pagination-wrapper :deep(.el-pagination .el-pager li) {
-  background: rgba(6, 24, 52, 0.6);
-  border: 1px solid rgba(0, 216, 255, 0.15);
-  color: #b8eaff;
-  min-width: 32px;
-  height: 32px;
-  line-height: 32px;
-  margin: 0 2px;
-  border-radius: 6px;
-}
-
-.pagination-wrapper :deep(.el-pagination .el-pager li:hover) {
-  color: #00d8ff;
-  border-color: rgba(0, 216, 255, 0.5);
-}
-
-.pagination-wrapper :deep(.el-pagination .el-pager li.is-active) {
-  background: linear-gradient(135deg, #00d8ff, #0088cc);
-  border-color: #00d8ff;
-  color: #fff;
-}
-
-.pagination-wrapper :deep(.el-pagination .el-select .el-input__wrapper) {
-  background: rgba(8, 35, 75, 0.78);
-  box-shadow: 0 0 0 1px rgba(0, 216, 255, 0.35) inset;
+  .resource-item {
+    grid-template-columns: 32px 1fr 36px;
+    gap: 8px;
+  }
 }
 </style>
